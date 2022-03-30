@@ -9,7 +9,6 @@ package com.enterarte.entity;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -19,7 +18,7 @@ import org.hibernate.annotations.GenericGenerator;
 @Entity
 @Data
 @NoArgsConstructor
-@AllArgsCon structor
+@AllArgsConstructor
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 public class Location {
     @Id
