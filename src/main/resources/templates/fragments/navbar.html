@@ -9,11 +9,11 @@
               
               <ul class="navbar-nav">
                   <li class="nav-item">
-                      <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="dropdown08" data-bs-toggle="dropdown" aria-expanded="false">Autores</a>
+                      <li sec:authorize="hasAnyRole('ADMIN')" class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="dropdown08" data-bs-toggle="dropdown" aria-expanded="false">Administrar</a>
                     <ul class="dropdown-menu" aria-labelledby="dropdown08">
-                        <li><a class="dropdown-item" >#####</a></li>
-                        <li><a class="dropdown-item" >#####</a></li>
+                        <li><a class="dropdown-item" >Shows</a></li>
+                        <li><a class="dropdown-item" >talleres</a></li>
                         <li><a class="dropdown-item" >#####</a></li>
                     </ul>
                       
@@ -25,18 +25,19 @@
                <ul class="navbar-nav ms-auto">
                 <li class="nav-item dropdown">
              
-                    <a id="dropdown08" class="nav-link dropdown-toggle btn btn-outline-success" data-bs-toggle="dropdown" aria-expanded="false" ></a>
+<!--                    <a id="dropdown08" class="nav-link dropdown-toggle btn btn-outline-success" data-bs-toggle="dropdown" aria-expanded="false" ></a>-->
 
+                     <a sec:authorize="isAuthenticated()" id="dropdown08" class="nav-link dropdown-toggle btn btn-outline-success" data-bs-toggle="dropdown" aria-expanded="false" <spam   th:if="${session.customersession != null}" th:text="${session.customersession.fullName}" ></spam></a>
                     <ul class="dropdown-menu " aria-labelledby="dropdown08">
                         <li><a class="dropdown-item">Perfil</a></li>
                         <li><a class="dropdown-item" >Cambiar Contraseña</a></li>
-                        <form method="post">
+                        <form  th:action="@{/logout}" method="post">
                             <button class="dropdown-item" type="submit">Cerrar Sesion</button>                
                         </form>
                     </ul>
                 </li>
-<!--                <li class="nav-item"><a class="nav-link" sec:authorize="!isAuthenticated()" th:href="@{/customer/form}">Sign Up</a></li>
-                <li class="nav-item"><a class="nav-link" sec:authorize="!isAuthenticated()" th:href="@{/login/login}">Log In</a></li>-->
+                <li class="nav-item"><a class="nav-link" sec:authorize="!isAuthenticated()" th:href="@{/customer/form}">Sign Up</a></li>
+                <li class="nav-item"><a class="nav-link" sec:authorize="!isAuthenticated()" th:href="@{/login/login}">Log In</a></li>
             </ul>
         </div>
          

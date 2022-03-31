@@ -5,10 +5,11 @@
  */
 package com.enterarte.repository;
 
+import com.enterarte.entity.Show;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface Workshop extends JpaRepository<Workshop, String>  {
+public interface ShowRepository extends JpaRepository<Show, String> {
     
 }

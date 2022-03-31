@@ -32,7 +32,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 //        http.headers().frameOptions().sameOrigin().and()
                  http
                 .authorizeRequests()
-                .antMatchers("/index", "/css/**", "/js/**", "/img/**", "/video/**", "/login/**", "/customer/**").permitAll()
+                .antMatchers("/index", "/css/**", "/js/**","/main/**", "/img/**", "/video/**", "/login/**", "/customer/**").permitAll()
                 .antMatchers("/author/create").hasAnyRole("ADMIN")
                 .anyRequest().authenticated()
                 .and()
