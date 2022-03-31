@@ -13,16 +13,14 @@ import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.GenericGenerator;
 
-
-
 @Entity
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 public class Customer {
-    
- @Id
+
+    @Id
     @GeneratedValue(generator = "uuid")
     @GenericGenerator(name = "uuid", strategy = "uuid2")
     private String id;
@@ -40,11 +38,11 @@ public class Customer {
     private Role role;
 
     private Boolean active;
-    
+
     @OneToOne
     private Photo photo;
-    
-    public String getFullName(){
+
+    public String getFullName() {
         return this.nombre + " " + this.apellido;
     }
 
