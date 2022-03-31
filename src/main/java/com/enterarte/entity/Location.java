@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package com.enterarte.entity;
 
 import javax.persistence.Entity;
@@ -19,24 +18,16 @@ import org.hibernate.annotations.GenericGenerator;
 @Entity
 @Data
 @NoArgsConstructor
-@AllArgsCon structor
+@AllArgsConstructor
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 public class Location {
+
     @Id
     @GeneratedValue(generator = "uuid")
     @GenericGenerator(name = "uuid", strategy = "uuid2")
     private String id;
-    
-    
+
     private String nombre;
     private String ubicacion;
-    
-    
-    
-    
 
-    
-    
 }
-    
-    
