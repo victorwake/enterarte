@@ -1,10 +1,10 @@
 package com.enterarte.repository;
 
-import com.enterarte.entity.Workshop;
+import com.enterarte.entity.Play;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface WorkshopRepository extends JpaRepository<Workshop, String>  {
+public interface PlayRepository extends JpaRepository<Play, String> {
     
 }

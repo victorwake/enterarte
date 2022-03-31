@@ -1,9 +1,5 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.enterarte.entity;
+
 
 
 import javax.persistence.Entity;
@@ -21,7 +17,7 @@ import org.hibernate.annotations.GenericGenerator;
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
-public class Show {
+public class Play {
 
     @Id
     @GeneratedValue(generator = "uuid")
@@ -30,7 +26,7 @@ public class Show {
 
     private String titulo;
     private String descripcion;
-    private String duracion;
+    private Integer duracion;
     
     
 
