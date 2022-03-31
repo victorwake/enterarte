@@ -30,7 +30,7 @@ public class Show {
 
     private String titulo;
     private String descripcion;
-    private Integer duracion;
+    private String duracion;
     
     
 
