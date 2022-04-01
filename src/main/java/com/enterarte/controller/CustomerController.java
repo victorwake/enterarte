@@ -1,4 +1,3 @@
-
 package com.enterarte.controller;
 
 import com.enterarte.Service.CustomerService;
@@ -22,11 +21,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
-
-
-
-
-
 
 @Controller
 @RequestMapping("/customer")
@@ -89,8 +83,6 @@ public class CustomerController {
         return "customer/password";
     }
 
-    
-
     @PostMapping("/password")
     public String profile2(ModelMap model, @ModelAttribute Customer customer, @RequestParam String clave1, @RequestParam String clave2) {
         try {
@@ -123,9 +115,17 @@ public class CustomerController {
         Photo photo = photoRepository.getOne(id);
         final HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.IMAGE_PNG);
-        return new ResponseEntity<>(photo.getContenido(), headers, HttpStatus.OK); 
-    
-    
-    
+        return new ResponseEntity<>(photo.getContenido(), headers, HttpStatus.OK);
+
     }
+
+    @GetMapping("/modificar/{id}")
+    public String modificarCustomer(ModelMap model, @PathVariable String id, @ModelAttribute Customer customer) throws Exception {
+        
+        Customer custor =customerService.findById(id);
+        model.addAttribute("custor", custor);
+
+        return "modificarCustomer.html";
+    }
+
 }
