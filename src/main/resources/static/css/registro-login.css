@@ -1,0 +1,226 @@
+html {
+    height: 100%;
+    /*    width: 100%;*/
+    box-sizing: border-box;
+    /*    padding: 10px;*/
+}
+
+body {
+    position: relative;
+    background-image:url("/img/fondo_body.jpg"); 
+    display:flex;
+    flex-direction: column;
+    padding-bottom: 6rem;
+    min-height: 100%;
+    font-family: "Helvetica Neue", Arial, sans-serif;
+
+}
+
+
+.ms-auto .dropdown{
+/*    margin-right: 56px;*/
+    padding-right: 59px;
+}
+
+.bienvenido{
+    color: white;
+    padding-right: 10px;
+    margin-top: 10px;
+    opacity: 0.66;
+    
+}
+
+
+.navbar {
+    opacity: 1;
+    margin-left: 7px;
+    margin-right: 7px;
+    border-radius: 1px 1px 5px 5px;
+    
+
+
+
+}
+
+main{
+    display:flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.frace{
+    display:flex;
+    align-content: center;
+    color: window;
+    padding-top: 320px;
+
+}
+
+/*//////////////////////////////////////////////////////////////////////////////
+//“Un lector vive mil vidas antes de morir. Aquel que nunca lee vive solo una.”
+//////////////////////////////////////////////////////////////////////////////*/
+h2 {
+    font-size: 0.9em;
+    text-align: center;
+    font-family: 'Indie Flower', cursive;
+    color: white;
+    text-shadow: 0 0 0.2em rgb(8, 8, 8), 0 0 0.6em rgb(10, 10, 10);
+}
+@media screen and (min-width: 30em) {
+    h2 {
+        font-size: calc(0.5em + 1.4vw);
+    }
+    
+   
+}
+@media screen and (min-width: 50em) {
+    h2 {
+        font-size: calc(0.5em + 2vw);
+    }
+    
+}
+@media screen and (min-width: 90em) {
+    h2 {
+        text-align: center;
+        font-size: 2.5em;
+    }
+    
+    
+}
+
+/*h2{
+   font-size: 30px;
+   font-family: 'Indie Flower', cursive;
+   color: white;   
+   text-shadow: 0 0 0.2em rgb(8, 8, 8), 0 0 0.6em rgb(10, 10, 10);   
+}
+
+
+@media(max-width:968px){
+    h2{
+        font-size: 26px;
+    }
+    
+}
+@media(max-width:845px){
+    h2{
+        font-size: 24px;
+    }
+    
+}*/
+/*////////////////////////////////////////////////////////////////////////////////////*/
+
+
+/*////////////////////////////////////////////////////////////////////////////////////*/
+/* Inicio footer */
+.footer {
+    position: absolute;
+    right: 10px;
+    bottom: 0;
+    left: 10px;
+    padding: 1rem;
+    border-radius: 5px;
+    box-shadow: dimgray 0px 0px 10px;
+    background-color: rgba(32, 32, 32, 0.863);
+    text-align: center;
+}
+
+.footer p {
+    align-content: bottom;
+    bottom:0px;
+    color: white;
+    font-size: 15px;
+    text-shadow: rgb(49, 48, 48) 0px 0px 10px;
+    opacity: 0.64;
+}
+
+/* Fin footer */
+
+
+#video_background {
+
+    position: absolute;
+
+    bottom: 0px;
+
+    right: 0px;
+
+    min-width: 100%;
+
+    min-height: 100%;
+
+    width: auto;
+
+    height: auto;
+
+    z-index: -1000;
+
+    overflow: hidden;
+
+}
+
+.wrapper {
+    margin-top: 80px;
+    margin-bottom: 80px;
+    opacity: 0.74;
+
+}
+
+h3{
+    font-size: 2em;
+    text-align: center;
+    color: black;
+    text-shadow: 0 0 0.2em rgb(8, 8, 8), 0 0 0.6em rgb(10, 10, 10);
+}
+
+button{
+    margin-top: 10px;
+}
+
+input{
+    margin-top: 8px;
+}
+
+.form-signin {
+    max-width: 380px;
+    padding: 15px 35px 45px;
+    margin: 0 auto;
+    background-color: #fff;
+    border: 1px solid rgba(0,0,0,0.1);
+    border-radius: 5px;
+    box-shadow: dimgray 0px 0px 10px;
+
+
+    .form-signin-heading,
+    .checkbox {
+        margin-bottom: 30px;
+    }
+
+    .checkbox {
+        font-weight: normal;
+    }
+
+    .form-control {
+        position: relative;
+        font-size: 16px;
+        height: auto;
+        padding: 10px;
+        /*        @include box-sizing(border-box);*/
+
+        &:focus {
+            z-index: 2;
+        }
+    }
+
+    input[type="text"] {
+        margin-bottom: -1px;
+        border-bottom-left-radius: 0;
+        border-bottom-right-radius: 0;
+    }
+
+    input[type="password"] {
+        margin-bottom: 20px;
+        border-top-left-radius: 0;
+        border-top-right-radius: 0;
+    }
+}

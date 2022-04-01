@@ -3,9 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.enterarte.repository;
 
-
-public interface LocationRepository {
-    
-}
+//package com.enterarte.Service;
+//
+//import org.springframework.stereotype.Service;
+//
+//@Service
+//public class LocationService {
+//
+//}
