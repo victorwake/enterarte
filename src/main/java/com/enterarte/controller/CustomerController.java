@@ -164,6 +164,13 @@ public class CustomerController {
 
     }
 
-   
+    @GetMapping("/modificar/{id}")
+    public String modificarCustomer(ModelMap model, @PathVariable String id, @ModelAttribute Customer customer) throws Exception {
+        
+        Customer custor =customerService.findById(id);
+        model.addAttribute("custor", custor);
+
+        return "modificarCustomer.html";
+    }
 
 }
