@@ -140,6 +140,16 @@ public class CustomerService implements UserDetailsService {
     public void activate(String id) {
         throw new UnsupportedOperationException("Not supported yet.");
     }
+    
+    
+    @Transactional(rollbackOn = {Exception.class})
+    public void desactivate(String id) throws Exception {
+        Customer customer = findById(id);
+        customer.setActive(false);
+        customer.setRole(null);
+       customerRepository.save(customer);
+    }
+
 
     ////////////////////////////////////////////////////////////////////////////
     //Validacion general

@@ -89,7 +89,20 @@ public class CustomerController {
         return "customer/profile";
     }
 //    ////////////////////////////////////////////////////////////////////////////
+ @GetMapping("/baja/{id}")
+    public String desactivate(@PathVariable String id , ModelMap model) {
+        try {
+            customerService.desactivate(id);
+         
+        } catch (Exception e) {
+            model.addAttribute("errorMessage", e.getMessage());
+            
+        }
+        return "redirect:/logout";
+    }
 
+    
+    
     @GetMapping("/modificar/{id}")
     public String modificarcustomer(@PathVariable("id") String customerid, ModelMap model) {
         try {
