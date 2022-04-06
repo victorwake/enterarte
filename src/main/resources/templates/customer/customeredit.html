@@ -23,7 +23,7 @@
                 <form th:action="@{/customer/update}" th:object=${customer} autocomplete="off" method="POST" class="form-signin" enctype="multipart/form-data">       
 
                    
-                    <h3 class="form-signin-heading">Registro</h3>
+                    <h3 class="form-signin-heading">Modificar Perfil</h3>
                    <input type="hidden" th:field="*{id}">
                     <input th:field="*{nombre}" autocomplete="off" type="text"  class="form-control"  placeholder="nombre" required="" autofocus="" />
                     <input th:field="*{apellido}" autocomplete="off" type="text"  class="form-control"  placeholder="apellido" required="" autofocus="" />
@@ -38,9 +38,9 @@
                        
                         <input  type="file" name="file">
                     </div>
-                    
-                    <button id="button-login" class="btn btn-lg btn-primary btn-block" type="submit">Registrar</button>   
-                    
+                    <center>
+                    <button id="button-login" class="btn btn-lg btn-primary btn-block" type="submit">Guardar</button>   
+                    </center>
                     <p th:if="${error !=null}" th:text="${error}" style="color:red"></p>
                 </form>
             </div>

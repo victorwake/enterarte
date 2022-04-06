@@ -71,8 +71,12 @@ public class CustomerService implements UserDetailsService {
         customer.setDni(dni);
         customer.setNumeroTelefono(telefono);
         customer.setApellido(apellido);
+//        validaNombre(customer);
+//        validaApellido(customer);
+//        validaTelefono(customer);
+//        validaDni(customer);
 
-        customer.setClave(new BCryptPasswordEncoder().encode(customer.getClave()));
+//        customer.setClave(new BCryptPasswordEncoder().encode(customer.getClave()));
 //        activateIfNew activa y da rol de user
         activateIfNew(customer);
 

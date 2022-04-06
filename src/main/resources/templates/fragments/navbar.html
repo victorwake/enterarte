@@ -30,7 +30,7 @@
                      <a sec:authorize="isAuthenticated()" id="dropdown08" class="nav-link dropdown-toggle btn btn-outline-success" data-bs-toggle="dropdown" aria-expanded="false" <spam   th:if="${session.customersession != null}" th:text="${session.customersession.fullName}" ></spam></a>
                     <ul class="dropdown-menu " aria-labelledby="dropdown08">
                         <li><a class="dropdown-item">Perfil</a></li>
-                        <li><a class="dropdown-item" >Cambiar Contraseña</a></li>
+                        <li><a class="dropdown-item" ></a></li>
                         <form  th:action="@{/logout}" method="post">
                             <button class="dropdown-item" type="submit">Cerrar Sesion</button>                
                         </form>
