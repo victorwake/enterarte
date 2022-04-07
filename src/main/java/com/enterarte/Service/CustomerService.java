@@ -64,9 +64,9 @@ public class CustomerService implements UserDetailsService {
     //Modificar
     ////////////////////////////////////////////////////////////////////////////
     @Transactional(rollbackOn = Exception.class)
-    public void modificar(String nombre, String apellido, String dni, String telefono, MultipartFile file, Customer customer) throws Exception {
-//        validar(customer);
+    public void modificar(String nombre, String apellido, String dni, String telefono, Optional<MultipartFile> file, Customer customer) throws Exception {
 
+        //Ingresar validaciones en un futuro
         customer.setNombre(nombre);
         customer.setDni(dni);
         customer.setNumeroTelefono(telefono);
@@ -76,19 +76,26 @@ public class CustomerService implements UserDetailsService {
 //        validaTelefono(customer);
 //        validaDni(customer);
 
-//        customer.setClave(new BCryptPasswordEncoder().encode(customer.getClave()));
-//        activateIfNew activa y da rol de user
         activateIfNew(customer);
 
         String idPhoto = null;
-        if (customer.getPhoto() != null) {
-            idPhoto = customer.getPhoto().getId();
+
+        if (file.isPresent() && !file.get().isEmpty()) {
+            Photo photo = photoService.guardarFoto(file.get());
+            customer.setPhoto(photo);
         }
-        Photo photo = photoService.actualizar(idPhoto, file);
-        customer.setPhoto(photo);
 
+        if (file.isPresent() && file.get().isEmpty()) {
+            idPhoto = customer.getPhoto().getId();
+            Photo photo = photoService.buscar(idPhoto);
+            customer.setPhoto(photo);
+
+        }
+//             
+//        }
+
+//       
         customerRepository.save(customer);
-
     }
 
     ////////////////////////////////////////////////////////////////////////////
@@ -140,16 +147,14 @@ public class CustomerService implements UserDetailsService {
     public void activate(String id) {
         throw new UnsupportedOperationException("Not supported yet.");
     }
-    
-    
+
     @Transactional(rollbackOn = {Exception.class})
     public void desactivate(String id) throws Exception {
         Customer customer = findById(id);
         customer.setActive(false);
         customer.setRole(null);
-       customerRepository.save(customer);
+        customerRepository.save(customer);
     }
-
 
     ////////////////////////////////////////////////////////////////////////////
     //Validacion general
