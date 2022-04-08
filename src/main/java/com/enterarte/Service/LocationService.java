@@ -1,14 +1,29 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+package com.enterarte.Service;
 
-//package com.enterarte.Service;
-//
-//import org.springframework.stereotype.Service;
-//
-//@Service
-//public class LocationService {
-//
-//}
+import com.enterarte.entity.Location;
+import com.enterarte.repository.LocationRepository;
+import javax.transaction.Transactional;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+@Service
+public class LocationService {
+    
+        private final LocationRepository locationRepository;
+
+    @Autowired
+    public LocationService(LocationRepository locationRepository) {
+        this.locationRepository = locationRepository;
+    }
+
+    @Transactional
+    public void saveLocation(String nombre, String ubicaion) {
+        Location location = new Location();
+        location.setNombre(nombre);
+        location.setUbicacion(ubicaion);
+
+        locationRepository.save(location);
+        
+    }
+
+}

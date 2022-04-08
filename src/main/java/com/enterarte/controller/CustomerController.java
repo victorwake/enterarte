@@ -13,6 +13,7 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -72,10 +73,11 @@ public class CustomerController {
 
     @PostMapping("/update")
     public String saveupdate(@RequestParam String nombre, @RequestParam String apellido, @RequestParam String dni, @RequestParam String numeroTelefono, ModelMap model,
-            MultipartFile file, HttpSession session) {
+            Optional<MultipartFile> file, HttpSession session) {
         try {
             //validar
             Customer customer = (Customer) session.getAttribute("customersession");
+
             customerService.modificar(nombre, apellido, dni, numeroTelefono, file, customer);
 //            model.put("descripcion", "Usuario registrado con exito.");
 
@@ -89,20 +91,19 @@ public class CustomerController {
         return "customer/profile";
     }
 //    ////////////////////////////////////////////////////////////////////////////
- @GetMapping("/baja/{id}")
-    public String desactivate(@PathVariable String id , ModelMap model) {
+
+    @GetMapping("/baja/{id}")
+    public String desactivate(@PathVariable String id, ModelMap model) {
         try {
             customerService.desactivate(id);
-         
+
         } catch (Exception e) {
             model.addAttribute("errorMessage", e.getMessage());
-            
+
         }
         return "redirect:/logout";
     }
 
-    
-    
     @GetMapping("/modificar/{id}")
     public String modificarcustomer(@PathVariable("id") String customerid, ModelMap model) {
         try {
@@ -113,8 +114,9 @@ public class CustomerController {
         }
         return "customer/customeredit";
     }
-    ////////////////////////////////////////////////////////////////////////////
 
+    ////////////////////////////////////////////////////////////////////////////
+    @PreAuthorize("hasAnyRole('ROLE_USER','ROLE_PROFESOR','ROLE_ADMIN' )")
     @GetMapping("/profile")
     public String profile(ModelMap model, HttpSession session) {
         Customer customer = (Customer) session.getAttribute("customersession");
@@ -163,14 +165,5 @@ public class CustomerController {
         return new ResponseEntity<>(photo.getContenido(), headers, HttpStatus.OK);
 
     }
-
-//    @GetMapping("/modificar/{id}")
-//    public String modificarCustomer(ModelMap model, @PathVariable String id, @ModelAttribute Customer customer) throws Exception {
-//        
-//        Customer custor =customerService.findById(id);
-//        model.addAttribute("custor", custor);
-//
-//        return "modificarCustomer.html";
-//    }
 
 }
