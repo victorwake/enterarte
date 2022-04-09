@@ -19,7 +19,7 @@ public class PlayService {
     @Autowired
     private PhotoService photoService;
 
-    @Autowired
+//    @Autowired
 //    public final NotificationService notificacionService;
 
     public final PlayRepository playRepository;
@@ -37,30 +37,28 @@ public class PlayService {
 
         play.setPhoto(photo);
 
-
-
         playRepository.save(play);
 
     }
     
     public void validar(Play play) throws ErrorService {
-//        validaSiExiste(play);
+        validaSiExiste(play);
         validaNombre(play);
         validaDuracion(play);
         validaDescripcion(play);
     
     }
     
-//    private void validaSiExiste(Play play) throws ErrorService {
-//
-//        Optional<Play> optionalPlay = null;
-//        optionalPlay = playRepository.findByName(play.getNombre());
-//
-//        if (optionalPlay.isPresent()) {
-//            throw new ErrorService("Ya existe una obra con ese nombre");
-//        }
-//
-//    }
+    private void validaSiExiste(Play play) throws ErrorService {
+
+        Optional<Play> optionalPlay = null;
+        optionalPlay = playRepository.findByName(play.getNombre());
+
+        if (optionalPlay.isPresent()) {
+            throw new ErrorService("Ya existe una obra con ese nombre");
+        }
+
+    }
     
     private void validaNombre(Play play) throws ErrorService {
 
