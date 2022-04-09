@@ -30,7 +30,7 @@
                     <input th:field="*{dni}" autocomplete="off" type="number"  class="form-control"  placeholder="DNI" required="" autofocus="" />
                     <input th:field="*{numeroTelefono}" autocomplete="off" type="number"  class="form-control" name="numero_telefono" placeholder="Telefono" required="" autofocus="" />
                      <input th:field="*{email}" sec:authorize="!isAuthenticated()" autocomplete="off" type="text"  class="form-control"  placeholder="Email"  autofocus="" />
-                     <input th:field="*{clave}" sec:authorize="isAuthenticated()" autocomplete="off" type="password"  class="form-control"  placeholder="Ingrese su password para proceder" required=""/>   
+                     <input  th:field="*{clave}" sec:authorize="isAuthenticated()" autocomplete="off" type="password"  class="form-control"  placeholder="Ingrese su password para proceder" required=""/>   
                      
                     <br>
                     <div class="form-field field-3 short">
@@ -42,7 +42,7 @@
 
                     </div>
                     <center>
-                    <button id="button-login" class="btn btn-lg btn-primary btn-block" type="submit">Guardar</button>   
+                    <button th:action="@{/logincheck}" id="button-login" class="btn btn-lg btn-primary btn-block" type="submit">Guardar</button>   
                     </center>
                     <p th:if="${error !=null}" th:text="${error}" style="color:red"></p>
                 </form>
