@@ -1,8 +1,12 @@
 
 package com.enterarte.controller;
 
+import com.enterarte.Service.LocationService;
 import com.enterarte.Service.PlayService;
+import com.enterarte.entity.Location;
 import com.enterarte.entity.Play;
+import com.enterarte.repository.LocationRepository;
+import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -20,10 +24,14 @@ import org.springframework.web.multipart.MultipartFile;
 public class PlayController {
     
     private final PlayService playService;
+    private final LocationRepository locationRepository;
+    private final LocationService locationService;
     
     @Autowired
-    public PlayController(PlayService playService) {
+    public PlayController(PlayService playService, LocationService locationService, LocationRepository locationRepository) {
         this.playService = playService;
+        this.locationService = locationService;
+        this.locationRepository = locationRepository;
     }
         
     ////////////////////////////////////////////////////////////////////////////
@@ -33,23 +41,25 @@ public class PlayController {
     @GetMapping("/form")
     public String createPlay(ModelMap model) {
         model.addAttribute("play", new Play());
+        List<Location> locations = locationRepository.findAll();
+        model.put("locations", locations);
         return "play/register";
     }
     
-    @PostMapping("/register")
-    public String savePlay(@ModelAttribute Play play, ModelMap model, @RequestParam MultipartFile file) {
+    @PostMapping("/create")
+    public String savePlay(@ModelAttribute Play play, Location location,  ModelMap model, @RequestParam MultipartFile file) {
         try {
             //validar
             
-            playService.save(play,file);
+            playService.save(play, location, file);
 
-            return "redirect:/main/main";
+            return "redirect:/admin/panel";
 
         } catch (Exception e) {
             model.put("error", e.getMessage());
 //            model.addAttribute("errorMessage", e.getMessage());
 //            System.err.println(e);
-            return "/play/register";
+            return "/play/form";
         }
     }
     

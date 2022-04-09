@@ -1,6 +1,7 @@
 package com.enterarte.Service;
 
-import com.enterarte.entity.Customer;
+
+import com.enterarte.entity.Location;
 import com.enterarte.entity.Photo;
 import com.enterarte.entity.Play;
 import com.enterarte.mistakes.ErrorService;
@@ -30,13 +31,13 @@ public class PlayService {
     }
 
     @Transactional(rollbackOn = Exception.class)
-    public void save(Play play, MultipartFile file) throws Exception {
+    public void save(Play play, Location location, MultipartFile file) throws Exception {
         
         validar(play);
 
         Photo photo = photoService.guardarFoto(file);
-
         play.setPhoto(photo);
+        play.setUbicacion(location);
 
         playRepository.save(play);
 
