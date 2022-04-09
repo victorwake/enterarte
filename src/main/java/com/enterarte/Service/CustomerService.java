@@ -27,60 +27,75 @@ import org.springframework.web.multipart.MultipartFile;
 
 @Service
 public class CustomerService implements UserDetailsService {
-    
+
     @Autowired
     private PhotoService photoService;
-    
+
     @Autowired
 //    public final NotificationService notificacionService;
-    
+
     public final CustomerRepository customerRepository;
 
     @Autowired
     public CustomerService(CustomerRepository customerRepository) {
-        this.customerRepository = customerRepository;    
+        this.customerRepository = customerRepository;
     }
-    
-    
-
 
     ////////////////////////////////////////////////////////////////////////////
     //Guardar 
     ////////////////////////////////////////////////////////////////////////////
     @Transactional(rollbackOn = Exception.class)
-    public void save(Customer customer, MultipartFile file) throws Exception {
-        validar(customer);
+    public void save(Customer customer, Optional<MultipartFile> file) throws Exception {
+//        validar(customer);
         customer.setClave(new BCryptPasswordEncoder().encode(customer.getClave()));
         //activateIfNew activa y da rol de user
         activateIfNew(customer);
-        
-        Photo photo = photoService.guardarFoto(file);
-        customer.setPhoto(photo);
+        if (file.isPresent() && !file.get().isEmpty()) {
+            Photo photo = photoService.guardarFoto(file.get());
+            customer.setPhoto(photo);
+        }
 
         customerRepository.save(customer);
-        
+
 //        notificacionService.send("Bienvenido a BookShoop", "BookShop", customer.getEmail());
     }
-    
-     ////////////////////////////////////////////////////////////////////////////
+
+    ////////////////////////////////////////////////////////////////////////////
     //Modificar
     ////////////////////////////////////////////////////////////////////////////
     @Transactional(rollbackOn = Exception.class)
-    public void modificar(Customer customer, MultipartFile file) throws Exception {
-        validar(customer);
-        customer.setClave(new BCryptPasswordEncoder().encode(customer.getClave()));
-        //activateIfNew activa y da rol de user
-        activateIfNew(customer);
-        
-        String idPhoto = null;
-        if(customer.getPhoto() != null){
-            idPhoto = customer.getPhoto().getId();
-        }    
-        Photo photo = photoService.actualizar(idPhoto, file );
-        customer.setPhoto(photo);
+    public void modificar(String nombre, String apellido, String dni, String telefono, Optional<MultipartFile> file, Customer customer) throws Exception {
 
+        //Ingresar validaciones en un futuro
+        customer.setNombre(nombre);
+        customer.setDni(dni);
+        customer.setNumeroTelefono(telefono);
+        customer.setApellido(apellido);
+//        validaNombre(customer);
+//        validaApellido(customer);
+//        validaTelefono(customer);
+//        validaDni(customer);
+
+        activateIfNew(customer);
+
+        String idPhoto = null;
+
+        if (file.isPresent() && !file.get().isEmpty()) {
+            Photo photo = photoService.guardarFoto(file.get());
+            customer.setPhoto(photo);
+        }
+
+        if (file.isPresent() && file.get().isEmpty()) {
+            idPhoto = customer.getPhoto().getId();
+            Photo photo = photoService.buscar(idPhoto);
+            customer.setPhoto(photo);
+
+        }
+//             
+//        }
+
+//       
         customerRepository.save(customer);
-        
     }
 
     ////////////////////////////////////////////////////////////////////////////
@@ -94,9 +109,9 @@ public class CustomerService implements UserDetailsService {
         List<GrantedAuthority> permisos = new ArrayList<>();
         GrantedAuthority rolPermiso = new SimpleGrantedAuthority("ROLE_" + customer.getRole().toString());
         permisos.add(rolPermiso);
-        
+
         ServletRequestAttributes attr = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
-        
+
         HttpSession session = attr.getRequest().getSession(true);
         session.setAttribute("customersession", customer);
 
@@ -104,14 +119,10 @@ public class CustomerService implements UserDetailsService {
     }
 
     ////////////////////////////////////////////////////////////////////////////
-    
-
-
-       @Transactional
+    @Transactional
     public List<Customer> listCustomers() {
-      return customerRepository.findAll();
+        return customerRepository.findAll();
     }
-
 
 //    @Transactional
 //    private void activateIfNew(Customer customer) {
@@ -120,22 +131,29 @@ public class CustomerService implements UserDetailsService {
 //
 //        }
 //    }
-
     @Transactional
     public Customer findById(String id) throws Exception {
         return customerRepository.findById(id).orElseThrow(() -> new Exception("Usuario no encontrado"));
     }
 
-    private void activateIfNew(Customer customer){
-        if(customer.getActive() == null){
+    private void activateIfNew(Customer customer) {
+        if (customer.getActive() == null) {
             customer.setActive(true);
             customer.setRole(Role.USER);
         }
     }
-    
+
     @Transactional
     public void activate(String id) {
         throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    @Transactional(rollbackOn = {Exception.class})
+    public void desactivate(String id) throws Exception {
+        Customer customer = findById(id);
+        customer.setActive(false);
+        customer.setRole(null);
+        customerRepository.save(customer);
     }
 
     ////////////////////////////////////////////////////////////////////////////
@@ -275,9 +293,5 @@ public class CustomerService implements UserDetailsService {
 
         }
     }
-
- 
- 
-    
 
 }

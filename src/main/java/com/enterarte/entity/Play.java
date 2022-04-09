@@ -34,4 +34,17 @@ public class Play {
     
     @OneToOne
     private Location ubicacion;
+
+
+
+
+
+
+
+
+
+
 }
+
+
+

@@ -16,6 +16,10 @@ body {
 
 }
 
+.boton-personalizado{
+    text-decoration: none;
+}
+
 
 .ms-auto .dropdown{
 /*    margin-right: 56px;*/
