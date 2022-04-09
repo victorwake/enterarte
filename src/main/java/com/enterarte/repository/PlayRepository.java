@@ -10,10 +10,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface PlayRepository extends JpaRepository<Play, String> {
 
-//    @Query("select a from Play a where p.nombre LIKE :nombre")
-//   public Optional<Play> findByName(String nombre);
+@Query("SELECT a FROM Play a WHERE a.nombre = :nombre")
+public Optional<Play> findByName(String nombre);
 
-   
-    
-    
 }
