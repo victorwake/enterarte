@@ -33,7 +33,7 @@ public class Play {
     private Photo photo;
     
     @OneToOne
-    private Location ubicacion;
+    private Location location;
 
 
 

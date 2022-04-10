@@ -2,6 +2,7 @@ package com.enterarte.Service;
 
 import com.enterarte.entity.Location;
 import com.enterarte.repository.LocationRepository;
+import java.util.Optional;
 import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -26,4 +27,17 @@ public class LocationService {
         
     }
 
+    
+    public Location buscarPorId(String id) throws Exception{
+        
+        Optional<Location> option=locationRepository.findById(id);
+        if (option.isPresent()) {
+           Location location =option.get();
+            return location;
+        }else{
+            throw new Exception("locacion no encontrada");
+        }
+        
+        
+    }
 }

@@ -30,8 +30,9 @@
 
         <div class="container">
 
-            <form class="well form-horizontal" th:action="@{/play/create}" th:object=${play} enctype="multipart/form-data" method="POST" id="contact_form">
-                <fieldset>
+            <form class="well form-horizontal" th:action="@{/play/form}" th:object=${play} enctype="multipart/form-data" method="POST" id="contact_form">
+
+                <input type="hidden" th:value="${play.id}">
 
                     <!-- Form Name -->
                     <legend>Creacion de nuevo espectaculo!</legend>
@@ -70,7 +71,7 @@
                         <div class="col-md-4 selectContainer">
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="glyphicon glyphicon-map-marker"></i></span>
-                                <select name="location" class="form-control selectpicker" >
+                                <select name="locationid" class="form-control selectpicker" >
                                     <option value=" " >Seleccione la locacion</option>
                                     <option th:each="location:${locations}"
                                             th:value="${location.id}" 
@@ -122,10 +123,10 @@
                         </div>
                     </div>
 
-                </fieldset>
+                
             </form>
         </div>
-    </div><!-- /.container -->
+<!--    </div> /.container -->
 
 
 
