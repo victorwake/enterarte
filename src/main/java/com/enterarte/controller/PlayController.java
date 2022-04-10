@@ -46,14 +46,14 @@ public class PlayController {
         return "play/register";
     }
     
-    @PostMapping("/create")
-    public String savePlay(@ModelAttribute Play play, Location location,  ModelMap model, @RequestParam MultipartFile file) {
+    @PostMapping("/form")
+    public String savePlay(@ModelAttribute Play play,String locationid,@RequestParam MultipartFile file ,ModelMap model) {
         try {
             //validar
-            
-            playService.save(play, location, file);
+            Location location=locationService.buscarPorId(locationid);
+            playService.save(play, location,file);
 
-            return "redirect:/admin/panel";
+      
 
         } catch (Exception e) {
             model.put("error", e.getMessage());
@@ -61,6 +61,7 @@ public class PlayController {
 //            System.err.println(e);
             return "/play/form";
         }
+         return "redirect:/admin/panel";
     }
     
 }
