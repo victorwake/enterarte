@@ -91,10 +91,7 @@ public class CustomerService implements UserDetailsService {
             customer.setPhoto(photo);
 
         }
-//             
-//        }
-
-//       
+    
         customerRepository.save(customer);
     }
 
