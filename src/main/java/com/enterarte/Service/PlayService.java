@@ -33,7 +33,7 @@ public class PlayService {
     @Transactional(rollbackOn = Exception.class)
     public void save(Play play, Location location,MultipartFile file) throws Exception {
         
-//        validar(play);
+        validar(play);
 
         Photo photo = photoService.guardarFoto(file);
         play.setPhoto(photo);
@@ -104,7 +104,7 @@ public class PlayService {
         }
 
         Pattern pattern = Pattern
-                .compile("^[0123456789]{1,3}$");
+                .compile("^[0123456789]{2,3}$");
         Matcher mather = pattern.matcher(play.getDuracion().toString());
         if (mather.find() != true) {
             throw new ErrorService("La duracion solo permite caracter numericos");
