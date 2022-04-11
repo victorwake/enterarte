@@ -33,7 +33,7 @@ public class PlayService {
     @Transactional(rollbackOn = Exception.class)
     public void save(Play play, Location location,MultipartFile file) throws Exception {
         
-        validar(play);
+//        validar(play);
 
         Photo photo = photoService.guardarFoto(file);
         play.setPhoto(photo);
