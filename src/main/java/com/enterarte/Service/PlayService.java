@@ -1,6 +1,5 @@
 package com.enterarte.Service;
 
-
 import com.enterarte.entity.Location;
 import com.enterarte.entity.Photo;
 import com.enterarte.entity.Play;
@@ -22,7 +21,6 @@ public class PlayService {
 
 //    @Autowired
 //    public final NotificationService notificacionService;
-
     public final PlayRepository playRepository;
 
     @Autowired
@@ -31,8 +29,8 @@ public class PlayService {
     }
 
     @Transactional(rollbackOn = Exception.class)
-    public void save(Play play, Location location,MultipartFile file) throws Exception {
-        
+    public void save(Play play, Location location, MultipartFile file) throws Exception {
+
         validar(play);
 
         Photo photo = photoService.guardarFoto(file);
@@ -42,15 +40,15 @@ public class PlayService {
         playRepository.save(play);
 
     }
-    
+
     public void validar(Play play) throws ErrorService {
         validaSiExiste(play);
         validaNombre(play);
         validaDuracion(play);
         validaDescripcion(play);
-    
+
     }
-    
+
     private void validaSiExiste(Play play) throws ErrorService {
 
         Optional<Play> optionalPlay = null;
@@ -61,7 +59,7 @@ public class PlayService {
         }
 
     }
-    
+
     private void validaNombre(Play play) throws ErrorService {
 
         if (play.getNombre().isEmpty()) {
@@ -76,7 +74,7 @@ public class PlayService {
         }
 
     }
-    
+
     private void validaDescripcion(Play play) throws ErrorService {
 
         if (play.getDescripcion().isEmpty()) {
@@ -91,18 +89,18 @@ public class PlayService {
         }
 
     }
-    
+
     private void validaDuracion(Play play) throws ErrorService {
 
-        if (play.getDuracion()== 0) {
+        if (play.getDuracion() == 0) {
             throw new ErrorService("Tiene que ingresar una duracion");
         }
-        
-        if (play.getDuracion()< 10 || play.getDuracion() > 180 ){
-            throw new ErrorService("La duracion debe ser entre 10 a 180 minutos");
-            
-        }
 
+        if (play.getDuracion() < 10 || play.getDuracion() > 180) {
+            throw new ErrorService("La duracion debe ser entre 10 a 180 minutos");
+
+        }
+        
         Pattern pattern = Pattern
                 .compile("^[0123456789]{2,3}$");
         Matcher mather = pattern.matcher(play.getDuracion().toString());
@@ -111,5 +109,5 @@ public class PlayService {
         }
 
     }
-    
+
 }

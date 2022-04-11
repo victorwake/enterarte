@@ -52,14 +52,12 @@ public class PlayController {
             //validar
             Location location=locationService.buscarPorId(locationid);
             playService.save(play, location,file);
-
       
-
         } catch (Exception e) {
             model.put("error", e.getMessage());
 //            model.addAttribute("errorMessage", e.getMessage());
 //            System.err.println(e);
-            return "/play/form";
+            return "/play/register";
         }
          return "redirect:/admin/panel";
     }

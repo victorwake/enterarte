@@ -57,7 +57,7 @@
                         <a sec:authorize="hasAnyRole('ADMIN')" class="page-scroll" th:href="@{/admin/panel}">Administrar pagina</a>
                     </li>
                     <li class="">
-                        <a sec:authorize="hasAnyRole('PROFESOR')" class="page-scroll" th:href="@{/teacher/panel}">Crear publicacion</a>
+                        <a sec:authorize="hasAnyRole('TEACHER')" class="page-scroll" th:href="@{/teacher/panel}">Crear publicacion</a>
                     </li>
                     <li class="">
                         <a sec:authorize="hasAnyRole('USER')" class="page-scroll" th:href="@{/customer/profile}">Perfil</a>
