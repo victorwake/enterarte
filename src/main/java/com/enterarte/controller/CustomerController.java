@@ -116,7 +116,7 @@ public class CustomerController {
     }
 
     ////////////////////////////////////////////////////////////////////////////
-    @PreAuthorize("hasAnyRole('ROLE_USER','ROLE_PROFESOR','ROLE_ADMIN' )")
+    @PreAuthorize("hasAnyRole('ROLE_USER','ROLE_TEACHER','ROLE_ADMIN' )")
     @GetMapping("/profile")
     public String profile(ModelMap model, HttpSession session) {
         Customer customer = (Customer) session.getAttribute("customersession");
