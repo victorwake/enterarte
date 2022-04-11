@@ -19,7 +19,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 @Controller
 @RequestMapping("/teacher")
-@PreAuthorize("hasAnyRole('ROLE_PROFESOR')")
+@PreAuthorize("hasAnyRole('ROLE_TEACHER')")
 public class TeacherController {
     
     private final WorkshopService workshopService;
