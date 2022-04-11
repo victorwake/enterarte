@@ -1,6 +1,7 @@
 package com.enterarte.Service;
 
-import com.enterarte.entity.Customer;
+
+import com.enterarte.entity.Location;
 import com.enterarte.entity.Photo;
 import com.enterarte.entity.Play;
 import com.enterarte.mistakes.ErrorService;
@@ -19,7 +20,7 @@ public class PlayService {
     @Autowired
     private PhotoService photoService;
 
-    @Autowired
+//    @Autowired
 //    public final NotificationService notificacionService;
 
     public final PlayRepository playRepository;
@@ -30,37 +31,36 @@ public class PlayService {
     }
 
     @Transactional(rollbackOn = Exception.class)
-    public void save(Play play, MultipartFile file) throws Exception {
-    validar(play);
+    public void save(Play play, Location location,MultipartFile file) throws Exception {
+        
+        validar(play);
 
         Photo photo = photoService.guardarFoto(file);
-
         play.setPhoto(photo);
-
-
+        play.setLocation(location);
 
         playRepository.save(play);
 
     }
     
     public void validar(Play play) throws ErrorService {
-//        validaSiExiste(play);
+        validaSiExiste(play);
         validaNombre(play);
         validaDuracion(play);
         validaDescripcion(play);
     
     }
     
-//    private void validaSiExiste(Play play) throws ErrorService {
-//
-//        Optional<Play> optionalPlay = null;
-//        optionalPlay = playRepository.findByName(play.getNombre());
-//
-//        if (optionalPlay.isPresent()) {
-//            throw new ErrorService("Ya existe una obra con ese nombre");
-//        }
-//
-//    }
+    private void validaSiExiste(Play play) throws ErrorService {
+
+        Optional<Play> optionalPlay = null;
+        optionalPlay = playRepository.findByName(play.getNombre());
+
+        if (optionalPlay.isPresent()) {
+            throw new ErrorService("Ya existe una obra con ese nombre");
+        }
+
+    }
     
     private void validaNombre(Play play) throws ErrorService {
 
