@@ -34,7 +34,7 @@
                     <ul class="dropdown-menu " aria-labelledby="dropdown08">
                         <li><a th:href="@{/customer/profile}" class="dropdown-item">Perfil</a></li>
                         <li><a class="dropdown-item" sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{/admin/panel}">Administrar pagina</a></li>
-                        <li><a class="dropdown-item" sec:authorize="hasRole('ROLE_PROFESOR')" th:href="@{/teacher/panel}">crear publicacion</a></li>
+                        <li><a class="dropdown-item" sec:authorize="hasRole('ROLE_TEACHER')" th:href="@{/teacher/panel}">crear publicacion</a></li>
                         <form  th:action="@{/logout}" method="post">
                             <button class="dropdown-item" type="submit">Cerrar Sesion</button>                
                         </form>
