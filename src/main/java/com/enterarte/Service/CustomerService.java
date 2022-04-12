@@ -46,7 +46,7 @@ public class CustomerService implements UserDetailsService {
     ////////////////////////////////////////////////////////////////////////////
     @Transactional(rollbackOn = Exception.class)
     public void save(Customer customer, Optional<MultipartFile> file) throws Exception {
-//        validar(customer);
+        validar(customer);
         customer.setClave(new BCryptPasswordEncoder().encode(customer.getClave()));
         //activateIfNew activa y da rol de user
         activateIfNew(customer);
@@ -91,10 +91,7 @@ public class CustomerService implements UserDetailsService {
             customer.setPhoto(photo);
 
         }
-//             
-//        }
-
-//       
+    
         customerRepository.save(customer);
     }
 
