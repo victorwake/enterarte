@@ -28,12 +28,13 @@ public class WorkshopService {
     }
 
     @Transactional(rollbackOn = Exception.class)
-    public void save(Workshop workshop, MultipartFile file) throws Exception {
+    public void save(Workshop workshop,Customer teacher,MultipartFile file) throws Exception {
 
 //        validar(workshop);
 
         Photo photo = photoService.guardarFoto(file);
         workshop.setPhoto(photo);
+        workshop.setTeacher(teacher);
 
         workshopRepository.save(workshop);
 
