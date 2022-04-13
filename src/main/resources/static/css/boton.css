@@ -14,12 +14,13 @@
     background-color:rgba(22, 22, 22, 0.863);
 }
 
+
+
 .botonA{
     align-items: center;
     height: 50px;
     width: 250px;
-    margin-top: 50px;
-    margin-left: 5%;
+    margin: 2%;
     box-shadow: dimgray 0px 0px 10px;
     text-decoration:none;
     font-weight:100;
@@ -31,8 +32,149 @@
     background-color:rgba(32, 32, 32, 0.863);
     border-radius: 5px;
     box-shadow: dimgray 0px 0px 20px;
+    
+    
 
 }
+
+
+
+
+.panel{
+    padding-top: 3%;
+    align-items: center;
+    height: 600px;
+    width: 400px;
+    margin-top: 50px;
+    box-shadow: dimgray 0px 0px 10px;
+    border-radius: 5px;
+    display:flex;
+    flex-direction: column;
+    border: 1px solid rgba(0,0,0,0.1);
+    
+
+    
+}
+
+main{
+    display:flex;
+    align-items: center;
+    padding-left: 10%;
+   
+}
+
+
+
+html {
+    height: 100%;
+    box-sizing: border-box;
+
+}
+
+body {
+    position: relative;
+    background-image:url("/img/fondo_body.jpg"); 
+    display:flex;
+    flex-direction: column;
+    padding-bottom: 6rem;
+    min-height: 100%;
+    font-family: "Helvetica Neue", Arial, sans-serif;
+
+}
+
+.boton-personalizado{
+    text-decoration: none;
+}
+
+
+.ms-auto .dropdown{
+/*    margin-right: 56px;*/
+    padding-right: 59px;
+}
+
+.bienvenido{
+    color: white;
+    padding-right: 10px;
+    margin-top: 10px;
+    opacity: 0.66;
+    
+}
+
+
+.navbar {
+    opacity: 1;
+    margin-left: 7px;
+    margin-right: 7px;
+    border-radius: 1px 1px 5px 5px;
+}
+
+
+
+
+/*//////////////////////////////////////////////////////////////////////////////
+//“Un lector vive mil vidas antes de morir. Aquel que nunca lee vive solo una.”
+//////////////////////////////////////////////////////////////////////////////*/
+h2 {
+    font-size: 0.9em;
+    text-align: center;
+    font-family: 'Indie Flower', cursive;
+    color: white;
+    text-shadow: 0 0 0.2em rgb(8, 8, 8), 0 0 0.6em rgb(10, 10, 10);
+}
+@media screen and (min-width: 30em) {
+    h2 {
+        font-size: calc(0.5em + 1.4vw);
+    }
+    
+   
+}
+@media screen and (min-width: 50em) {
+    h2 {
+        font-size: calc(0.5em + 2vw);
+    }
+    
+}
+@media screen and (min-width: 90em) {
+    h2 {
+        text-align: center;
+        font-size: 2.5em;
+    }
+    
+    
+}
+
+
+*
+/*////////////////////////////////////////////////////////////////////////////////////*/
+
+
+/*////////////////////////////////////////////////////////////////////////////////////*/
+/* Inicio footer */
+.footer {
+    position: absolute;
+    right: 10px;
+    bottom: 0;
+    left: 10px;
+    padding: 1rem;
+    border-radius: 5px;
+    box-shadow: dimgray 0px 0px 10px;
+    background-color: rgba(32, 32, 32, 0.863);
+    text-align: center;
+}
+
+.footer p {
+    align-content: bottom;
+    bottom:0px;
+    color: white;
+    font-size: 15px;
+    text-shadow: rgb(49, 48, 48) 0px 0px 10px;
+    opacity: 0.64;
+}
+
+/* Fin footer */
+
+
+
 
 
 
