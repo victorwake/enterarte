@@ -1,6 +1,7 @@
 package com.enterarte.Service;
 
 import com.enterarte.entity.Customer;
+import com.enterarte.entity.Location;
 import com.enterarte.entity.Photo;
 import com.enterarte.enums.Role;
 import com.enterarte.mistakes.ErrorService;
@@ -130,7 +131,13 @@ public class CustomerService implements UserDetailsService {
 //    }
     @Transactional
     public Customer findById(String id) throws Exception {
-        return customerRepository.findById(id).orElseThrow(() -> new Exception("Usuario no encontrado"));
+        Optional<Customer> option=customerRepository.findById(id);
+        if (option.isPresent()) {
+           Customer customer =option.get();
+            return customer;
+        }else{
+            throw new Exception("usuario no encontrado");
+        }
     }
 
     private void activateIfNew(Customer customer) {
