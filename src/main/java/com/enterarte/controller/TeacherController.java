@@ -48,28 +48,15 @@ public class TeacherController {
         return "/teacher/create-workshop";
     }
 
-//    @GetMapping("/customer/{id}")
-//    public
     @PostMapping("/create/{id}")
     public String saveTaller(@ModelAttribute Workshop workshop, @PathVariable("id") String customerId, MultipartFile file, ModelMap model) throws ErrorService {
         try {
-
-            System.out.println("customerid = " + customerId);
             Customer teacher = customerservice.findById(customerId);
-//          model.addAttribute("customerid", )
-
             workshopService.save(workshop, teacher, file);
-            System.out.println(teacher);
-
         } catch (Exception e) {
             model.put("error", e.getMessage());
-
-//            model.addAttribute("errorMessage", e.getMessage());
-//            System.err.println(e);
             return "/teacher/create-workshop";
         }
-
         return "/teacher/control-panel";
-
     }
 }
