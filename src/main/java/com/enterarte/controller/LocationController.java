@@ -36,7 +36,7 @@ public class LocationController {
     public String createLocation(ModelMap model) {
         model.addAttribute("location", new Location());
         
-        return "location/register";
+        return "admin/create-location";
     }
     
     @PostMapping("/form")
