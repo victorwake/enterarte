@@ -1,6 +1,7 @@
 package com.enterarte.Service;
 
 import com.enterarte.entity.Customer;
+import com.enterarte.entity.Location;
 import com.enterarte.entity.Photo;
 import com.enterarte.enums.Role;
 import com.enterarte.mistakes.ErrorService;
@@ -46,7 +47,7 @@ public class CustomerService implements UserDetailsService {
     ////////////////////////////////////////////////////////////////////////////
     @Transactional(rollbackOn = Exception.class)
     public void save(Customer customer, Optional<MultipartFile> file) throws Exception {
-//        validar(customer);
+        validar(customer);
         customer.setClave(new BCryptPasswordEncoder().encode(customer.getClave()));
         //activateIfNew activa y da rol de user
         activateIfNew(customer);
@@ -91,10 +92,7 @@ public class CustomerService implements UserDetailsService {
             customer.setPhoto(photo);
 
         }
-//             
-//        }
-
-//       
+    
         customerRepository.save(customer);
     }
 
@@ -133,7 +131,13 @@ public class CustomerService implements UserDetailsService {
 //    }
     @Transactional
     public Customer findById(String id) throws Exception {
-        return customerRepository.findById(id).orElseThrow(() -> new Exception("Usuario no encontrado"));
+        Optional<Customer> option=customerRepository.findById(id);
+        if (option.isPresent()) {
+           Customer customer =option.get();
+            return customer;
+        }else{
+            throw new Exception("usuario no encontrado");
+        }
     }
 
     private void activateIfNew(Customer customer) {

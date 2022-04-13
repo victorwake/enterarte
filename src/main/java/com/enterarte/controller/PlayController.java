@@ -47,19 +47,17 @@ public class PlayController {
     }
     
     @PostMapping("/form")
-    public String savePlay(@ModelAttribute Play play,String locationid,@RequestParam MultipartFile file ,ModelMap model) {
+    public String savePlay(@ModelAttribute Play play, String locationid, @RequestParam MultipartFile file ,ModelMap model) {
         try {
             //validar
             Location location=locationService.buscarPorId(locationid);
             playService.save(play, location,file);
-
       
-
         } catch (Exception e) {
             model.put("error", e.getMessage());
 //            model.addAttribute("errorMessage", e.getMessage());
 //            System.err.println(e);
-            return "/play/form";
+            return "/play/register";
         }
          return "redirect:/admin/panel";
     }

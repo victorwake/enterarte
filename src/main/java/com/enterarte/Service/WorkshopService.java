@@ -10,7 +10,6 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -29,11 +28,13 @@ public class WorkshopService {
     }
 
     @Transactional(rollbackOn = Exception.class)
-    public void save(Workshop workshop, MultipartFile file) throws Exception {
-        validar(workshop);
+    public void save(Workshop workshop,Customer teacher,MultipartFile file) throws Exception {
+
+//        validar(workshop);
 
         Photo photo = photoService.guardarFoto(file);
         workshop.setPhoto(photo);
+        workshop.setTeacher(teacher);
 
         workshopRepository.save(workshop);
 
