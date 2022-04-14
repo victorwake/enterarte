@@ -72,13 +72,11 @@ public class CustomerController {
         try {
             //validar
             Customer customer = (Customer) session.getAttribute("customersession");
-
             customerService.modificar(nombre, apellido, dni, numeroTelefono, file, customer);
 //            model.put("descripcion", "Usuario registrado con exito.");
 
         } catch (Exception e) {
             model.put("error", e.getMessage());
-
             model.addAttribute("errorMessage", e.getMessage());
             System.err.println(e);
             return "customer/customeredit";
