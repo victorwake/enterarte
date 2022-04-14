@@ -20,26 +20,31 @@
         <main>
 
             <div class="wrapper">
-                <form th:action="@{/customer/register}" th:object=${customer} autocomplete="off" method="POST" class="form-signin" enctype="multipart/form-data">       
+                <form th:action="@{/customer/update}" th:object=${customer} autocomplete="off" method="POST" class="form-signin" enctype="multipart/form-data">       
 
-                    <h3 class="form-signin-heading">Registro</h3>
-                    <input type="hidden" th:field="*{id}">
+                   
+                    <h3 class="form-signin-heading">Modificar Perfil</h3>
+                   <input type="hidden" th:field="*{id}">
                     <input th:field="*{nombre}" autocomplete="off" type="text"  class="form-control"  placeholder="nombre" required="" autofocus="" />
                     <input th:field="*{apellido}" autocomplete="off" type="text"  class="form-control"  placeholder="apellido" required="" autofocus="" />
                     <input th:field="*{dni}" autocomplete="off" type="number"  class="form-control"  placeholder="DNI" required="" autofocus="" />
                     <input th:field="*{numeroTelefono}" autocomplete="off" type="number"  class="form-control" name="numero_telefono" placeholder="Telefono" required="" autofocus="" />
-                    <input th:field="*{email}" sec:authorize="!isAuthenticated()" autocomplete="off" type="text"  class="form-control"  placeholder="Email" required="" autofocus="" />
-                    <input th:field="*{clave}" sec:authorize="!isAuthenticated()" autocomplete="off" type="password"  class="form-control"  placeholder="Password" required=""/>   
-                    <input autocomplete="off" sec:authorize="!isAuthenticated()" type="password" class="form-control" name="clave2" placeholder="Repita Password" required=""/>  
+                     <input th:field="*{email}" sec:authorize="!isAuthenticated()" autocomplete="off" type="text"  class="form-control"  placeholder="Email"  autofocus="" />
+                     <input  th:field="*{clave}" sec:authorize="isAuthenticated()" autocomplete="off" type="password"  class="form-control"  placeholder="Ingrese su password para proceder" required=""/>   
+                     
                     <br>
                     <div class="form-field field-3 short">
                         <label for="platform-logo">Imagen de perfil</label>
                        
-                        <input  type="file" name="file" accept="image/png, image/jpeg, image/jpeg">
+
+
+                        <input  type="file" name="file" accept="image/*">
+
                     </div>
                     
-                    <button id="button-login" class="btn btn-lg btn-primary btn-block" type="submit">Registrar</button>   
-                    
+                    <button th:action="@{/logincheck}" id="button-login" class="btn btn-lg btn-primary btn-block" type="submit">Guardar</button>   
+                    <button class="btn btn-lg btn-secondary btn-block"  th:href="@{/customer/profile}">Cancelar</button>
+                    </center>
                     <p th:if="${error !=null}" th:text="${error}" style="color:red"></p>
                 </form>
             </div>
@@ -48,7 +53,7 @@
 
         <footer th:replace="fragments/footer :: footer"></footer>
 
-        <!--js-->
+<!--        js-->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 
     </body>

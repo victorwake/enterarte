@@ -1,0 +1,19 @@
+#success_message{ display: none;}
+
+.container{
+    padding: 2%;
+    border-radius: 20px;
+}
+
+.form-horizontal{
+    padding: 2%;
+    border-radius: 5px;
+    box-shadow: dimgray 0px 0px 10px;
+    
+    
+    max-width: 7980px;
+    padding: 15px 35px 45px;
+    margin: 0 auto;
+    background-color: #fff;
+    border: 1px solid rgba(0,0,0,0.1);
+}
