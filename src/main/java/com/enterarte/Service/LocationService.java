@@ -5,6 +5,7 @@ import com.enterarte.entity.Location;
 import com.enterarte.entity.Play;
 import com.enterarte.mistakes.ErrorService;
 import com.enterarte.repository.LocationRepository;
+import java.util.List;
 import java.util.Optional;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -25,7 +26,7 @@ public class LocationService {
     @Transactional
     public void saveLocation(Location location) throws ErrorService {
        validar(location);
-        
+        location.setAlta(true);
 
         locationRepository.save(location);
 
@@ -41,6 +42,12 @@ public class LocationService {
             throw new Exception("locacion no encontrada");
         }
 
+    }
+    
+    public void DarDeBaja(Location location) throws Exception {
+       location.setAlta(false);
+       locationRepository.save(location);
+       
     }
 
     public void validar(Location location) throws ErrorService {
@@ -74,6 +81,14 @@ public class LocationService {
         if (mather.find() != true) {
             throw new ErrorService("caracteres invalido para la ubicacion.");
         }
+    }
+    
+    public List<Location> listarlocacionesActivas() {
+        
+      locationRepository.locationActivos(Boolean.TRUE);
+       
+      
+        return  locationRepository.locationActivos(Boolean.TRUE);
     }
 
 }
