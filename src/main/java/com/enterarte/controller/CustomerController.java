@@ -26,7 +26,6 @@ import org.springframework.web.multipart.MultipartFile;
 
 @Controller
 @RequestMapping("/customer")
-//@PreAuthorize("hasAnyRole('ROLE_ADMIN)")
 public class CustomerController {
 
     private final CustomerService customerService;
@@ -60,12 +59,8 @@ public class CustomerController {
 //            model.put("titulo", "Bienvenido.");
 //            model.put("descripcion", "Usuario registrado con exito.");
             return "redirect:/login/login";
-
         } catch (Exception e) {
             model.put("error", e.getMessage());
-
-//            model.addAttribute("errorMessage", e.getMessage());
-//            System.err.println(e);
             return "/customer/register";
         }
 
@@ -96,10 +91,8 @@ public class CustomerController {
     public String desactivate(@PathVariable String id, ModelMap model) {
         try {
             customerService.desactivate(id);
-
         } catch (Exception e) {
             model.addAttribute("errorMessage", e.getMessage());
-
         }
         return "redirect:/logout";
     }
@@ -138,7 +131,6 @@ public class CustomerController {
             customer.setClave(clave2);
 
             return "redirect:/customer/profile";
-
         } catch (Exception e) {
             model.put("error", e.getMessage());
 
@@ -163,7 +155,6 @@ public class CustomerController {
         final HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.IMAGE_PNG);
         return new ResponseEntity<>(photo.getContenido(), headers, HttpStatus.OK);
-
     }
 
 }

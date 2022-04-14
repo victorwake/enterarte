@@ -41,8 +41,9 @@
                         <input  type="file" name="file" accept="image/*">
 
                     </div>
-                    <center>
+                    
                     <button th:action="@{/logincheck}" id="button-login" class="btn btn-lg btn-primary btn-block" type="submit">Guardar</button>   
+                    <button class="btn btn-lg btn-secondary btn-block"  th:href="@{/customer/profile}">Cancelar</button>
                     </center>
                     <p th:if="${error !=null}" th:text="${error}" style="color:red"></p>
                 </form>

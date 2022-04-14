@@ -8,9 +8,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 
-
-
-
 @Controller
 @RequestMapping("/admin")
 @PreAuthorize("hasAnyRole('ROLE_ADMIN')")
@@ -21,17 +18,11 @@ public class AdminController {
 
     @Autowired
     public AdminController(AdminService adminService) {
-        this.adminService = adminService;
-    
+        this.adminService = adminService;  
     }
-    
-    
+       
     @GetMapping("/panel")
     public String home(){
         return "/admin/control-panel";
     }
-    
-
-    
-
 }

@@ -1,4 +1,3 @@
-
 package com.enterarte.controller;
 
 import com.enterarte.Service.LocationService;
@@ -7,8 +6,8 @@ import com.enterarte.entity.Location;
 import com.enterarte.entity.Play;
 import com.enterarte.repository.LocationRepository;
 import java.util.List;
-import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,6 +20,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 @Controller
 @RequestMapping("/play")
+@PreAuthorize("hasAnyRole('ROLE_TEACHER', 'ROLE_ADMIN')")
 public class PlayController {
     
     private final PlayService playService;
@@ -51,15 +51,13 @@ public class PlayController {
         try {
             //validar
             Location location=locationService.buscarPorId(locationid);
-            playService.save(play, location,file);
-      
+            playService.save(play, location,file);  
         } catch (Exception e) {
             model.put("error", e.getMessage());
-//            model.addAttribute("errorMessage", e.getMessage());
-//            System.err.println(e);
+            List<Location> locations = locationRepository.findAll();
+        model.put("locations", locations);
             return "/play/register";
         }
          return "redirect:/admin/panel";
-    }
-    
+    }   
 }
