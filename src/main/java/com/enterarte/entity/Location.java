@@ -23,5 +23,6 @@ public class Location {
 
     private String nombre;
     private String ubicacion;
+    private boolean alta;
 
 }

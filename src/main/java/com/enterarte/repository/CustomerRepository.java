@@ -13,7 +13,7 @@ public interface CustomerRepository extends JpaRepository<Customer, String> {
     //    @Query("SELECT c FROM Customer c WHERE c.nombre LIKE %:nombre%")
 //    public List<Customer> findByName(@Param("nombre") String nombre);
 //    
-//    public List<Customer> fondByActiveTrue();
+// public List<Customer> fondByActiveTrue();
 //    
 //    @Query("SELECT c FROM Customer c WHERE c.nombre LIKE %?1%"
 //            + "OR c.apellido LIKE %?1%"

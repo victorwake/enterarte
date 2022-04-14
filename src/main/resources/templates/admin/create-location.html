@@ -18,9 +18,10 @@
         </header>
         <main>
               <div class="wrapper">
-                <form th:action="@{/location/createLocation}" th:object=${location} autocomplete="off" method="POST" class="form-signin">       
+                <form th:action="@{/location/form}" th:object=${location} autocomplete="off" method="POST" class="form-signin">       
                     
                     <h3 class="form-signin-heading">Crear Locacion</h3>
+                    <input type="hidden" th:field="*{id}">
                     <input type="text" th:field="*{nombre}" name="nombre" placeholder="Nombre de locacion" class="form-control" required="" autofocus=""/>
                     <input type="text" th:field="*{ubicacion}" name="ubicacion" placeholder="Direccion" class="form-control" required="" autofocus=""/>
                     
