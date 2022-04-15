@@ -5,6 +5,7 @@ import com.enterarte.entity.Photo;
 import com.enterarte.entity.Play;
 import com.enterarte.mistakes.ErrorService;
 import com.enterarte.repository.PlayRepository;
+import java.util.List;
 import java.util.Optional;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -40,7 +41,16 @@ public class PlayService {
         playRepository.save(play);
 
     }
-
+    
+    
+    
+    public List<Play> listarPlay() {     
+      playRepository.findAll();
+        return  playRepository.findAll();
+    }
+    
+    
+///////////////////////////////Validaciones/////////////////////////////////////
     public void validar(Play play) throws ErrorService {
         validaSiExiste(play);
         validaNombre(play);
@@ -80,14 +90,9 @@ public class PlayService {
         if (play.getDescripcion().isEmpty()) {
             throw new ErrorService("Tiene que ingresar una descripcion");
         }
-
-        Pattern pattern = Pattern
-                .compile("^[a-zA-Z\\s]+{3,25}");
-        Matcher mather = pattern.matcher(play.getDescripcion());
-        if (mather.find() != true) {
-            throw new ErrorService("caracteres invalido descripcion.");
+        if (play.getDescripcion().length() <3 || play.getDescripcion().length() >999) {
+            throw new ErrorService("largo de caracteres invalido");
         }
-
     }
 
     private void validaDuracion(Play play) throws ErrorService {

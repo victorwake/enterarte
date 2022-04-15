@@ -60,4 +60,14 @@ public class PlayController {
         }
          return "redirect:/admin/panel";
     }   
+    
+    @GetMapping("/list")
+    public String listarPlay(ModelMap model) {
+
+//        Location location = (Location) session.getAttribute("locationsession");
+        List<Play> plays = playService.listarPlay();
+        model.addAttribute("plays", plays);
+        
+        return "/play/list-play";
+    }
 }
