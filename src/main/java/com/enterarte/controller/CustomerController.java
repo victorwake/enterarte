@@ -138,7 +138,7 @@ public class CustomerController {
 
     ////////////////////////////////////////////////////////////////////////////
     @GetMapping("/list")
-    public String listPublisheds(ModelMap model, HttpSession session) {
+    public String listCustomer(ModelMap model, HttpSession session) {
 
         Customer customer = (Customer) session.getAttribute("customersession");
 

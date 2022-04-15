@@ -48,8 +48,8 @@
                             <td data-title="email" th:text="${customer.email}" data-type="currency"></td>
                             <td data-title="dni" th:text="${customer.dni}" data-type="currency"></td>
                             <td data-title="numeroTelefono" th:text="${customer.numeroTelefono}" data-type="currency"></td>
-<!--                    <img class="floaat-left ml-1" th:src="@{'/load/{id}/'+${customer.photo}}" th:alt="${customer.photo}"></img>
-<!--                            <img th:src="@{/image/${customer.photo}}" />-->
+                            <td><img th:if="${customer.photo != null}" class='imgRedonda' th:src="${'/photo/customer' + customer.id}">
+                            <img th:if="${customer.photo == null}" class="avatar" src="/img/profile_avatar.png" alt="foto de perfil"></td>
 
                     </tr>
                     <tr>    
