@@ -14,33 +14,28 @@
         <link rel="shortcut icon" href="/img/favicon.ico"/>
         <title>Lista de clientes</title>  
     <body>
-        <header>
+        <header>   
             <nav th:replace="fragments/navbar :: navbar"></nav>
+
+            <div class="altaBaja"> 
+                <div class="btn-group">
+                    <button type="button" class="btn btn-info dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                        Listar
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="#">Listar Alta</a></li>
+                        <li><a class="dropdown-item" href="#">Listar baja</a></li>
+                    </ul>
+                </div>
+            </div>
+
         </header>
 
         <main>
-<!--            <div class="btn-group">
-                <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Action
-                </button>
-                <div class="dropdown-menu">
-                    <a class="dropdown-item" href="#">Listar Alta</a>
-                    <a class="dropdown-item" href="#">Listar baja</a>
-                </div>
-            </div>-->
-
             <div class="container">
                 <table class="responsive-table">
                     <h3>Listado de Locaciones</h3>
-                    <div class="btn-group">
-                <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Action
-                </button>
-                <div class="dropdown-menu">
-                    <a class="dropdown-item" href="#">Listar Alta</a>
-                    <a class="dropdown-item" href="#">Listar baja</a>
-                </div>
-            </div>
+
                     <thead>
                         <tr>
                             <th scope="col"></th>
