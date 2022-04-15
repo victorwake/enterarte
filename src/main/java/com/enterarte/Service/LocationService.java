@@ -49,6 +49,11 @@ public class LocationService {
        locationRepository.save(location);
        
     }
+     public void DarDeAlta(Location location) throws Exception {
+       location.setAlta(true);
+       locationRepository.save(location);
+       
+    }
 
     public void validar(Location location) throws ErrorService {
         validaUbicacion(location);
@@ -91,4 +96,11 @@ public class LocationService {
         return  locationRepository.locationActivos(Boolean.TRUE);
     }
 
+    public List<Location> listarlocacionesBajas() {
+        
+      locationRepository.locationActivos(Boolean.FALSE);
+       
+      
+        return  locationRepository.locationActivos(Boolean.FALSE);
+    }
 }

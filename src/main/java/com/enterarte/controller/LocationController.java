@@ -46,19 +46,29 @@ public class LocationController {
             model.put("error", e.getMessage());
             return "/location/register";
         }
-        return "redirect:/admin/panel";
+        return "redirect:/location/listar-locacionactiva";
     }
 
-    @GetMapping("/listar-locacion")
+    @GetMapping("/listar-locacionactiva")
     public String listarlocation(ModelMap model) {
 
 //        Location location = (Location) session.getAttribute("locationsession");
         List<Location> locaciones = locationService.listarlocacionesActivas();      
         model.addAttribute("locaciones", locaciones);
         
-        return "location/listar-locaciones";
+        return "location/listar-locacionesalta";
     }
 
+    @GetMapping("/listar-locacionbaja")
+    public String listarlocationBaja(ModelMap model) {
+
+//        Location location = (Location) session.getAttribute("locationsession");
+        List<Location> locaciones = locationService.listarlocacionesBajas();
+        model.addAttribute("locaciones", locaciones);
+        
+        return "location/listar-locacionesbaja";
+    }
+    
     @GetMapping("/modificarlocacion/{id}")
     public String modificarlocacion(@PathVariable("id") String locacionid, ModelMap model) {
         System.out.println(locacionid);
@@ -83,7 +93,20 @@ public class LocationController {
             model.put("error", ex.getMessage());
         }
         
-        return "redirect:/location/listar-locacion";
+        return "redirect:/location/listar-locacionactiva";
+    }
+    
+    @GetMapping("/alta/{id}")
+    public String altalocacion(@PathVariable("id") String locacionid, ModelMap model) {
+
+        try {
+            Location location = locationService.buscarPorId(locacionid); 
+            locationService.DarDeAlta(location);
+        } catch (Exception ex) {
+            model.put("error", ex.getMessage());
+        }
+        
+        return "redirect:/location/listar-locacionbaja";
     }
 }
 
