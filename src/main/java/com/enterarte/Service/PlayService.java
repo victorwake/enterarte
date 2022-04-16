@@ -30,16 +30,16 @@ public class PlayService {
     }
 
     @Transactional(rollbackOn = Exception.class)
-    public void save(Play play, Location location, MultipartFile file) throws Exception {
+    public void save(Play play, Location location, Optional<MultipartFile> file) throws Exception {
 
-        validar(play);
-
-        Photo photo = photoService.guardarFoto(file);
-        play.setPhoto(photo);
+        validar(play);    
         play.setLocation(location);
-
+        
+         if (file.isPresent() && !file.get().isEmpty()) {
+            Photo photo = photoService.guardarFoto(file.get());
+            play.setPhoto(photo);
+        }
         playRepository.save(play);
-
     }
     
     
@@ -47,6 +47,18 @@ public class PlayService {
     public List<Play> listarPlay() {     
       playRepository.findAll();
         return  playRepository.findAll();
+    }
+    
+    
+    @Transactional
+    public Play findById(String id) throws Exception {
+        Optional<Play> option=playRepository.findById(id);
+        if (option.isPresent()) {
+           Play play =option.get();
+            return play;
+        }else{
+            throw new Exception("usuario no encontrado");
+        }
     }
     
     

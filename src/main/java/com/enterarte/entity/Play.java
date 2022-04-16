@@ -1,6 +1,7 @@
 package com.enterarte.entity;
 
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -24,7 +25,9 @@ public class Play {
     private String id;
 
     private String nombre;
+    @Column(name = "DESCRIPCION", nullable = false, length = 999)
     private String descripcion;
+    
     private Integer duracion;
     
     

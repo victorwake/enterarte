@@ -6,6 +6,7 @@ import com.enterarte.entity.Location;
 import com.enterarte.entity.Play;
 import com.enterarte.repository.LocationRepository;
 import java.util.List;
+import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
@@ -51,7 +52,7 @@ public class PlayController {
         try {
             //validar
             Location location=locationService.buscarPorId(locationid);
-            playService.save(play, location,file);  
+            playService.save(play, location,Optional.ofNullable(file));  
         } catch (Exception e) {
             model.put("error", e.getMessage());
             List<Location> locations = locationRepository.findAll();
