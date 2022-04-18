@@ -1,7 +1,7 @@
 #success_message{ display: none;}
 
 .container{
-    padding: 2%;
+    margin-top: -60px;
     border-radius: 20px;
 }
 
@@ -11,7 +11,7 @@
     box-shadow: dimgray 0px 0px 10px;
     
     
-    max-width: 7980px;
+    max-width: 880px;
     padding: 15px 35px 45px;
     margin: 0 auto;
     background-color: #fff;

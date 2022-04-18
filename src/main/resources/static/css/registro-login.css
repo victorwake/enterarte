@@ -141,28 +141,6 @@ h2 {
 /* Fin footer */
 
 
-#video_background {
-
-    position: absolute;
-
-    bottom: 0px;
-
-    right: 0px;
-
-    min-width: 100%;
-
-    min-height: 100%;
-
-    width: auto;
-
-    height: auto;
-
-    z-index: -1000;
-
-    overflow: hidden;
-
-}
-
 .wrapper {
     margin-top: 80px;
     margin-bottom: 80px;
