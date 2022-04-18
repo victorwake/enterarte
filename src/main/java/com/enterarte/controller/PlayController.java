@@ -21,7 +21,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 @Controller
 @RequestMapping("/play")
-@PreAuthorize("hasAnyRole('ROLE_TEACHER', 'ROLE_ADMIN')")
+@PreAuthorize("hasAnyRole('ROLE_ADMIN')")
 public class PlayController {
     
     private final PlayService playService;

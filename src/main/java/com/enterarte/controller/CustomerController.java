@@ -26,6 +26,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 @Controller
 @RequestMapping("/customer")
+@PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')")
 public class CustomerController {
 
     private final CustomerService customerService;

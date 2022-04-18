@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 @RequestMapping("/admin")
-@PreAuthorize("hasAnyRole('ROLE_ADMIN')")
+@PreAuthorize("hasAnyRole('ROLE_ADMIN' , 'ROLE_TEACHER')")
 public class AdminController {
     
     
