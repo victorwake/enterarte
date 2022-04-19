@@ -79,8 +79,7 @@ public class PlayService {
 
         if (optionalplay.isPresent()) {
             System.out.println(optionalplay.get());
-         throw new ErrorService("Ya existe una obra con ese nombre");
-            
+         throw new ErrorService("Ya existe una obra con ese nombre");   
         }
 
     }

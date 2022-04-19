@@ -19,7 +19,6 @@
             <nav th:replace="fragments/sidebar :: sidebar"></nav>
         </header>
 
-   
 <!--        ///////////////////Lista///////////////////////-->
 
         <main>
@@ -45,12 +44,6 @@
                     <tbody>
                         <tr th:each="play:${plays}">
                             <th scope="row">#</th>
-
-                            <td data-title="id" th:text="${play.id}"></td>
-                            <td data-title="nombre" th:text="${play.nombre}"></td>
-                            <td data-title="duracion" th:text="${play.duracion}"></td>
-                            <td data-title="locacion" th:text="${play.location.nombre}"></td>
-                            <td data-title="descripcion" th:text="${play.descripcion}"></td>
                             <td th:text="${play.id}"></td>
                             <td th:text="${play.nombre}"></td>
                             <td th:text="${play.duracion}"></td>
