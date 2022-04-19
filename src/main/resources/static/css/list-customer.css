@@ -81,7 +81,7 @@ body {
 }
 
 .responsive-table {
-    width: 1em;
+    width: 100%;
     margin-bottom: 1.5em;
     border-spacing: 0;
 }
