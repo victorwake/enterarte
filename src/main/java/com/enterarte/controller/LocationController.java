@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 @RequestMapping("/location")
-@PreAuthorize("hasAnyRole('ROLE_TEACHER', 'ROLE_ADMIN')")
+@PreAuthorize("hasAnyRole('ROLE_ADMIN')")
 public class LocationController {
 
     private final LocationService locationService;

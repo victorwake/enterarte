@@ -14,8 +14,6 @@
 }
 
 
-
-
 .container{
 /*    background:  linear-gradient(90deg,#fffdfde3,#7a7979de);*/
     background-color: whitesmoke;
@@ -25,10 +23,10 @@
     margin-bottom: 10%;
 /*    margin-top: 1%;*/
 }
+
 .navbar{
     opacity: 1;
 }
-
 
 h3 {
     font-size: 1.5em;

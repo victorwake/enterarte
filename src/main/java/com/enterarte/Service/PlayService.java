@@ -76,8 +76,11 @@ public class PlayService {
         Optional<Play> optionalplay = null;
         optionalplay = playRepository.findByName(play.getNombre());
 
+
         if (optionalplay.isPresent()) {
-            throw new ErrorService("Ya existe una obra con ese nombre");
+            System.out.println(optionalplay.get());
+         throw new ErrorService("Ya existe una obra con ese nombre");
+            
         }
 
     }
