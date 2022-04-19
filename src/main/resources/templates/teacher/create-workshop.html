@@ -26,8 +26,6 @@
             <nav th:replace="fragments/sidebar :: sidebar"></nav>
         </header>
 
-        <!--        ///////////////formulario////////////////////-->
-
         <div class="container">
 
             <form class="well form-horizontal" th:action="@{/teacher/create/__${session.customersession.id}__}" th:object=${workshop} enctype="multipart/form-data" method="POST" id="contact_form">
