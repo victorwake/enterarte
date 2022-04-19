@@ -140,8 +140,8 @@
                             <td data-title="id" th:text="${play.id}"></td>
                             <td data-title="nombre" th:text="${play.nombre}"></td>
                             <td data-title="duracion" th:text="${play.duracion}"></td>
-                            <td data-title="locacion" >este es de prueba, el de abajo va y este borrar</td>
-<!--                            <td data-title="locacion" th:text="${play.locacion}"></td>-->
+<!--                            <td data-title="locacion" >este es de prueba, el de abajo va y este borrar</td>-->
+                            <td data-title="locacion" th:text="${play.location.nombre}"></td>
                             <td data-title="descripcion" th:text="${play.descripcion}"></td>
                             <td><img th:if="${play.photo != null}" class='imgRedonda' th:src="${'/photo/play' + play.id}">
                             <img th:if="${play.photo == null}" class="avatar" src="/img/show.webp" alt="foto de perfil"></td>

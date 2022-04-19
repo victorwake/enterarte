@@ -65,7 +65,6 @@ public class PlayController {
     @GetMapping("/list")
     public String listarPlay(ModelMap model) {
 
-//        Location location = (Location) session.getAttribute("locationsession");
         List<Play> plays = playService.listarPlay();
         model.addAttribute("plays", plays);
         

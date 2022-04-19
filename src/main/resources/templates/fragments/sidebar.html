@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+    <head>
+        <meta charset="UTF-8"/>
+        <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+        <meta content="ie=edge" http-equiv="X-UA-Compatible"/>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js" type="text/javascript"></script>
+        <link href="https://fonts.googleapis.com/css2?family=Indie+Flower&family=Pacifico&family=Source+Sans+Pro:wght@600&display=swap" rel="stylesheet">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+        <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css'>
+        <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/jquery.bootstrapvalidator/0.5.0/css/bootstrapValidator.min.css'>
+        <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0-rc2/cssâ€Œâ€‹/bootstrap-glyphiconâ€Œâ€‹s.css">
+        <meta content="Victor Pinto" name="author"/>      
+        <link href="/css/registro-login.css" rel="stylesheet"/>
+        <link href="/css/play.css" rel="stylesheet"/>
+        <link href="/css/navbarlateral.css" rel="stylesheet"/>
+        <link rel="shortcut icon" href="/img/favicon.ico"/>
+        <title>Creacion de taller</title> 
+    </head>
+    <body>
+        <nav th:fragment="sidebar">
+            
+            <div id="sidemenu" class="menu-collapsed">
+            <!-- HEADER -->
+            <div id="header">
+                <!-- <div id="title"><span>Vida MRR</span></div>    -->
+                <div id="menu-btn">
+                    <div class="btn-hamburger"></div>  
+                    <div class="btn-hamburger"></div>  
+                    <div class="btn-hamburger"></div>  
+                </div>
+            </div>            
+            
+            <div id="profile">  
+                <a sec:authorize="hasAnyRole('ADMIN')" th:href="@{/admin/panel}">
+                    <div id="photo"><img src="/img/caras.png" alt=""></div>
+
+                    <div id="name"><span>Panel de Control</span></div>
+            </div>
+
+            <!-- items -->
+
+            <div id="menu-items">
+                <div class="item">
+                    <a sec:authorize="hasAnyRole('ADMIN')" th:href="@{/location/form}">
+                        <div class="icon"><img src="/img/page.png"></div>
+                        <div class="title"><span>Crear Locacion</span></div>
+                    </a>
+                </div>
+
+                <div class="item">
+                    <a sec:authorize="hasAnyRole('ADMIN')" th:href="@{/play/form}">
+                        <div class="icon"><img src="/img/show.png"></div>
+                        <div class="title"><span>Crear Show</span></div>
+                    </a>
+                </div>   
+
+
+                <div class="item">
+                    <a sec:authorize="hasAnyRole('TEACHER','ADMIN')"th:href="@{/teacher/form}">
+                        <div class="icon"><img src="/img/create.png"></div>
+                        <div class="title"><span>Crear Taller</span></div>
+                    </a>
+                </div>  
+
+                <div class="item separator"></div>
+
+                <div class="item">
+                    <a sec:authorize="hasAnyRole('ADMIN')" th:href="@{/location/listar-locacionactiva}">
+                        <div class="icon"><img src="/img/checklist.png"></div>
+                        <div class="title"><span>Listar Locaciones</span></div>
+                    </a>
+                </div>  
+
+                <div class="item">
+                    <a sec:authorize="hasAnyRole('ADMIN')" th:href="@{/play/list}">
+                        <div class="icon"><img src="/img/spotlight.png"></div>
+                        <div class="title"><span>Listar Shows</span></div>
+                    </a>
+                </div>  
+
+
+                <div class="item">
+                    <a sec:authorize="hasAnyRole('ADMIN')" th:href="@{/location/form}">
+                        <div class="icon"><img src="/img/list.png"></div>
+                        <div class="title"><span>Listar Talleres</span></div>
+                    </a>
+                </div>  
+
+                <div class="item">
+                    <a sec:authorize="hasAnyRole('ADMIN')" th:href="@{/customer/list}">
+                        <div class="icon"><img src="/img/6012311.png"></div>
+                        <div class="title"><span>Listar Usuarios</span></div>
+                    </a>
+                </div>  
+
+            </div>
+        </nav>
+            
+    
+    </body>
+</html>
