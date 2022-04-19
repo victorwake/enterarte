@@ -3,8 +3,10 @@ package com.enterarte.controller;
 
 import com.enterarte.Service.CustomerService;
 import com.enterarte.Service.PlayService;
+import com.enterarte.Service.WorkshopService;
 import com.enterarte.entity.Customer;
 import com.enterarte.entity.Play;
+import com.enterarte.entity.Workshop;
 import com.enterarte.mistakes.ErrorService;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -23,11 +25,19 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/photo")
 public class PhotoController {
     
-    @Autowired
+   
     private CustomerService customerService;
-    
-    @Autowired
     private PlayService playService;
+    private WorkshopService workshopService;
+
+    @Autowired
+    public PhotoController(CustomerService customerService, PlayService playService, WorkshopService workshopService) {
+        this.customerService = customerService;
+        this.playService = playService;
+        this.workshopService = workshopService;
+    }
+    
+    
     
     
     @GetMapping("customer{id}")
@@ -59,6 +69,26 @@ public class PhotoController {
                 throw new ErrorService("El usuaio no pose foto");
             }
             byte[] photo = play.getPhoto().getContenido();
+            
+            HttpHeaders headers = new HttpHeaders();
+            headers.setContentType(MediaType.IMAGE_JPEG);
+                      
+            return new ResponseEntity<>(photo, headers, HttpStatus.OK);
+        } catch (Exception ex) {
+            Logger.getLogger(PhotoController.class.getName()).log(Level.SEVERE, null, ex);
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
+    
+    @GetMapping("workshop{id}")
+    public ResponseEntity<byte[]> photoWorkshop(@PathVariable String id){
+        
+        try {
+            Workshop workshop = workshopService.findById(id);
+            if(workshop.getPhoto() == null){
+                throw new ErrorService("El taller no tiene foto");
+            }
+            byte[] photo = workshop.getPhoto().getContenido();
             
             HttpHeaders headers = new HttpHeaders();
             headers.setContentType(MediaType.IMAGE_JPEG);
