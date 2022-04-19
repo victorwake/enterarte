@@ -71,12 +71,17 @@ body {
 @media (min-width: 48em) {
     .container {
         margin: 2%;
+        max-width: 65em;
+        }
+        
     }
-}
+
 @media (min-width: 75em) {
     .container {
         margin: 2em auto;
         max-width: 75em;
+        margin-left: 2%;
+        margin-right: 2%
     }
 }
 
