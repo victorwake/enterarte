@@ -19,99 +19,6 @@
             <nav th:replace="fragments/sidebar :: sidebar"></nav>
         </header>
 
-        <!--            <div id="sidemenu" class="menu-collapsed">
-             HEADER 
-                <div id="header">
-                     <div id="title"><span>Vida MRR</span></div>    
-                <div id="menu-btn">
-                    <div class="btn-hamburger"></div>  
-                    <div class="btn-hamburger"></div>  
-                    <div class="btn-hamburger"></div>  
-                </div>
-            </div>-->
-
-        <!--     profile 
-            <div id="profile">  
-                <a th:href="@{/admin/panel}">
-                <div id="photo"><img src="/img/caras.png" alt=""></div>
-        
-                <div id="name"><span>Panel de Control</span></div>
-                </div>
-        
-                 items 
-        
-                <div id="menu-items">
-                    <div class="item">
-                        <a th:href="@{/location/form}">
-                            <div class="icon"><img src="/img/page.png"></div>
-                            <div class="title"><span>Crear Locacion</span></div>
-                        </a>
-                    </div>
-                        
-                        <div class="item">
-                            <a th:href="@{/play/form}">
-                                <div class="icon"><img src="/img/show.png"></div>
-                                <div class="title"><span>Crear Show</span></div>
-                            </a>
-                        </div>   
-        
-                        
-                        <div class="item">
-                            <a th:href="@{/teacher/form}">
-                                <div class="icon"><img src="/img/create.png"></div>
-                                <div class="title"><span>Crear Taller</span></div>
-                            </a>
-                        </div>  
-        
-                        <div class="item separator"></div>
-                        
-                        <div class="item">
-                            <a th:href="@{/location/listar-locacionactiva}">
-                                <div class="icon"><img src="/img/checklist.png"></div>
-                                <div class="title"><span>Listar Locaciones</span></div>
-                            </a>
-                        </div>  
-        
-        
-                        
-                        <div class="item">
-                            <a th:href="@{/play/list}">
-                                <div class="icon"><img src="/img/spotlight.png"></div>
-                                <div class="title"><span>Listar Shows</span></div>
-                            </a>
-                        </div>  
-        
-                        
-                        <div class="item">
-                            <a th:href="@{/location/form}">
-                                <div class="icon"><img src="/img/list.png"></div>
-                                <div class="title"><span>Listar Talleres</span></div>
-                            </a>
-                        </div>  
-        
-                        <div class="item">
-                            <a th:href="@{/customer/list}">
-                                <div class="icon"><img src="/img/6012311.png"></div>
-                                <div class="title"><span>Listar Usuarios</span></div>
-                            </a>
-                        </div>  
-        
-                </div>
-            </div>-->
-
-        <div id="main-container">
-
-        </div>  
-
-
-
-
-
-
-
-
-
-
         <!--        ///////////////////Lista///////////////////////-->
 
         <main>
@@ -167,69 +74,6 @@
                 </tfoot>
             </div>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-            <!--            <div class="container">
-                            <table>
-                                <h3>Listado</h3>
-                                <thead>
-                                    <tr>
-                                        <th scope="col">ID</th>
-                                        <th scope="col">Nombre</th>
-                                        <th scope="col">Apellido</th>
-                                        <th scope="col">Email</th>  
-                                        <th scope="col">DNI</th>  
-                                        <th scope="col">Telefono</th>  
-                                        
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr th:each="customer:${customers}">
-                                        <td th:text="${customer.id}"></td>                          
-                                        <td th:text="${customer.nombre}"></td>
-                                        <td th:text="${customer.apellido}"></td>   
-                                        <td th:text="${customer.email}"></td> 
-                                        <td th:text="${customer.dni}"></td> 
-                                        <td th:text="${customer.numeroTelefono}"></td> 
-                                        
-                                    </tr>
-            
-                                </tbody>
-                            </table>
-            
-                            <tfoot>
-                                <tr>
-                                    <td colspan="7">
-                                        <div id="current_date">
-                                            <script>
-                                                date = new Date();
-                                                year = date.getFullYear();
-                                                month = date.getMonth() + 1;
-                                                day = date.getDate();
-                                                document.getElementById("current_date").innerHTML = 'Lista actualizada a fecha ' + month + "/" + day + "/" + year;
-                                            </script>
-                                    </td>
-                                </tr>
-                            </tfoot>
-            
-                        </div>-->
-
         </main>
 
 
@@ -239,11 +83,11 @@
         <script>
             const btn = document.querySelector('#menu-btn');
             const menu = document.querySelector('#sidemenu');
-            btn.addEventListener('click', e =>{
-            menu.classList.toggle("menu-expanded");
-            menu.classList.toggle("menu-collapsed");
+            btn.addEventListener('click', e => {
+                menu.classList.toggle("menu-expanded");
+                menu.classList.toggle("menu-collapsed");
 
-            document.querySelector('body').classList.toggle('body-expanded');
+                document.querySelector('body').classList.toggle('body-expanded');
 
             });
         </script>
