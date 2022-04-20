@@ -17,6 +17,7 @@
     <body>
         <header>   
             <nav th:replace="fragments/navbar :: navbar"></nav>
+            <nav th:replace="fragments/sidebar :: sidebar"></nav>
             
 
             <div class="altaBaja"> 
@@ -35,16 +36,16 @@
           <main>
             <div class="container">
                 <table class="responsive-table">
-                    <h3>Listado de Locaciones</h3>
+                    <h3>Listado de Talleres</h3>
 
                     <thead>
                         <tr>
                             <th scope="col"></th>
                             <th scope="col">Id</th>
-                            <th scope="col">Nombre</th>
-                            <th scope="col">Ubicacion</th>
-                            <th scope="col">Editar</th>                         
-                             <th scope="col">Baja</th>
+                            <th scope="col">Titulo</th>
+                            <th scope="col">Descripcion</th>
+                            <th scope="col">Foto</th>                         
+                             
 
                         </tr>
                     </thead>
@@ -54,12 +55,14 @@
                         </tr>
                     </tfoot>
                     <tbody>
-                        <tr th:each="locacion:${locaciones}">
+                        <tr th:each="workshop:${workshops}">
                             <th scope="row">#</th>
-                            <td data-title="id" th:text="${locacion.id}"></td>
-                            <td data-title="nombre" th:text="${locacion.nombre}"></td>
-                            <td data-title="ubicacion" th:text="${locacion.ubicacion}"></td>
-                            <td>
+                            <td data-title="id" th:text="${workshop.id}"></td>
+                            <td data-title="nombre" th:text="${workshop.titulo}"></td>
+                            <td data-title="ubicacion" th:text="${workshop.descripcion}"></td>
+                            <td><img th:if="${workshop.photo != null}" class='imgRedonda' th:src="${'/photo/workshop' + workshop.id}">
+                            <img th:if="${workshop.photo == null}" class="avatar" src="/img/show.webp" alt="foto de perfil"></td>
+<!--                            <td>
                                 <div sec:authorize="isAuthenticated()" >
                                     <a class="btn btn-primary" th:href="@{/location/modificarlocacion/__${locacion.id}__}" method="GET">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
@@ -80,7 +83,7 @@
                                         </svg>
                                     </a>
                                 </div>
-                            </td>
+                            </td>-->
                             <!--                    <img class="floaat-left ml-1" th:src="@{'/load/{id}/'+${customer.photo}}" th:alt="${customer.photo}"></img>
                             <!--                            <img th:src="@{/image/${customer.photo}}" />-->
 

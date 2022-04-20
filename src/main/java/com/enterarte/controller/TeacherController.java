@@ -61,11 +61,13 @@ public class TeacherController {
 
     @GetMapping("/listartalleres")
     public String listartalleres(ModelMap model) {
-         
-        List<Workshop> talleres = workshopService.listWorkshops();
-        model.addAttribute("talleres", talleres);
-        
-
+         try{
+        List<Workshop> workshops = workshopService.listWorkshops();
+        model.addAttribute("workshops", workshops);
+         }catch(Exception e){
+             model.put("error", e.getMessage());
+         }
+       return "teacher/listar-workshop";
     }
 
 }
