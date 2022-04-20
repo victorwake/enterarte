@@ -6,6 +6,7 @@ import com.enterarte.entity.Customer;
 import com.enterarte.entity.Workshop;
 import com.enterarte.mistakes.ErrorService;
 import com.enterarte.repository.WorkshopRepository;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
@@ -57,4 +58,16 @@ public class TeacherController {
         }
         return "/teacher/control-panel";
     }
+
+    @GetMapping("/listartalleres")
+    public String listartalleres(ModelMap model) {
+         try{
+        List<Workshop> workshops = workshopService.listWorkshops();
+        model.addAttribute("workshops", workshops);
+         }catch(Exception e){
+             model.put("error", e.getMessage());
+         }
+       return "teacher/listar-workshop";
+    }
+
 }
