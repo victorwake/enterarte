@@ -35,10 +35,10 @@
                         <div class="title"><span>Crear Show</span></div>
                     </a>
                 </div>   
-
-
+ 
+                
                 <div class="item">
-                    <a sec:authorize="hasAnyRole('TEACHER','ADMIN')"th:href="@{/teacher/form}">
+                    <a sec:authorize="hasAnyRole('TEACHER', 'ADMIN')"th:href="@{/teacher/form}">
                         <div class="icon"><img src="/img/create.png"></div>
                         <div class="title"><span>Crear Taller</span></div>
                     </a>
@@ -59,10 +59,10 @@
                         <div class="title"><span>Listar Shows</span></div>
                     </a>
                 </div>  
-
-
+ 
+                
                 <div class="item">
-                    <a sec:authorize="hasAnyRole('ADMIN')" th:href="@{/teacher/listartalleres}">
+                    <a sec:authorize="hasAnyRole('TEACHER','ADMIN')" th:href="@{/teacher/listartalleres}">
                         <div class="icon"><img src="/img/list.png"></div>
                         <div class="title"><span>Listar Talleres</span></div>
                     </a>

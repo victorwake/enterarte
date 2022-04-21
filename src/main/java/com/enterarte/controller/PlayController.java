@@ -47,6 +47,15 @@ public class PlayController {
         return "play/register";
     }
     
+    @GetMapping("/formcrop")
+    public String createPlayCrop(ModelMap model) {
+        model.addAttribute("play", new Play());
+        List<Location> locations = locationRepository.findAll();
+        model.put("locations", locations);
+        return "play/playregistercrop";
+    }
+    
+    
     @PostMapping("/form")
     public String savePlay(@ModelAttribute Play play, String locationid, @RequestParam MultipartFile file ,ModelMap model) {
         try {

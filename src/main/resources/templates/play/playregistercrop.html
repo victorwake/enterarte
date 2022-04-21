@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+    <head>
+        <meta charset="UTF-8">
+        <title>CodePen - CropperJS </title>
+        <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.0.0-rc.1/cropper.min.css'>
+        <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css'><link rel="stylesheet" href="./style.css">
+
+
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js" type="text/javascript"></script>
+        <link href="https://fonts.googleapis.com/css2?family=Indie+Flower&family=Pacifico&family=Source+Sans+Pro:wght@600&display=swap" rel="stylesheet">
+        <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css'>
+        <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/jquery.bootstrapvalidator/0.5.0/css/bootstrapValidator.min.css'>
+        <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0-rc2/css‌​/bootstrap-glyphicon‌​s.css">
+
+        <meta content="Victor Pinto" name="author"/>      
+        <link href="/css/registro-login.css" rel="stylesheet"/>
+        <link href="/css/play.css" rel="stylesheet"/>
+        <link href="/css/navbarlateral.css" rel="stylesheet"/>
+        <link rel="shortcut icon" href="/img/favicon.ico"/>
+        <title>Creacion de espectaculo</title> 
+    </head>
+    <body>
+
+        <header>
+            <nav th:replace="fragments/navbar :: navbar"></nav>
+            <nav th:replace="fragments/sidebar :: sidebar"></nav>
+        </header>
+        <div>
+
+            <input type="file" name="photo" accept="image/*" class="js-photo-upload">
+        </div>
+
+        <img id="avatar-crop" src="" style="width:271px; height:271px;">
+
+        <div class="modal fade remove-modal" tabindex="-1" role="dialog" id="cropperModal">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content text-center">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <div class="modal-positioner">
+                        <h1>Crop Photo</h1>
+                        <hr>
+                        <img style="width: 271px; height: 271px;" class="js-avatar-preview" src="">
+                        <button class="btn btn-primary js-save-cropped-avatar">Save</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- partial -->
+        <footer th:replace="fragments/footer :: footer"></footer>
+        <!--js-->
+        <script>
+            const btn = document.querySelector('#menu-btn');
+            const menu = document.querySelector('#sidemenu');
+            btn.addEventListener('click', e => {
+                menu.classList.toggle("menu-expanded");
+                menu.classList.toggle("menu-collapsed");
+
+                document.querySelector('body').classList.toggle('body-expanded');
+
+            });
+        </script>
+        <script src='https://code.jquery.com/jquery-3.2.1.slim.min.js'></script>
+        <script src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js'></script>
+        <script src='https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.0.0-rc.1/cropper.min.js'></script><script  src="/js/script_photo.js"></script>
+
+    </body>
+</html>
