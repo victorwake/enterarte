@@ -147,8 +147,8 @@
                 </div>
             </div>
             <div class="row" >
-                <div class="col-md-4 col-sm-4 portfolio-item" th:each="play:${plays}">
-                    <a href="#portfolioModal1" class="portfolio-link" data-toggle="modal">
+                <div class="col-md-2 col-sm-6 portfolio-item" th:each="play:${plays}">
+                    <a th:href="@{/porfolio}" class="portfolio-link" data-toggle="modal">
                         <div class="portfolio-hover">
 <!--                            <div class="portfolio-hover-content">
                                 <i class="fa fa-plus fa-3x"></i>
@@ -172,82 +172,30 @@
     
     
 
-    <!-- About Section -->
-    <section id="about">
+    <!-- Clases y talleres -->
+           <section id="about" >
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 text-center">
-                    <h2 class="section-heading">Talleres</h2>
-                    <h3 class="section-subheading text-muted">Ajmal, I need help to learn how to tweak this part. I don't want this timeline crap. Haha.</h3>
+                    <h2 class="section-heading">Clases y talleres</h2>
+                    <h3 class="section-subheading text-muted">listado de talleres y clases.</h3>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-lg-12">
-                    <ul class="timeline">
-                        <li>
-                            <div class="timeline-image">
-                                <img class="img-circle img-responsive" src="img/about/1.jpg" alt="">
-                            </div>
-                            <div class="timeline-panel">
-                                <div class="timeline-heading">
-                                    <h4>2009-2011</h4>
-                                    <h4 class="subheading">Our Humble Beginnings</h4>
-                                </div>
-                                <div class="timeline-body">
-                                    <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt ut voluptatum eius sapiente, totam reiciendis temporibus qui quibusdam, recusandae sit vero unde, sed, incidunt et ea quo dolore laudantium consectetur!</p>
-                                </div>
-                            </div>
-                        </li>
-                        <li class="timeline-inverted">
-                            <div class="timeline-image">
-                                <img class="img-circle img-responsive" src="img/about/2.jpg" alt="">
-                            </div>
-                            <div class="timeline-panel">
-                                <div class="timeline-heading">
-                                    <h4>March 2011</h4>
-                                    <h4 class="subheading">An Agency is Born</h4>
-                                </div>
-                                <div class="timeline-body">
-                                    <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt ut voluptatum eius sapiente, totam reiciendis temporibus qui quibusdam, recusandae sit vero unde, sed, incidunt et ea quo dolore laudantium consectetur!</p>
-                                </div>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="timeline-image">
-                                <img class="img-circle img-responsive" src="img/about/3.jpg" alt="">
-                            </div>
-                            <div class="timeline-panel">
-                                <div class="timeline-heading">
-                                    <h4>December 2012</h4>
-                                    <h4 class="subheading">Transition to Full Service</h4>
-                                </div>
-                                <div class="timeline-body">
-                                    <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt ut voluptatum eius sapiente, totam reiciendis temporibus qui quibusdam, recusandae sit vero unde, sed, incidunt et ea quo dolore laudantium consectetur!</p>
-                                </div>
-                            </div>
-                        </li>
-                        <li class="timeline-inverted">
-                            <div class="timeline-image">
-                                <img class="img-circle img-responsive" src="img/about/4.jpg" alt="">
-                            </div>
-                            <div class="timeline-panel">
-                                <div class="timeline-heading">
-                                    <h4>July 2014</h4>
-                                    <h4 class="subheading">Phase Two Expansion</h4>
-                                </div>
-                                <div class="timeline-body">
-                                    <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt ut voluptatum eius sapiente, totam reiciendis temporibus qui quibusdam, recusandae sit vero unde, sed, incidunt et ea quo dolore laudantium consectetur!</p>
-                                </div>
-                            </div>
-                        </li>
-                        <li class="timeline-inverted">
-                            <div class="timeline-image">
-                                <h4>Be Part
-                                    <br>Of Our
-                                    <br>Story!</h4>
-                            </div>
-                        </li>
-                    </ul>
+            <div class="row" >
+                <div class="col-md-2 col-sm-4 portfolio-item" th:each="workshop:${workshops}">
+                    <a href="#portfolioModal1" class="portfolio-link" data-toggle="modal">
+                        <div class="portfolio-hover">
+<!--                            <div class="portfolio-hover-content">
+                                <i class="fa fa-plus fa-3x"></i>
+                            </div>-->
+                        </div>
+                        <img fix-height="50em" img th:if="${workshop.photo != null}" class="img-responsive" th:src="${'/photo/workshop' + workshop.id}" alt="">
+                        <img fix-height="50em" th:if="${workshop.photo == null}" class="img-responsive" src="/img/show.webp" alt="foto de perfil">
+                    </a>
+                    <div class="portfolio-caption">
+                        <h4 th:text="${workshop.titulo}"></h4>
+<!--                        <p th:text="${workshop.location.nombre}" class="text-muted"></p>-->
+                    </div>
                 </div>
             </div>
         </div>
@@ -399,7 +347,7 @@
     
     
     <!-- Pbra teatrales Portfolio Modal 1 -->
-    <div class="portfolio-modal modal fade" id="portfolioModal1" tabindex="-1" role="dialog" aria-hidden="true">
+<!--    <div class="portfolio-modal modal fade" id="portfolioModal1" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-content">
             <div class="close-modal" data-dismiss="modal">
                 <div class="lr">
@@ -413,9 +361,9 @@
                         <div class="modal-body">
   
                             <h2 th:text="${play.nombre}" ></h2>
-<!--                            <p class="item-intro text-muted">Lorem ipsum dolor sit amet consectetur.</p>-->
-<!--                            <img class="img-responsive" src="https://unsplash.imgix.net/uploads%2F1411419068566071cef10%2F7562527b?q=75&w=1080&h=1080&fit=max&fm=jpg&auto=format&s=240c45655f09c546232a6f106688e502" alt="">
-                         -->
+                            <p class="item-intro text-muted">Lorem ipsum dolor sit amet consectetur.</p>
+                            <img class="img-responsive" src="https://unsplash.imgix.net/uploads%2F1411419068566071cef10%2F7562527b?q=75&w=1080&h=1080&fit=max&fm=jpg&auto=format&s=240c45655f09c546232a6f106688e502" alt="">
+                         
                             <img img th:if="${play.photo != null}" class="img-responsive" th:src="${'/photo/play' + play.id}" alt="">
                         <img th:if="${play.photo == null}" class="img-responsive" src="/img/show.webp" alt="foto de perfil">
                             <strong>Sinopsis</strong>
@@ -440,7 +388,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div>-->
     
     
     
