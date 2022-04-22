@@ -20,7 +20,7 @@
         <main>
 
             <div class="wrapper">
-                <form th:action="@{/customer/register}" th:object=${customer} autocomplete="off" method="POST" class="form-signin" enctype="multipart/form-data">       
+                <form th:action="@{/login/register}" th:object=${customer} autocomplete="off" method="POST" class="form-signin" enctype="multipart/form-data">       
 
                     <h3 class="form-signin-heading">Registro</h3>
                     <input type="hidden" th:field="*{id}">

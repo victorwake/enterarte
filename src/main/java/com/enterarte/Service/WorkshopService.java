@@ -6,6 +6,7 @@ import com.enterarte.entity.Workshop;
 import com.enterarte.mistakes.ErrorService;
 import com.enterarte.repository.WorkshopRepository;
 import java.util.List;
+import java.util.Optional;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import javax.transaction.Transactional;
@@ -78,6 +79,12 @@ public class WorkshopService {
 
         workshopRepository.save(workshop);
 
+    }
+    
+     
+    @Transactional(rollbackOn = Exception.class)
+    public List<Workshop> listWorkshopsteacher(String id) {
+        return workshopRepository.FindbyWorkshop(id);
     }
 
 }

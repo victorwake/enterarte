@@ -4,9 +4,12 @@ import com.enterarte.Service.CustomerService;
 import com.enterarte.Service.WorkshopService;
 import com.enterarte.entity.Customer;
 import com.enterarte.entity.Workshop;
+import com.enterarte.enums.Role;
 import com.enterarte.mistakes.ErrorService;
 import com.enterarte.repository.WorkshopRepository;
 import java.util.List;
+import java.util.Optional;
+import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
@@ -26,6 +29,8 @@ public class TeacherController {
     private final WorkshopService workshopService;
     private final WorkshopRepository worksopRepository;
     private final CustomerService customerservice;
+     private Role role;
+    
 
     @Autowired
     public TeacherController(WorkshopService workshopService, WorkshopRepository worksopRepository, CustomerService customerservice) {
@@ -60,10 +65,20 @@ public class TeacherController {
     }
 
     @GetMapping("/listartalleres")
-    public String listartalleres(ModelMap model) {
+    public String listartalleres(ModelMap model,HttpSession session) {
          try{
-        List<Workshop> workshops = workshopService.listWorkshops();
+        Customer customer = (Customer) session.getAttribute("customersession");
+        String idcustomer=customer.getId();
+        if(customer.getRole()==role.ADMIN){
+            List<Workshop> workshops = workshopService.listWorkshops();
         model.addAttribute("workshops", workshops);
+        
+       }else{
+       List<Workshop> workshops = workshopService.listWorkshopsteacher(idcustomer);
+       model.addAttribute("workshops", workshops);
+           
+   }
+       
          }catch(Exception e){
              model.put("error", e.getMessage());
          }
