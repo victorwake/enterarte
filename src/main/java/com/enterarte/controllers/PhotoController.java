@@ -1,12 +1,12 @@
-package com.enterarte.controller;
+package com.enterarte.controllers;
 
 
-import com.enterarte.Service.CustomerService;
-import com.enterarte.Service.PlayService;
-import com.enterarte.Service.WorkshopService;
-import com.enterarte.entity.Customer;
-import com.enterarte.entity.Play;
-import com.enterarte.entity.Workshop;
+import com.enterarte.services.CustomerService;
+import com.enterarte.services.PlayService;
+import com.enterarte.services.WorkshopService;
+import com.enterarte.entities.Customer;
+import com.enterarte.entities.Play;
+import com.enterarte.entities.Workshop;
 import com.enterarte.mistakes.ErrorService;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -85,9 +85,9 @@ public class PhotoController {
         
         try {
             Workshop workshop = workshopService.findById(id);
-            if(workshop.getPhoto() == null){
-                throw new ErrorService("El taller no tiene foto");
-            }
+//            if(workshop.getPhoto() == null){
+//                throw new ErrorService("El taller no tiene foto");
+//            }
             byte[] photo = workshop.getPhoto().getContenido();
             
             HttpHeaders headers = new HttpHeaders();

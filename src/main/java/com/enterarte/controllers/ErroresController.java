@@ -1,4 +1,4 @@
-package com.enterarte.controller;
+package com.enterarte.controllers;
 
 import java.util.Enumeration;
 import java.util.Map;

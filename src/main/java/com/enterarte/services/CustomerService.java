@@ -1,11 +1,11 @@
-package com.enterarte.Service;
+package com.enterarte.services;
 
-import com.enterarte.entity.Customer;
-import com.enterarte.entity.Location;
-import com.enterarte.entity.Photo;
+import com.enterarte.entities.Customer;
+import com.enterarte.entities.Location;
+import com.enterarte.entities.Photo;
 import com.enterarte.enums.Role;
 import com.enterarte.mistakes.ErrorService;
-import com.enterarte.repository.CustomerRepository;
+import com.enterarte.repositories.CustomerRepository;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;

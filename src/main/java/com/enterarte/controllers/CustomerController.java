@@ -1,10 +1,10 @@
-package com.enterarte.controller;
+package com.enterarte.controllers;
 
-import com.enterarte.Service.CustomerService;
-import com.enterarte.Service.PhotoService;
-import com.enterarte.entity.Customer;
-import com.enterarte.entity.Photo;
-import com.enterarte.repository.PhotoRepository;
+import com.enterarte.services.CustomerService;
+import com.enterarte.services.PhotoService;
+import com.enterarte.entities.Customer;
+import com.enterarte.entities.Photo;
+import com.enterarte.repositories.PhotoRepository;
 import java.util.List;
 import java.util.Optional;
 import javax.servlet.http.HttpSession;

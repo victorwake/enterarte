@@ -1,12 +1,12 @@
-package com.enterarte.controller;
+package com.enterarte.controllers;
 
-import com.enterarte.Service.CustomerService;
-import com.enterarte.Service.WorkshopService;
-import com.enterarte.entity.Customer;
-import com.enterarte.entity.Workshop;
+import com.enterarte.services.CustomerService;
+import com.enterarte.services.WorkshopService;
+import com.enterarte.entities.Customer;
+import com.enterarte.entities.Workshop;
 import com.enterarte.enums.Role;
 import com.enterarte.mistakes.ErrorService;
-import com.enterarte.repository.WorkshopRepository;
+import com.enterarte.repositories.WorkshopRepository;
 import java.util.List;
 import java.util.Optional;
 import javax.servlet.http.HttpSession;

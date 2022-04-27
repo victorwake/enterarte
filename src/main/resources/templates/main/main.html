@@ -154,6 +154,7 @@
                                 <i class="fa fa-plus fa-3x"></i>
                             </div>-->
                         </div>
+                        <p th:if="${error !=null}" th:text="${error}" style="color:red"></p>
                         <img fix-height="50em" img th:if="${play.photo != null}" class="img-responsive" th:src="${'/photo/play' + play.id}" alt="">
                         <img fix-height="50em" th:if="${play.photo == null}" class="img-responsive" src="/img/show.webp" alt="foto de perfil">
                     </a>

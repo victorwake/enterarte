@@ -1,9 +1,9 @@
-package com.enterarte.controller;
+package com.enterarte.controllers;
 
 
 
-import com.enterarte.Service.CustomerService;
-import com.enterarte.entity.Customer;
+import com.enterarte.services.CustomerService;
+import com.enterarte.entities.Customer;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

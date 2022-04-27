@@ -1,6 +1,6 @@
-package com.enterarte.controller;
+package com.enterarte.controllers;
 
-import com.enterarte.Service.AdminService;
+import com.enterarte.services.AdminService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;

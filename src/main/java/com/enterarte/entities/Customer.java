@@ -1,4 +1,4 @@
-package com.enterarte.entity;
+package com.enterarte.entities;
 
 import com.enterarte.enums.Role;
 import javax.persistence.Entity;

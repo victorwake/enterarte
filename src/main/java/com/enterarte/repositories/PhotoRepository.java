@@ -1,6 +1,6 @@
-package com.enterarte.repository;
+package com.enterarte.repositories;
 
-import com.enterarte.entity.Photo;
+import com.enterarte.entities.Photo;
 import java.util.Optional;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;

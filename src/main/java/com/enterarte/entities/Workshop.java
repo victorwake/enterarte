@@ -1,35 +1,36 @@
-package com.enterarte.entity;
+package com.enterarte.entities;
 
-import javax.persistence.Basic;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.Lob;
+import javax.persistence.OneToOne;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.GenericGenerator;
 
-
-
 @Entity
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
-public class Photo {
-    
-  @Id
+public class Workshop {
+
+    @Id
     @GeneratedValue(generator = "uuid")
     @GenericGenerator(name = "uuid", strategy = "uuid2")
     private String id;
     
-    private String nombre;
-    private String mime;
+    private String titulo;
+    private String descripcion;
     
-    @Lob @Basic(fetch = FetchType.LAZY)
-    private byte[] contenido;
+    @OneToOne
+    private Photo photo;
+    
+    @OneToOne
+    private Customer teacher;
+    
+    
 
 }

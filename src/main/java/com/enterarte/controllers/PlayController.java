@@ -1,10 +1,10 @@
-package com.enterarte.controller;
+package com.enterarte.controllers;
 
-import com.enterarte.Service.LocationService;
-import com.enterarte.Service.PlayService;
-import com.enterarte.entity.Location;
-import com.enterarte.entity.Play;
-import com.enterarte.repository.LocationRepository;
+import com.enterarte.services.LocationService;
+import com.enterarte.services.PlayService;
+import com.enterarte.entities.Location;
+import com.enterarte.entities.Play;
+import com.enterarte.repositories.LocationRepository;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
