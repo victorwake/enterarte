@@ -60,7 +60,7 @@
                                 <img th:if="${customer.photo == null}" class="avatar" src="/img/profile_avatar.png" alt="foto de perfil"></td>
                             <td>
                                 <div sec:authorize="isAuthenticated()" >
-                                    <a class="btn btn-primary"    method="GET">
+                                    <a class="btn btn-primary" th:href="@{/customer/modificar/} + ${customer.id}"   method="GET">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                                              class="bi bi-pencil" viewBox="0 0 16 16">
                                         <path
@@ -71,7 +71,7 @@
                             </td>
                             <td>
                                 <div sec:authorize="isAuthenticated()" >
-                                    <a class="btn btn-outline-danger"  method="GET">         
+                                    <a class="btn btn-outline-danger"  th:href="@{/customer/baja/} + ${customer.id}" method="GET" onclick="return confirm('Estás seguro que deseas eliminar el registro?');" Eliminar Cuenta  >         
                                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                                              class="bi bi-trash3" viewBox="0 0 16 16">
                                         <path

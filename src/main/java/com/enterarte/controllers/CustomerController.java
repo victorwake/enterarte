@@ -4,6 +4,7 @@ import com.enterarte.services.CustomerService;
 import com.enterarte.services.PhotoService;
 import com.enterarte.entities.Customer;
 import com.enterarte.entities.Photo;
+import com.enterarte.enums.Role;
 import com.enterarte.repositories.PhotoRepository;
 import java.util.List;
 import java.util.Optional;
@@ -31,15 +32,20 @@ public class CustomerController {
 
     private final CustomerService customerService;
 
-    @Autowired
-    public CustomerController(CustomerService customerService) {
-        this.customerService = customerService;
-    }
-    @Autowired
+//    private final Role role;
+ 
     private PhotoService photoService;
+    
+     private PhotoRepository photoRepository;
 
-    @Autowired
-    private PhotoRepository photoRepository;
+     @Autowired
+    public CustomerController(CustomerService customerService, PhotoService photoService, PhotoRepository photoRepository) {
+        this.customerService = customerService;     
+        this.photoService = photoService;
+        this.photoRepository = photoRepository;
+    }
+
+  
 
     ////////////////////////////////////////////////////////////////////////////
     //Mustra la plantilla de registro y registra el usuario el PostMapping
@@ -67,22 +73,31 @@ public class CustomerController {
 //
 //    }
 
-    @PostMapping("/update")
-    public String saveupdate(@RequestParam String nombre, @RequestParam String apellido, @RequestParam String dni, @RequestParam String numeroTelefono, @RequestParam String rol, ModelMap model,
+    @PostMapping("/update/{id}")
+    public String saveupdate(@PathVariable String id, @RequestParam String nombre, @RequestParam String apellido, @RequestParam String dni, @RequestParam String numeroTelefono, @RequestParam String rol, ModelMap model,
             Optional<MultipartFile> file, HttpSession session) {
         try {
             //validar
-            Customer customer = (Customer) session.getAttribute("customersession");
-            customerService.modificar(nombre, apellido, dni, numeroTelefono, rol,file, customer);
+           Customer customer1 = (Customer) session.getAttribute("customersession");
+            Customer customer=customerService.findById(id);
+//            customerService.modificar(nombre, apellido, dni, numeroTelefono, rol,file, customer);
 //            model.put("descripcion", "Usuario registrado con exito.");
-
+         if (customer1.getRole()==Role.ADMIN) {
+             customerService.modificar(nombre, apellido, dni, numeroTelefono, rol,file, customer);
+            return "redirect:/customer/list";
+         }else if (customer1.getRole()==Role.USER ||customer1.getRole()==Role.TEACHER ){
+             customerService.modificar(nombre, apellido, dni, numeroTelefono, rol,file, customer);
+              return "redirect:/customer/profile";
+         }
         } catch (Exception e) {
             model.put("error", e.getMessage());
             model.addAttribute("errorMessage", e.getMessage());
             System.err.println(e);
             return "customer/customeredit";
         }
-        return "customer/profile";
+       
+//                    return "customer/profile";
+        return null;
     }
 //    ////////////////////////////////////////////////////////////////////////////
 
