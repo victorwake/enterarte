@@ -1,8 +1,8 @@
-package com.enterarte.Service;
+package com.enterarte.services;
 
-import com.enterarte.entity.Photo;
+import com.enterarte.entities.Photo;
 import com.enterarte.mistakes.ErrorService;
-import com.enterarte.repository.PhotoRepository;
+import com.enterarte.repositories.PhotoRepository;
 import java.util.Optional;
 import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;

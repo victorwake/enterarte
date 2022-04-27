@@ -1,4 +1,4 @@
-package com.enterarte.Service;
+package com.enterarte.services;
 
 
 import org.springframework.stereotype.Service;

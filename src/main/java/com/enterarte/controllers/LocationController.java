@@ -1,7 +1,7 @@
-package com.enterarte.controller;
+package com.enterarte.controllers;
 
-import com.enterarte.Service.LocationService;
-import com.enterarte.entity.Location;
+import com.enterarte.services.LocationService;
+import com.enterarte.entities.Location;
 import com.enterarte.mistakes.ErrorService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;

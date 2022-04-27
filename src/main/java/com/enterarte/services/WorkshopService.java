@@ -1,10 +1,10 @@
-package com.enterarte.Service;
+package com.enterarte.services;
 
-import com.enterarte.entity.Customer;
-import com.enterarte.entity.Photo;
-import com.enterarte.entity.Workshop;
+import com.enterarte.entities.Customer;
+import com.enterarte.entities.Photo;
+import com.enterarte.entities.Workshop;
 import com.enterarte.mistakes.ErrorService;
-import com.enterarte.repository.WorkshopRepository;
+import com.enterarte.repositories.WorkshopRepository;
 import java.util.List;
 import java.util.Optional;
 import java.util.regex.Matcher;

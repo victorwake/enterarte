@@ -1,4 +1,4 @@
-package com.enterarte.controller;
+package com.enterarte.controllers;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;

@@ -1,12 +1,12 @@
-package com.enterarte.controller;
+package com.enterarte.controllers;
 
-import com.enterarte.Service.LocationService;
-import com.enterarte.Service.PlayService;
-import com.enterarte.Service.WorkshopService;
-import com.enterarte.entity.Play;
-import com.enterarte.entity.Workshop;
-import com.enterarte.repository.LocationRepository;
-import com.enterarte.repository.WorkshopRepository;
+import com.enterarte.services.LocationService;
+import com.enterarte.services.PlayService;
+import com.enterarte.services.WorkshopService;
+import com.enterarte.entities.Play;
+import com.enterarte.entities.Workshop;
+import com.enterarte.repositories.LocationRepository;
+import com.enterarte.repositories.WorkshopRepository;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

@@ -1,6 +1,6 @@
-package com.enterarte.repository;
+package com.enterarte.repositories;
 
-import com.enterarte.entity.Location;
+import com.enterarte.entities.Location;
 import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;

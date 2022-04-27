@@ -1,10 +1,10 @@
-package com.enterarte.Service;
+package com.enterarte.services;
 
-import com.enterarte.entity.Customer;
-import com.enterarte.entity.Location;
-import com.enterarte.entity.Play;
+import com.enterarte.entities.Customer;
+import com.enterarte.entities.Location;
+import com.enterarte.entities.Play;
 import com.enterarte.mistakes.ErrorService;
-import com.enterarte.repository.LocationRepository;
+import com.enterarte.repositories.LocationRepository;
 import java.util.List;
 import java.util.Optional;
 import java.util.regex.Matcher;
