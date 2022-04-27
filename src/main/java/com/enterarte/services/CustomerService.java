@@ -65,18 +65,27 @@ public class CustomerService implements UserDetailsService {
     //Modificar
     ////////////////////////////////////////////////////////////////////////////
     @Transactional(rollbackOn = Exception.class)
-    public void modificar(String nombre, String apellido, String dni, String telefono, Optional<MultipartFile> file, Customer customer) throws Exception {
+    public void modificar(String nombre, String apellido, String dni, String telefono, String rol, Optional<MultipartFile> file, Customer customer) throws Exception {
 
         //Ingresar validaciones en un futuro
+        if (rol.equalsIgnoreCase("TEACHER")) {
+            customer.setRole(Role.TEACHER);
+        } else if (rol.equalsIgnoreCase("ADMIN")) {
+            customer.setRole(Role.ADMIN);
+        } else if (rol.equalsIgnoreCase("USER")){
+            customer.setRole(Role.USER);
+        }
+        
+
         customer.setNombre(nombre);
         customer.setDni(dni);
         customer.setNumeroTelefono(telefono);
         customer.setApellido(apellido);
+
 //        validaNombre(customer);
 //        validaApellido(customer);
 //        validaTelefono(customer);
 //        validaDni(customer);
-
         activateIfNew(customer);
 
         String idPhoto = null;
@@ -92,7 +101,7 @@ public class CustomerService implements UserDetailsService {
             customer.setPhoto(photo);
 
         }
-    
+
         customerRepository.save(customer);
     }
 
@@ -131,11 +140,11 @@ public class CustomerService implements UserDetailsService {
 //    }
     @Transactional
     public Customer findById(String id) throws Exception {
-        Optional<Customer> option=customerRepository.findById(id);
+        Optional<Customer> option = customerRepository.findById(id);
         if (option.isPresent()) {
-           Customer customer =option.get();
+            Customer customer = option.get();
             return customer;
-        }else{
+        } else {
             throw new Exception("usuario no encontrado");
         }
     }

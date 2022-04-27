@@ -68,7 +68,7 @@ public class CustomerController {
 //    }
 
     @PostMapping("/update")
-    public String saveupdate(@RequestParam String nombre, @RequestParam String apellido, @RequestParam String dni, @RequestParam String numeroTelefono, ModelMap model,
+    public String saveupdate(@RequestParam String nombre, @RequestParam String apellido, @RequestParam String dni, @RequestParam String numeroTelefono, @RequestParam String rol, ModelMap model,
             Optional<MultipartFile> file, HttpSession session) {
         try {
             //validar
