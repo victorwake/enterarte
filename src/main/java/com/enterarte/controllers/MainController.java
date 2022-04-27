@@ -8,10 +8,13 @@ import com.enterarte.entities.Workshop;
 import com.enterarte.repositories.LocationRepository;
 import com.enterarte.repositories.WorkshopRepository;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
@@ -35,7 +38,7 @@ public class MainController {
     
     
     
-    @GetMapping("/main{id}")
+    @GetMapping("/main")
     public String home(ModelMap model){
         List<Play> plays = playService.listarPlay();
         model.addAttribute("plays", plays);
@@ -45,10 +48,16 @@ public class MainController {
         return "/main/main";
     }
     
-    @GetMapping("/porfolio")
-    public String porfolioplay(ModelMap model) {    
-        List<Play> plays = playService.listarPlay();
-        model.addAttribute("plays", plays);
+    @GetMapping("/porfolio/{id}")
+    public String porfolioplay(ModelMap model,@PathVariable String id) {    
+     
+         try {
+              Play plays = playService.findById(id);
+              model.addAttribute("plays", plays);
+         } catch (Exception ex) {
+             model.put("error", ex.getMessage());
+         }
+       
         return "/main/porfolioplay";
     }
     

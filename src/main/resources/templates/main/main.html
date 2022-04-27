@@ -148,7 +148,7 @@
             </div>
             <div class="row" >
                 <div class="col-md-2 col-sm-6 portfolio-item" th:each="play:${plays}">
-                    <a th:href="@{/porfolio}" class="portfolio-link" data-toggle="modal">
+                    <a th:href="@{/porfolio/} + ${play.id}" class="portfolio-link" data-toggle="modal">
                         <div class="portfolio-hover">
 <!--                            <div class="portfolio-hover-content">
                                 <i class="fa fa-plus fa-3x"></i>
