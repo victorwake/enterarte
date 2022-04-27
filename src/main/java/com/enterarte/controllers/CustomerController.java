@@ -73,7 +73,7 @@ public class CustomerController {
         try {
             //validar
             Customer customer = (Customer) session.getAttribute("customersession");
-            customerService.modificar(nombre, apellido, dni, numeroTelefono, file, customer);
+            customerService.modificar(nombre, apellido, dni, numeroTelefono, rol,file, customer);
 //            model.put("descripcion", "Usuario registrado con exito.");
 
         } catch (Exception e) {
