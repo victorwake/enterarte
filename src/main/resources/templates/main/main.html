@@ -148,13 +148,14 @@
             </div>
             <div class="row" >
                 <div class="col-md-2 col-sm-6 portfolio-item" th:each="play:${plays}">
-                    <a th:href="@{/porfolio}" class="portfolio-link" data-toggle="modal">
+                    <a th:href="@{/porfolio/.{play.id}}" class="portfolio-link" data-toggle="modal">
                         <div class="portfolio-hover">
 <!--                            <div class="portfolio-hover-content">
                                 <i class="fa fa-plus fa-3x"></i>
                             </div>-->
                         </div>
-                        <img fix-height="50em" img th:if="${play.photo != null}" class="img-responsive" th:src="${'/photo/play' + play.id}" alt="">
+                        <img fix-height="50em" th:if="${play.photo != null}" class="img-responsive"  th:src="${'/photo/play'+{__play.id__}}" alt="">
+<!--                        <img fix-height="50em" img th:if="${play.photo != null}" class="img-responsive" th:src="@{'//photo/play/'}+${play.id}" alt="">-->
                         <img fix-height="50em" th:if="${play.photo == null}" class="img-responsive" src="/img/show.webp" alt="foto de perfil">
                     </a>
                     <div class="portfolio-caption">
@@ -347,7 +348,7 @@
     
     
     <!-- Pbra teatrales Portfolio Modal 1 -->
-<!--    <div class="portfolio-modal modal fade" id="portfolioModal1" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="portfolio-modal modal fade" id="portfolioModal1" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-content">
             <div class="close-modal" data-dismiss="modal">
                 <div class="lr">
@@ -358,7 +359,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-lg-8 col-lg-offset-2" th:each="play:${plays}">
-                        <div class="modal-body">
+                        <div class="modal-body"><!--
   
                             <h2 th:text="${play.nombre}" ></h2>
                             <p class="item-intro text-muted">Lorem ipsum dolor sit amet consectetur.</p>
