@@ -19,3 +19,12 @@
     background-color: #fff;
     border: 1px solid rgba(0,0,0,0.1);
 }
+
+.imagencrop{
+    display: none;
+}
+
+.image_container{
+  max-width: 800px;
+  max-height: 450px;
+}

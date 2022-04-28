@@ -44,28 +44,28 @@ public class CustomerController {
     ////////////////////////////////////////////////////////////////////////////
     //Mustra la plantilla de registro y registra el usuario el PostMapping
     ////////////////////////////////////////////////////////////////////////////
-//    @GetMapping("/form")
-//    public String createUser(ModelMap model) {
-//        model.addAttribute("customer", new Customer());
-//        return "customer/register";
-//    }
-//
-//    @PostMapping("/register")
-//    public String saveCustomer(@ModelAttribute Customer customer, ModelMap model,
-//            @RequestParam String clave2, @RequestParam MultipartFile file) {
-//        try {
-//            //validar
-//            customerService.validarClaveX2(customer.getClave(), clave2);
-//            customerService.save(customer, Optional.ofNullable(file));
-////            model.put("titulo", "Bienvenido.");
-////            model.put("descripcion", "Usuario registrado con exito.");
-//            return "redirect:/login/login";
-//        } catch (Exception e) {
-//            model.put("error", e.getMessage());
-//            return "/customer/register";
-//        }
-//
-//    }
+    @GetMapping("/form")
+    public String createUser(ModelMap model) {
+        model.addAttribute("customer", new Customer());
+        return "customer/register";
+    }
+
+    @PostMapping("/register")
+    public String saveCustomer(@ModelAttribute Customer customer, ModelMap model,
+            @RequestParam String clave2, @RequestParam MultipartFile file) {
+        try {
+            //validar
+            customerService.validarClaveX2(customer.getClave(), clave2);
+            customerService.save(customer, Optional.ofNullable(file));
+//            model.put("titulo", "Bienvenido.");
+//            model.put("descripcion", "Usuario registrado con exito.");
+            return "redirect:/login/login";
+        } catch (Exception e) {
+            model.put("error", e.getMessage());
+            return "/customer/register";
+        }
+
+    }
 
     @PostMapping("/update")
     public String saveupdate(@RequestParam String nombre, @RequestParam String apellido, @RequestParam String dni, @RequestParam String numeroTelefono, @RequestParam String rol, ModelMap model,
@@ -73,7 +73,7 @@ public class CustomerController {
         try {
             //validar
             Customer customer = (Customer) session.getAttribute("customersession");
-            customerService.modificar(nombre, apellido, dni, numeroTelefono, file, customer);
+            customerService.modificar(nombre, apellido, dni, numeroTelefono, rol,file, customer);
 //            model.put("descripcion", "Usuario registrado con exito.");
 
         } catch (Exception e) {
