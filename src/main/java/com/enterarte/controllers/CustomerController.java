@@ -74,7 +74,7 @@ public class CustomerController {
 //    }
 
     @PostMapping("/update/{id}")
-    public String saveupdate(@PathVariable String id, @RequestParam String nombre, @RequestParam String apellido, @RequestParam String dni, @RequestParam String numeroTelefono, @RequestParam String rol, ModelMap model,
+    public String saveupdate(@PathVariable String id, @RequestParam String nombre, @RequestParam String apellido, @RequestParam String dni, @RequestParam String numeroTelefono, @RequestParam String role, ModelMap model,
             Optional<MultipartFile> file, HttpSession session) {
         try {
             //validar
@@ -83,10 +83,12 @@ public class CustomerController {
 //            customerService.modificar(nombre, apellido, dni, numeroTelefono, rol,file, customer);
 //            model.put("descripcion", "Usuario registrado con exito.");
          if (customer1.getRole()==Role.ADMIN) {
-             customerService.modificar(nombre, apellido, dni, numeroTelefono, rol,file, customer);
+             customerService.modificar(nombre, apellido, dni, numeroTelefono, role,file, customer);
+
             return "redirect:/customer/list";
          }else if (customer1.getRole()==Role.USER ||customer1.getRole()==Role.TEACHER ){
-             customerService.modificar(nombre, apellido, dni, numeroTelefono, rol,file, customer);
+             customerService.modificar(nombre, apellido, dni, numeroTelefono, role,file, customer);
+
               return "redirect:/customer/profile";
          }
         } catch (Exception e) {
@@ -127,6 +129,9 @@ public class CustomerController {
     @GetMapping("/profile")
     public String profile(ModelMap model, HttpSession session) {
         Customer customer = (Customer) session.getAttribute("customersession");
+        
+       
+
 
         return "customer/profile";
     }

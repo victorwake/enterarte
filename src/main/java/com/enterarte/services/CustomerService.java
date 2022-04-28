@@ -65,14 +65,14 @@ public class CustomerService implements UserDetailsService {
     //Modificar
     ////////////////////////////////////////////////////////////////////////////
     @Transactional(rollbackOn = Exception.class)
-    public void modificar(String nombre, String apellido, String dni, String telefono, String rol, Optional<MultipartFile> file, Customer customer) throws Exception {
+    public void modificar(String nombre, String apellido, String dni, String telefono, String role, Optional<MultipartFile> file, Customer customer) throws Exception {
 
         //Ingresar validaciones en un futuro
-        if (rol.equalsIgnoreCase("TEACHER")) {
+        if (role.equalsIgnoreCase("TEACHER")) {
             customer.setRole(Role.TEACHER);
-        } else if (rol.equalsIgnoreCase("ADMIN")) {
+        } else if (role.equalsIgnoreCase("ADMIN")) {
             customer.setRole(Role.ADMIN);
-        } else if (rol.equalsIgnoreCase("USER")){
+        } else if (role.equalsIgnoreCase("USER")){
             customer.setRole(Role.USER);
         }
         
