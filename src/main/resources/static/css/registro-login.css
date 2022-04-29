@@ -5,6 +5,9 @@ html {
     /*    padding: 10px;*/
 }
 
+#esconder {
+    display:none;
+}
 body {
     position: relative;
     background-image:url("/img/fondo_body.jpg"); 
@@ -205,4 +208,7 @@ input{
         border-top-left-radius: 0;
         border-top-right-radius: 0;
     }
+    
+    
+    
 }

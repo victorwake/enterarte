@@ -20,7 +20,7 @@
         <main>
 
             <div class="wrapper">
-                <form th:action="@{/customer/update}" th:object=${customer} autocomplete="off" method="POST" class="form-signin" enctype="multipart/form-data">       
+                <form th:action="@{/customer/update/} + ${customer.id}" th:object=${customer} autocomplete="off" method="POST" class="form-signin" enctype="multipart/form-data">       
 
 
                     <h3 class="form-signin-heading">Modificar Perfil</h3>
@@ -30,7 +30,18 @@
                     <input th:field="*{dni}" autocomplete="off" type="number"  class="form-control"  placeholder="DNI" required="" autofocus="" />
                     <input th:field="*{numeroTelefono}" autocomplete="off" type="number"  class="form-control" name="numero_telefono" placeholder="Telefono" required="" autofocus="" />
                     <input th:field="*{email}" sec:authorize="!isAuthenticated()" autocomplete="off" type="text"  class="form-control"  placeholder="Email"  autofocus="" />
+                    <input th:field="*{role}" autocomplete="off" name="role" type="text" class="form-control" id="esconder" placeholder=""  autofocus="" />
                     <!--                     <input  th:field="*{clave}" sec:authorize="isAuthenticated()" autocomplete="off" type="password"  class="form-control"  placeholder="Ingrese su password para proceder" required=""/>   -->
+                    <div sec:authorize="hasAnyRole('ADMIN')" class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-map-marker"></i></span>
+                        <select name="role" class="form-control selectpicker" >
+                            <option value=" " >Seleccione el rol</option>
+                            <option th:value="ADMIN">ADMIN</option>
+                            <option th:value="USER">USER </option>
+                            <option th:value="TEACHER">TEACHER </option>
+                           
+                        </select>
+                    </div>
 
                     <br>
                     <div class="form-field field-3 short">
