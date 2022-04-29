@@ -64,6 +64,25 @@
                     <li class="">
                         <a sec:authorize="isAuthenticated()" class="page-scroll " th:href="@{/logout}">Logout</a>
                     </li>
+                    <li class="">
+                        <a sec:authorize="isAuthenticated()" class="page-scroll" th:href="@{/logout}">Logout</a>
+                    </li>
+
+                    
+<!--                     <ul class="navbar-nav ms-auto">
+                <li class="nav-item dropdown">
+             
+                    <a id="dropdown08" class="nav-link dropdown-toggle btn btn-outline-success" data-bs-toggle="dropdown" aria-expanded="false" ></a>
+                     <a sec:authorize="isAuthenticated()" id="dropdown08" class="nav-link dropdown-toggle btn btn-outline-success" data-bs-toggle="dropdown" aria-expanded="false" <spam   th:if="${session.customersession != null}" th:text="${session.customersession.fullName}" ></spam></a>
+                    <ul class="dropdown-menu " aria-labelledby="dropdown08">
+                        <li><a th:href="@{/customer/profile}" class="dropdown-item">Perfil</a></li>
+                        <li><a class="dropdown-item" >Cambiar Contraseña</a></li>
+                        <form  th:action="@{/logout}" method="post">
+                            <button class="dropdown-item" type="submit">Cerrar Sesion</button>                
+                        </form>
+                    </ul>
+                </li>
+            </ul>-->
                     
                 </ul>
             </div>
@@ -77,7 +96,7 @@
         <div class="container">
             <div class="intro-text">
                 <div class="intro-lead-in">Bienvenidos</div>
-                <div class="intro-heading">Carteleras y eventos de mendoza.</div>
+                <div class="intro-heading">Carteleras y eventos de mendoza</div>
                 <a href="#services" class="page-scroll btn btn-xl">Bajar</a>
             </div>
         </div>
@@ -130,14 +149,30 @@
                     <h3 class="section-subheading text-muted">Obras en cartelera.</h3>
                 </div>
             </div>
+<<<<<<< HEAD
+            <div class="row" th:each="play:${plays}">
+                               
+                <div class="col-md-4 col-sm-6 portfolio-item">
+                    <a href="#portfolioModal1" class="portfolio-link" data-toggle="modal">
+<!--                    <a th:href="@{/photo/play/__${play.id}__}" class="portfolio-link" data-toggle="modal">-->
+=======
             <div class="row" >
                 <div class="col-md-2 col-sm-6 portfolio-item" th:each="play:${plays}">
                     <a th:href="@{/porfolio/} + ${play.id}" class="portfolio-link" data-toggle="modal">
+>>>>>>> dante
                         <div class="portfolio-hover">
+<!--                            <div class="portfolio-hover-content">
+                                <i class="fa fa-plus fa-3x"></i>
+                            </div>-->
                         </div>
+<<<<<<< HEAD
+                        <td> <img th:if="${play.photo != null}" class="img-responsive" th:src="${'/photo/play' + play.id}" alt="">
+                            <img th:if="${play.photo == null}" class="img-responsive" src="/img/show.webp" alt="foto de perfil"></td>
+=======
                         <p th:if="${error !=null}" th:text="${error}" style="color:red"></p>
                         <img fix-height="50em" img th:if="${play.photo != null}" class="img-responsive" th:src="${'/photo/play' + play.id}" alt="">
                         <img fix-height="50em" th:if="${play.photo == null}" class="img-responsive" src="/img/show.webp" alt="foto de perfil">
+>>>>>>> dante
                     </a>
                     <div class="portfolio-caption">
                         <h4 th:text="${play.nombre}"></h4>
@@ -321,6 +356,71 @@
             </div>
         </div>
     </footer>
+
+    <!-- Portfolio Modals -->
+    <!-- Use the modals below to showcase details about your portfolio projects! -->
+
+<<<<<<< HEAD
+    <!-- Obra teatrales Portfolio Modal variable en funcion de play.id -->
+    <div class="portfolio-modal modal fade" id="portfolioModal1" tabindex="-1" role="dialog" aria-hidden="true">
+=======
+    
+    
+    
+    <!-- Pbra teatrales Portfolio Modal 1 -->
+<!--    <div class="portfolio-modal modal fade" id="portfolioModal1" tabindex="-1" role="dialog" aria-hidden="true">
+>>>>>>> dante
+        <div class="modal-content">
+            <div class="close-modal" data-dismiss="modal">
+                <div class="lr">
+                    <div class="rl">
+                    </div>
+                </div>
+            </div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-8 col-lg-offset-2" th:each="play:${plays}">
+                        <div class="modal-body">
+  
+                            <h2 th:text="${play.nombre}" ></h2>
+<<<<<<< HEAD
+<!--                            <p class="item-intro text-muted">Lorem ipsum dolor sit amet consectetur.</p>-->
+<!--                            <img class="img-responsive" src="https://unsplash.imgix.net/uploads%2F1411419068566071cef10%2F7562527b?q=75&w=1080&h=1080&fit=max&fm=jpg&auto=format&s=240c45655f09c546232a6f106688e502" alt="">
+                         -->
+                         <td> <img img th:if="${play.photo != null}" class="img-responsive" th:src="${'/photo/play' + play.id}" alt="">
+                             <img th:if="${play.photo == null}" class="img-responsive" src="/img/show.webp" alt="foto de perfil"> </td>
+=======
+                            <p class="item-intro text-muted">Lorem ipsum dolor sit amet consectetur.</p>
+                            <img class="img-responsive" src="https://unsplash.imgix.net/uploads%2F1411419068566071cef10%2F7562527b?q=75&w=1080&h=1080&fit=max&fm=jpg&auto=format&s=240c45655f09c546232a6f106688e502" alt="">
+                         
+                            <img img th:if="${play.photo != null}" class="img-responsive" th:src="${'/photo/play' + play.id}" alt="">
+                        <img th:if="${play.photo == null}" class="img-responsive" src="/img/show.webp" alt="foto de perfil">
+>>>>>>> dante
+                            <strong>Sinopsis</strong>
+                            <p th:text="${play.descripcion}"></p>
+                            <p>
+                                <strong></strong></p>
+                            <ul class="list-inline">
+                                <li>Duracion:</li>
+                                <li th:text="${play.duracion}"></li>
+                                <li>Minutos</li>
+                            </ul>
+                             <ul class="list-inline">
+                                <li>Direccion:</li>
+                                <li th:text="${play.location.nombre}"></li></b>
+                               
+                            </ul>
+                            <br>
+                            <br>
+                            <button type="button" class="btn btn-primary" data-dismiss="modal"><i class="fa fa-times"></i> Cerrar ventana</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>-->
+    
+        
 
 
     <!-- jQuery Version 1.11.0 -->
