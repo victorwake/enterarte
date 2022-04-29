@@ -1,12 +1,14 @@
 package com.enterarte.config;
 
 
-import com.enterarte.Service.CustomerService;
+import com.enterarte.services.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -29,11 +31,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     
     @Override
     protected void configure(HttpSecurity http) throws Exception{
-//        http.headers().frameOptions().sameOrigin().and()
-                 http
-                .authorizeRequests()
-                .antMatchers("/index", "/css/**", "/js/**","/main/**", "/img/**", "/video/**", "/login/**","/admin/**", "/customer/**").permitAll()
-                .antMatchers("/author/create").hasAnyRole("ADMIN")
+                 http .csrf().disable()
+                .authorizeRequests() 
+                .antMatchers("/index", "/css/**", "/js/**","/main/**", "/img/**", "/video/**", "/login/**","/admin/**", "/customer/**").permitAll()           
+                .antMatchers(HttpMethod.GET).permitAll()      
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
@@ -46,10 +47,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .logout()
                 .logoutUrl("/logout")
-                .logoutSuccessUrl("/").permitAll()
-                .and().csrf().disable();
+                .logoutSuccessUrl("/").permitAll();
                 
     }
     
+
 
 }
