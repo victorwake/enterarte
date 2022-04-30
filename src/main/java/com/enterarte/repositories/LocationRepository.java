@@ -8,8 +8,6 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 
-
-
 @Repository
 public interface LocationRepository extends JpaRepository<Location, String>{
     

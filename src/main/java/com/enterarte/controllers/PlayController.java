@@ -71,12 +71,31 @@ public class PlayController {
          return "redirect:/admin/panel";
     }   
     
-    @GetMapping("/list")
+//    @GetMapping("/list")
+//    public String listarPlay(ModelMap model) {
+//
+//        List<Play> plays = playService.listarPlay();
+//        model.addAttribute("plays", plays);
+//        
+//        return "/play/list-play";
+//    }
+    
+    
+    @GetMapping("/listar-playactiva")
     public String listarPlay(ModelMap model) {
 
-        List<Play> plays = playService.listarPlay();
+        List<Play> plays = playService.listarPlaysActivas();
         model.addAttribute("plays", plays);
         
-        return "/play/list-play";
+        return "play/list-playaltas";
+    }
+    
+    @GetMapping("/listar-playbaja")
+    public String listarPlayBaja(ModelMap model) {
+
+        List<Play> plays = playService.listarPlaysBajas();
+        model.addAttribute("plays", plays);
+        
+        return "play/list-playbajas";
     }
 }

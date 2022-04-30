@@ -30,23 +30,15 @@ public class Play {
     
     private Integer duracion;
     
-    
+    private boolean alta;
 
     @OneToOne
     private Photo photo;
     
     @OneToOne
     private Location location;
-
-
-
-
-
-
-
-
-
-
+    
+    
 }
 
 

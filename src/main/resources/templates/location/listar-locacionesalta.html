@@ -17,6 +17,7 @@
     <body>
         <header>   
             <nav th:replace="fragments/navbar :: navbar"></nav>
+            <nav th:replace="fragments/sidebar :: sidebar"></nav>
             
 
             <div class="altaBaja"> 
@@ -32,104 +33,6 @@
             </div>
 
         </header>
-        
-        
-        
-        
-        
-        
-        
-         <div id="sidemenu" class="menu-collapsed">
-<!--     HEADER -->
-        <div id="header">
-<!--             <div id="title"><span>Vida MRR</span></div>    -->
-        <div id="menu-btn">
-            <div class="btn-hamburger"></div>  
-            <div class="btn-hamburger"></div>  
-            <div class="btn-hamburger"></div>  
-        </div>
-    </div>
-
-<!--     profile -->
-    <div id="profile">  
-        <a th:href="@{/admin/panel}">
-        <div id="photo"><img src="/img/caras.png" alt=""></div>
-
-        <div id="name"><span>Panel de Control</span></div>
-        </div>
-
-<!--         items -->
-
-        <div id="menu-items">
-            <div class="item">
-                <a th:href="@{/location/form}">
-                    <div class="icon"><img src="/img/page.png"></div>
-                    <div class="title"><span>Crear Locacion</span></div>
-                </a>
-            </div>
-                
-                <div class="item">
-                    <a th:href="@{/play/form}">
-                        <div class="icon"><img src="/img/show.png"></div>
-                        <div class="title"><span>Crear Show</span></div>
-                    </a>
-                </div>   
-
-                
-                <div class="item">
-                    <a th:href="@{/teacher/form}">
-                        <div class="icon"><img src="/img/create.png"></div>
-                        <div class="title"><span>Crear Taller</span></div>
-                    </a>
-                </div>  
-
-                <div class="item separator"></div>
-                
-                <div class="item">
-                    <a th:href="@{/location/listar-locacionactiva}">
-                        <div class="icon"><img src="/img/checklist.png"></div>
-                        <div class="title"><span>Listar Locaciones</span></div>
-                    </a>
-                </div>  
-
-
-                
-                <div class="item">
-                    <a th:href="@{/play/list}">
-                        <div class="icon"><img src="/img/spotlight.png"></div>
-                        <div class="title"><span>Listar Shows</span></div>
-                    </a>
-                </div>  
-
-                
-                <div class="item">
-                    <a th:href="@{/location/form}">
-                        <div class="icon"><img src="/img/list.png"></div>
-                        <div class="title"><span>Listar Talleres</span></div>
-                    </a>
-                </div>  
-
-                <div class="item">
-                    <a th:href="@{/customer/list}">
-                        <div class="icon"><img src="/img/6012311.png"></div>
-                        <div class="title"><span>Listar Usuarios</span></div>
-                    </a>
-                </div>  
-
-        </div>
-    </div>
-
-    <div id="main-container">
-       
-    </div>  
-  
-        
-        
-        
-        
-        
-        
-        
         
         
 <!--        ///////////////////Lista///////////////////////-->
