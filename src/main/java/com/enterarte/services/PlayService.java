@@ -70,7 +70,16 @@ public class PlayService {
             throw new Exception("usuario no encontrado");
         }
     }
+    
+    public void baja(Play play){
+        play.setAlta(false);
+        playRepository.save(play);
+    }
 
+     public void alta(Play play){
+        play.setAlta(true);
+        playRepository.save(play);
+    }
 ///////////////////////////////Validaciones/////////////////////////////////////
     public void validar(Play play) throws ErrorService {
         validaSiExiste(play);

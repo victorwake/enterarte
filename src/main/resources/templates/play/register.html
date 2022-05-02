@@ -34,7 +34,7 @@
 
             <form class="well form-horizontal" th:action="@{/play/form}" th:object=${play} enctype="multipart/form-data" method="POST" id="contact_form">
 
-                <input type="hidden" th:value="${play.id}">
+                <input type="hidden" th:field="${play.id}">
 
                 <!-- Form Name -->
                 <legend>Creacion de nuevo espectaculo!</legend>
