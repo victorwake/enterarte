@@ -11,7 +11,6 @@
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
         <link href="/css/registro-login.css" rel="stylesheet"/>
         <link href="/css/list-customer.css" rel="stylesheet"/>
-        <!--        <link href="/css/navbarlateral.css" rel="stylesheet"/>-->
         <link rel="shortcut icon" href="/img/favicon.ico"/>
         <title>Lista de clientes</title>  
     <body>
@@ -26,8 +25,7 @@
                         Listar
                     </button>
                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="/location/listar-locacionactiva">Listar Alta</a></li>
-                        <li><a class="dropdown-item" href="/location/listar-locacionbaja">Listar Baja</a></li>
+                        <li><a class="dropdown-item" href="/teacher/workshop_baja">Listar Baja</a></li>
                     </ul>
                 </div>
             </div>
@@ -36,19 +34,16 @@
         <main>
             <div class="container">
                 <table class="responsive-table">
-                    <h3>Listado de Talleres</h3>
+                    <h3>Lista de talleres en alta</h3>
 
                     <thead>
                         <tr>
                             <th scope="col"></th>
-<!--                            <th scope="col">Id</th>-->
                             <th scope="col">Titulo</th>
                             <th scope="col">Descripcion</th>
                             <th scope="col">Foto</th>        
                             <th scope="col">Editar</th>                         
                             <th scope="col">Baja</th>
-
-
                         </tr>
                     </thead>
                     <tfoot>
@@ -59,7 +54,6 @@
                     <tbody>
                         <tr th:each="workshop:${workshops}">
                             <th scope="row">#</th>
-<!--                            <td data-title="id" th:text="${workshop.id}"></td>-->
                             <td data-title="nombre" th:text="${workshop.titulo}"></td>
                             <td data-title="ubicacion" th:text="${workshop.descripcion}"></td>
                             <td><img th:if="${workshop.photo != null}" class='imgRedonda' th:src="${'/photo/workshop' + workshop.id}">
@@ -77,7 +71,7 @@
                             </td>
                             <td>
                                 <div sec:authorize="isAuthenticated()" >
-                                    <a class="btn btn-outline-danger" href="@{/location/eliminar/__${locacion.id}__}" method="GET">         
+                                    <a class="btn btn-outline-danger" th:href="@{/teacher/eliminar/__${workshop.id}__}" method="GET">         
                                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                                              class="bi bi-trash3" viewBox="0 0 16 16">
                                         <path

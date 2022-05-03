@@ -29,16 +29,17 @@ public class WorkshopService {
     }
 
     @Transactional(rollbackOn = Exception.class)
-    public void save(Workshop workshop,Customer teacher,MultipartFile file) throws Exception {
-
-//        validar(workshop);
-
-        Photo photo = photoService.guardarFoto(file);
-        workshop.setPhoto(photo);
+    public void save(Workshop workshop,Customer teacher, Optional<MultipartFile> file) throws Exception {
+       
+//      validar(workshop);
+        if (file.isPresent() && !file.get().isEmpty()) {
+            Photo photo = photoService.guardarFoto(file.get());
+            workshop.setPhoto(photo);
+        }
         workshop.setTeacher(teacher);
+        workshop.setAlta(true);
 
         workshopRepository.save(workshop);
-
     }
 
     @Transactional(rollbackOn = Exception.class)
@@ -78,13 +79,38 @@ public class WorkshopService {
         workshop.setPhoto(photo);
 
         workshopRepository.save(workshop);
-
     }
-    
-     
+       
     @Transactional(rollbackOn = Exception.class)
     public List<Workshop> listWorkshopsteacher(String id) {
-        return workshopRepository.FindbyWorkshop(id);
+        return workshopRepository.FindbyWorkshopAlta(id);
+    }
+    
+    @Transactional(rollbackOn = Exception.class)
+    public List<Workshop> listWorkshopsTeacherBaja(String id) {
+        return workshopRepository.FindbyWorkshopBaja(id);
+    }
+    
+    
+     public void DarDeBaja(Workshop workshop) throws Exception {
+       workshop.setAlta(false);
+       workshopRepository.save(workshop);
+       
+    }
+     public void DarDeAlta(Workshop workshop) throws Exception {
+       workshop.setAlta(true);
+       workshopRepository.save(workshop);
+       
+    }
+     
+     public List<Workshop> listarWorkshopActivas() {      
+      workshopRepository.workshopActivos(Boolean.TRUE); 
+        return  workshopRepository.workshopActivos(Boolean.TRUE);
+    }
+
+    public List<Workshop> listarWorkshopBajas() {     
+      workshopRepository.workshopActivos(Boolean.FALSE);     
+        return  workshopRepository.workshopActivos(Boolean.FALSE);
     }
 
 }

@@ -10,7 +10,17 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface WorkshopRepository extends JpaRepository<Workshop, String>  {
    
-    @Query("SELECT w FROM Workshop w WHERE w.teacher.id = :id")
-public List<Workshop>FindbyWorkshop(@Param("id") String id);
+    @Query("SELECT w FROM Workshop w WHERE w.teacher.id = :id AND w.alta = 1")
+public List<Workshop>FindbyWorkshopAlta(@Param("id") String id);
+
+@Query("SELECT w FROM Workshop w WHERE w.teacher.id = :id AND w.alta = 0")
+public List<Workshop>FindbyWorkshopBaja(@Param("id") String id);
+
+@Query("SELECT w FROM Workshop w WHERE w.alta = :alta")
+    public List<Workshop> workshopActivos(@Param("alta")Boolean alta);
+    
+    
+    
+    
     
 }

@@ -12,62 +12,55 @@
         <link href="/css/registro-login.css" rel="stylesheet"/>
         <link href="/css/list-customer.css" rel="stylesheet"/>
         <link rel="shortcut icon" href="/img/favicon.ico"/>
-        <title>Lista de espectaculos</title>  
+        <title>Lista de clientes</title>  
     <body>
-        <header>
+        <header>   
             <nav th:replace="fragments/navbar :: navbar"></nav>
             <nav th:replace="fragments/sidebar :: sidebar"></nav>
-        </header>
 
-        <!--        ///////////////////Lista///////////////////////-->
 
-        <div class="altaBaja"> 
-            <div class="btn-group">
-                <button type="button" class="btn btn-info dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                    Listar
-                </button>
-                <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" href="/play/listar-playactiva">Listar Alta</a></li>
-                </ul>
+            <div class="altaBaja"> 
+                <div class="btn-group">
+                    <button type="button" class="btn btn-info dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                        Listar
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="/teacher/listartalleres">Listar Alta</a></li>
+                    </ul>
+                </div>
             </div>
-        </div>
 
-
+        </header>
         <main>
             <div class="container">
                 <table class="responsive-table">
-                    <h3>Espectaculos inactivos</h3>
+                    <h3>Lista de talleres en baja</h3>
+
                     <thead>
                         <tr>
                             <th scope="col"></th>
-                            <th scope="col">Nombre</th>
-                            <th scope="col">Duracion</th>
-                            <th scope="col">Locacion</th>
+                            <th scope="col">Titulo</th>
                             <th scope="col">Descripcion</th>
-                            <th scope="col">Foto</th>                        
+                            <th scope="col">Foto</th>                                
                             <th scope="col">Alta</th>
                         </tr>
                     </thead>
                     <tfoot>
                         <tr>
-                            <td colspan="7"></td>
+                            <td colspan="4"></td>
                         </tr>
                     </tfoot>
                     <tbody>
-                        <tr th:each="play:${plays}">
+                        <tr th:each="workshop:${workshops}">
                             <th scope="row">#</th>
-<!--                            <td th:text="${play.id}"></td>-->
-                            <td th:text="${play.nombre}"></td>
-                            <td th:text="${play.duracion}"></td>
-                            <td  th:text="${play.location.nombre}"></td>
-                            <td th:text="${play.descripcion}"></td>
-                            <td><img th:if="${play.photo != null}" class='imgRedonda' th:src="${'/photo/play' + play.id}">
-                                <img th:if="${play.photo == null}" class="avatar" src="/img/show.webp" alt="foto de perfil"></td>
-                           
+                            <td data-title="nombre" th:text="${workshop.titulo}"></td>
+                            <td data-title="ubicacion" th:text="${workshop.descripcion}"></td>
+                            <td><img th:if="${workshop.photo != null}" class='imgRedonda' th:src="${'/photo/workshop' + workshop.id}">
+                                <img th:if="${workshop.photo == null}" class="avatar" src="/img/show.webp" alt="foto de perfil"></td>  
                             <td>
                                 <div sec:authorize="isAuthenticated()" >
-                                    <a class="btn btn-outline-success" th:href="@{/play/alta/} + ${play.id}" method="GET">         
-                                       <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-up-square" viewBox="0 0 16 16">
+                                    <a class="btn btn-outline-success" th:href="@{/teacher/alta/__${workshop.id}__}" method="GET">         
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-up-square" viewBox="0 0 16 16">
                                         <path fill-rule="evenodd" d="M15 2a1 1 0 0 0-1-1H2a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V2zM0 2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2zm8.5 9.5a.5.5 0 0 1-1 0V5.707L5.354 7.854a.5.5 0 1 1-.708-.708l3-3a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 5.707V11.5z"/>
                                         </svg>
                                     </a>
@@ -76,10 +69,12 @@
                         </tr>
                         <tr>    
                     </tbody>
+                    <p th:if="${error !=null}" th:text="${error}" style="color:red"></p>
+
                 </table>
                 <tfoot>
                     <tr>
-                        <td colspan="7">
+                        <td colspan="4">
                             <div id="current_date">
                                 <script>
                                     date = new Date();
@@ -101,11 +96,11 @@
         <script>
             const btn = document.querySelector('#menu-btn');
             const menu = document.querySelector('#sidemenu');
-            btn.addEventListener('click', e =>{
-            menu.classList.toggle("menu-expanded");
-            menu.classList.toggle("menu-collapsed");
+            btn.addEventListener('click', e => {
+                menu.classList.toggle("menu-expanded");
+                menu.classList.toggle("menu-collapsed");
 
-            document.querySelector('body').classList.toggle('body-expanded');
+                document.querySelector('body').classList.toggle('body-expanded');
 
             });
         </script>

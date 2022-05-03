@@ -56,12 +56,12 @@ public class TeacherController {
     public String saveTaller(@ModelAttribute Workshop workshop, @PathVariable("id") String customerId, MultipartFile file, ModelMap model) throws ErrorService {
         try {
             Customer teacher = customerservice.findById(customerId);
-            workshopService.save(workshop, teacher, file);
+            workshopService.save(workshop, teacher, Optional.ofNullable(file));
         } catch (Exception e) {
             model.put("error", e.getMessage());
             return "/teacher/create-workshop";
         }
-        return "/teacher/control-panel";
+        return "redirect:/teacher/listartalleres";
     }
 
     @GetMapping("/listartalleres")
@@ -70,7 +70,7 @@ public class TeacherController {
         Customer customer = (Customer) session.getAttribute("customersession");
         String idcustomer=customer.getId();
         if(customer.getRole()==role.ADMIN){
-            List<Workshop> workshops = workshopService.listWorkshops();
+            List<Workshop> workshops = workshopService.listarWorkshopActivas();
         model.addAttribute("workshops", workshops);
         
        }else{
@@ -83,6 +83,50 @@ public class TeacherController {
              model.put("error", e.getMessage());
          }
        return "teacher/listar-workshop";
+    }
+
+    @GetMapping("/workshop_baja")
+    public String listarWorkshopBaja(ModelMap model ,HttpSession session) {
+         try{
+        Customer customer = (Customer) session.getAttribute("customersession");
+        String idcustomer=customer.getId();
+        if(customer.getRole()==role.ADMIN){
+            List<Workshop> workshops = workshopService.listarWorkshopBajas();
+        model.addAttribute("workshops", workshops);       
+       }else{
+       List<Workshop> workshops = workshopService.listWorkshopsTeacherBaja(idcustomer);
+       model.addAttribute("workshops", workshops);         
+   }     
+         }catch(Exception e){
+             model.put("error", e.getMessage());
+         }      
+        return "teacher/listar-workshopbaja";
+    }
+    
+    @GetMapping("/eliminar/{id}")
+    public String eliminarWorkshop(@PathVariable("id") String workshopid, ModelMap model) {
+
+        try {
+            Workshop workshop = workshopService.findById(workshopid); 
+            workshopService.DarDeBaja(workshop);
+        } catch (Exception ex) {
+            model.put("error", ex.getMessage());
+        }
+        
+        return "redirect:/teacher/listartalleres";
+    }
+    
+    @GetMapping("/alta/{id}")
+    public String altaWorkshop(@PathVariable("id") String workshopid, ModelMap model) {
+
+        try {
+            Workshop workshop = workshopService.findById(workshopid); 
+            workshopService.DarDeAlta(workshop);
+        } catch (Exception ex) {
+            model.put("error", ex.getMessage());
+        }
+        
+        return "redirect:/teacher/workshop_baja";
     }
 
 }

@@ -40,10 +40,10 @@ public class MainController {
     
     @GetMapping("/main")
     public String home(ModelMap model){
-        List<Play> plays = playService.listarPlay();
+        List<Play> plays = playService.listarPlaysActivas();
         model.addAttribute("plays", plays);
         
-        List<Workshop> workshops = workshopService.listWorkshops();
+        List<Workshop> workshops = workshopService.listarWorkshopActivas();
         model.addAttribute("workshops", workshops);
         return "/main/main";
     }
