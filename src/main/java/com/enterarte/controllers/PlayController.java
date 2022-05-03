@@ -1,5 +1,6 @@
 package com.enterarte.controllers;
 
+import com.enterarte.entities.Customer;
 import com.enterarte.services.LocationService;
 import com.enterarte.services.PlayService;
 import com.enterarte.entities.Location;
@@ -13,6 +14,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -79,6 +81,46 @@ public class PlayController {
 //        
 //        return "/play/list-play";
 //    }
+    
+     @GetMapping("/modificar/{id}")
+    public String modificarplay(@PathVariable("id") String id, ModelMap model) {
+        try {
+           Play play = playService.findById(id);
+            model.addAttribute("play",play);
+        } catch (Exception ex) {
+            model.addAttribute("error", ex.getMessage());
+        }
+        return "play/register";
+    }
+    
+    @GetMapping("/baja/{id}")
+    public String bajaplay(@PathVariable String id,ModelMap model){
+        try{
+         Play play = playService.findById(id);
+         playService.baja(play);
+ 
+        }catch(Exception ex){
+            model.addAttribute("error", ex.getMessage());
+        }
+        
+       return "redirect:/play/listar-playactiva";
+        
+    }
+    
+    @GetMapping("/alta/{id}")
+    public String altaplay(@PathVariable String id,ModelMap model){
+        try{
+         Play play = playService.findById(id);
+         playService.alta(play);
+ 
+        }catch(Exception ex){
+            model.addAttribute("error", ex.getMessage());
+        }
+        
+       return "redirect:/play/listar-playbaja";
+        
+    }
+    
     
     
     @GetMapping("/listar-playactiva")
