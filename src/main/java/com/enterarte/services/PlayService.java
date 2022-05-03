@@ -82,7 +82,7 @@ public class PlayService {
     }
 ///////////////////////////////Validaciones/////////////////////////////////////
     public void validar(Play play) throws ErrorService {
-        validaSiExiste(play);
+//        validaSiExiste(play);
         validaNombre(play);
         validaDuracion(play);
         validaDescripcion(play);
