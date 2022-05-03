@@ -60,10 +60,17 @@ public class PhotoService {
         }
         return null;
     }
+    
 
     @Transactional
     public Photo buscar(String Id) throws Error {
 
         return photoRepository.getOne(Id);
+    }
+    @Transactional
+    public void deletephoto(String id) throws Exception {
+        Photo photo = buscar(id);
+        photoRepository.delete(photo);
+       
     }
 }
