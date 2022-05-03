@@ -60,7 +60,7 @@ public class PlayController {
         try {
             //validar
             Location location = locationService.buscarPorId(locationid);
-            playService.save(play, location, Optional.ofNullable(file));
+            playService.save(play, location,Optional.ofNullable(file));
         } catch (Exception e) {
             model.put("error", e.getMessage());
             List<Location> locations = locationRepository.findAll();
