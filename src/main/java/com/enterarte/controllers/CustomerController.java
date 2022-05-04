@@ -5,6 +5,7 @@ import com.enterarte.services.PhotoService;
 import com.enterarte.entities.Customer;
 import com.enterarte.entities.Photo;
 import com.enterarte.enums.Role;
+import com.enterarte.repositories.CustomerRepository;
 import com.enterarte.repositories.PhotoRepository;
 import java.util.List;
 import java.util.Optional;
@@ -33,19 +34,16 @@ public class CustomerController {
     private final CustomerService customerService;
 
 //    private final Role role;
- 
     private PhotoService photoService;
-    
-     private PhotoRepository photoRepository;
 
-     @Autowired
+    private PhotoRepository photoRepository;
+
+    @Autowired
     public CustomerController(CustomerService customerService, PhotoService photoService, PhotoRepository photoRepository) {
-        this.customerService = customerService;     
+        this.customerService = customerService;
         this.photoService = photoService;
         this.photoRepository = photoRepository;
     }
-
-  
 
     ////////////////////////////////////////////////////////////////////////////
     //Mustra la plantilla de registro y registra el usuario el PostMapping
@@ -74,32 +72,25 @@ public class CustomerController {
     }
 
     @PostMapping("/update/{id}")
-    public String saveupdate(@PathVariable String id, @RequestParam String nombre, @RequestParam String apellido, @RequestParam String dni, @RequestParam String numeroTelefono, @RequestParam String role, ModelMap model,
+    public String saveupdate(@PathVariable String id, @RequestParam String nombre, @RequestParam String apellido, @RequestParam String dni, @RequestParam String numeroTelefono, ModelMap model,
             Optional<MultipartFile> file, HttpSession session) {
         try {
             //validar
-           Customer customer1 = (Customer) session.getAttribute("customersession");
-            Customer customer=customerService.findById(id);
-//            customerService.modificar(nombre, apellido, dni, numeroTelefono, rol,file, customer);
-//            model.put("descripcion", "Usuario registrado con exito.");
-         if (customer1.getRole()==Role.ADMIN) {
-             customerService.modificar(nombre, apellido, dni, numeroTelefono, role,file, customer);
+            Customer customer = (Customer) session.getAttribute("customersession");
 
-            return "redirect:/customer/list";
-         }else if (customer1.getRole()==Role.USER ||customer1.getRole()==Role.TEACHER ){
-             customerService.modificar(nombre, apellido, dni, numeroTelefono, role,file, customer);
+            customerService.modificar(nombre, apellido, dni, numeroTelefono, file, customer);
+            model.put("descripcion", "Usuario registrado con exito.");
 
-              return "redirect:/customer/profile";
-         }
+//             customerService.modificar(nombre, apellido, dni, numeroTelefono, role,file, customer);
         } catch (Exception e) {
             model.put("error", e.getMessage());
             model.addAttribute("errorMessage", e.getMessage());
             System.err.println(e);
             return "customer/customeredit";
         }
-       
+
 //                    return "customer/profile";
-        return null;
+        return "customer/profile";
     }
 //    ////////////////////////////////////////////////////////////////////////////
 
@@ -124,16 +115,74 @@ public class CustomerController {
         return "customer/customeredit";
     }
 
+    @PostMapping("/modificarprofileadmin/{id}")
+    public String modificarprofile(@PathVariable String id, @RequestParam String nombre, @RequestParam String apellido, @RequestParam String dni, @RequestParam String role, @RequestParam String numeroTelefono, ModelMap model,
+            Optional<MultipartFile> file, HttpSession session) {
+        try {
+            //validar
+            Customer customer = customerService.findById(id);
+
+            customerService.modificarprofileadmin(nombre, apellido, dni, role, numeroTelefono, file, customer);
+//            model.put("descripcion", "Usuario registrado con exito.");
+
+//             customerService.modificar(nombre, apellido, dni, numeroTelefono, role,file, customer);
+        } catch (Exception e) {
+            model.addAttribute("errorMessage", e.getMessage());
+            System.err.println(e);
+            return "customer/editprofileadmin";
+        }
+
+//                    return "customer/profile";
+        return "redirect:/customer/list";
+    }
+
+    @GetMapping("/modificarprofileA/{id}")
+    public String modificarprofileaA(@PathVariable("id") String customerid, ModelMap model) {
+        try {
+            Customer customer = customerService.findById(customerid);
+            model.addAttribute("customer", customer);
+        } catch (Exception ex) {
+            model.addAttribute("error", ex.getMessage());
+        }
+        return "customer/editprofileadmin";
+    }
+
     ////////////////////////////////////////////////////////////////////////////
 //    @PreAuthorize("hasAnyRole('ROLE_USER','ROLE_TEACHER','ROLE_ADMIN' )")
     @GetMapping("/profile")
     public String profile(ModelMap model, HttpSession session) {
         Customer customer = (Customer) session.getAttribute("customersession");
-        
-       
-
 
         return "customer/profile";
+    }
+
+    @GetMapping("/deletephotouser/")
+    public String deletephotouser(ModelMap model, HttpSession session) {
+
+        try {
+            Customer customer = (Customer) session.getAttribute("customersession");
+
+            customer.setPhoto(null);
+
+            customerService.savefotocustomer(customer);
+        } catch (Exception ex) {
+            model.put("error", ex.getMessage());
+        }
+        return "customer/profile";
+    }
+    @GetMapping("/deletephotoadmin/{id}")
+    public String deletephotoadmin(@PathVariable String id ,ModelMap model) {
+
+        try {
+            Customer customer = customerService.findById(id);
+
+            customer.setPhoto(null);
+
+            customerService.savefotocustomer(customer);
+        } catch (Exception ex) {
+            model.put("error", ex.getMessage());
+        }
+        return "redirect:/customer/list";
     }
 
     @GetMapping("/password")

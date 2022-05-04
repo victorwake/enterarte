@@ -49,30 +49,31 @@ public class MainController {
         return "/main/main";
     }
 
-    @GetMapping("/porfolio/{id}")
-    public String porfolioplay(ModelMap model, @PathVariable String id) {
-
-        try {
-            Play plays = playService.findById(id);
-            model.addAttribute("plays", plays);
-        } catch (Exception ex) {
-            model.put("error", ex.getMessage());
-        }
-
+     @GetMapping("/porfolio/{id}")
+    public String porfolioPlay(ModelMap model,@PathVariable String id) {    
+     
+         try {
+              Play plays = playService.findById(id);
+              model.addAttribute("plays", plays);
+         } catch (Exception ex) {
+             model.put("error", ex.getMessage());
+         }
+       
         return "/main/porfolioplay";
     }
-
+    
     @GetMapping("/porfolioworkshop/{id}")
-    public String porfolioWorkshop(ModelMap model, @PathVariable String id) {
-
-        try {
-            Workshop workshop = workshopService.findById(id);
-            model.addAttribute("workshops", workshop);
-        } catch (Exception ex) {
-            model.put("error", ex.getMessage());
-        }
-
+    public String porfolioWorkshop(ModelMap model,@PathVariable String id) {    
+     
+         try {
+              Workshop workshop = workshopService.findById(id);
+              model.addAttribute("workshops", workshop);
+         } catch (Exception ex) {
+             model.put("error", ex.getMessage());
+         }
+       
         return "/main/porfolioworkshop";
     }
+    
 
 }

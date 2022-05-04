@@ -42,7 +42,7 @@ public class PlayController {
     @GetMapping("/form")
     public String createPlay(ModelMap model) {
         model.addAttribute("play", new Play());
-        List<Location> locations = locationRepository.findAll();
+        List<Location> locations = locationRepository.locationActivos(Boolean.TRUE);
         model.put("locations", locations);
         return "play/register";
     }
@@ -50,7 +50,7 @@ public class PlayController {
     @GetMapping("/formcrop")
     public String createPlayCrop(ModelMap model) {
         model.addAttribute("play", new Play());
-        List<Location> locations = locationRepository.findAll();
+        List<Location> locations = locationRepository.locationActivos(Boolean.TRUE);
         model.put("locations", locations);
         return "play/playregistercrop";
     }
@@ -60,14 +60,14 @@ public class PlayController {
         try {
             //validar
             Location location = locationService.buscarPorId(locationid);
-            playService.save(play, location, Optional.ofNullable(file));
+            playService.save(play, location,Optional.ofNullable(file));
         } catch (Exception e) {
             model.put("error", e.getMessage());
-            List<Location> locations = locationRepository.findAll();
+            List<Location> locations = locationRepository.locationActivos(Boolean.TRUE);
             model.put("locations", locations);
             return "/play/register";
         }
-        return "redirect:/admin/panel";
+        return "redirect:/play/listar-playactiva";
     }
 
     @GetMapping("/modificar/{id}")
@@ -75,11 +75,11 @@ public class PlayController {
         try {
             Play play = playService.findById(id);
             model.addAttribute("play", play);
-            List<Location> locations = locationRepository.findAll();
+            List<Location> locations = locationRepository.locationActivos(Boolean.TRUE);
             model.put("locations", locations);
         } catch (Exception ex) {
             model.addAttribute("error", ex.getMessage());
-            List<Location> locations = locationRepository.findAll();
+            List<Location> locations =locationRepository.locationActivos(Boolean.TRUE);
             model.put("locations", locations);
         }
         return "play/register";

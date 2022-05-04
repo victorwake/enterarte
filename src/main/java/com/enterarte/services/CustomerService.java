@@ -6,6 +6,7 @@ import com.enterarte.entities.Photo;
 import com.enterarte.enums.Role;
 import com.enterarte.mistakes.ErrorService;
 import com.enterarte.repositories.CustomerRepository;
+import com.enterarte.repositories.PhotoRepository;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -29,17 +30,18 @@ import org.springframework.web.multipart.MultipartFile;
 @Service
 public class CustomerService implements UserDetailsService {
 
-    @Autowired
     private PhotoService photoService;
 
-    @Autowired
 //    public final NotificationService notificacionService;
-
     public final CustomerRepository customerRepository;
 
+    public final PhotoRepository photoRepository;
+
     @Autowired
-    public CustomerService(CustomerRepository customerRepository) {
+    public CustomerService(PhotoService photoService, CustomerRepository customerRepository, PhotoRepository photoRepository) {
+        this.photoService = photoService;
         this.customerRepository = customerRepository;
+        this.photoRepository = photoRepository;
     }
 
     ////////////////////////////////////////////////////////////////////////////
@@ -59,23 +61,69 @@ public class CustomerService implements UserDetailsService {
         customerRepository.save(customer);
 
 //        notificacionService.send("Bienvenido a BookShoop", "BookShop", customer.getEmail());
+    
     }
-
+    
+    public void savefotocustomer(Customer customer){
+        
+        customerRepository.save(customer); 
+        
+    }
     ////////////////////////////////////////////////////////////////////////////
     //Modificar
     ////////////////////////////////////////////////////////////////////////////
     @Transactional(rollbackOn = Exception.class)
-    public void modificar(String nombre, String apellido, String dni, String telefono, String role, Optional<MultipartFile> file, Customer customer) throws Exception {
+    public void modificar(String nombre, String apellido, String dni, String telefono, Optional<MultipartFile> file, Customer customer) throws Exception {
+
+        //Ingresar validaciones en un futuro
+//        if (role.equalsIgnoreCase("TEACHER")) {
+//            customer.setRole(Role.TEACHER);
+//        } else if (role.equalsIgnoreCase("ADMIN")) {
+//            customer.setRole(Role.ADMIN);
+//        } else if (role.equalsIgnoreCase("USER")){
+//            customer.setRole(Role.USER);
+//        }
+//        
+        customer.setNombre(nombre);
+        customer.setDni(dni);
+        customer.setNumeroTelefono(telefono);
+        customer.setApellido(apellido);
+
+//        validaNombre(customer);
+//        validaApellido(customer);
+//        validaTelefono(customer);
+//        validaDni(customer);
+        activateIfNew(customer);
+
+        String idPhoto = null;
+
+        if (file.isPresent() && !file.get().isEmpty()) {
+            Photo photo = photoService.guardarFoto(file.get());
+            customer.setPhoto(photo);
+        }
+
+        if (!file.isPresent() && file.get().isEmpty()) {
+            idPhoto = customer.getPhoto().getId();
+            Photo photo = photoService.buscar(idPhoto);
+            customer.setPhoto(photo);
+
+        }
+
+        customerRepository.save(customer);
+    }
+
+    @Transactional(rollbackOn = Exception.class)
+    public void modificarprofileadmin(String nombre, String apellido, String dni, String role, String telefono, Optional<MultipartFile> file, Customer customer) throws Exception {
 
         //Ingresar validaciones en un futuro
         if (role.equalsIgnoreCase("TEACHER")) {
             customer.setRole(Role.TEACHER);
         } else if (role.equalsIgnoreCase("ADMIN")) {
             customer.setRole(Role.ADMIN);
-        } else if (role.equalsIgnoreCase("USER")){
+        } else if (role.equalsIgnoreCase("USER")) {
             customer.setRole(Role.USER);
         }
-        
+//        
 
         customer.setNombre(nombre);
         customer.setDni(dni);
@@ -95,7 +143,7 @@ public class CustomerService implements UserDetailsService {
             customer.setPhoto(photo);
         }
 
-        if (file.isPresent() && file.get().isEmpty()) {
+        if (!file.isPresent() && file.get().isEmpty()) {
             idPhoto = customer.getPhoto().getId();
             Photo photo = photoService.buscar(idPhoto);
             customer.setPhoto(photo);
@@ -149,6 +197,8 @@ public class CustomerService implements UserDetailsService {
         }
     }
 
+   
+
     private void activateIfNew(Customer customer) {
         if (customer.getActive() == null) {
             customer.setActive(true);
@@ -173,7 +223,7 @@ public class CustomerService implements UserDetailsService {
     //Validacion general
     ////////////////////////////////////////////////////////////////////////////
     public void validar(Customer customer) throws ErrorService {
-        validaSiExiste(customer);
+//        validaSiExiste(customer);
         validaNombre(customer);
         validaApellido(customer);
         validaTelefono(customer);
