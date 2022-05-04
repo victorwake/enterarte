@@ -67,7 +67,7 @@ public class PlayController {
             model.put("locations", locations);
             return "/play/register";
         }
-        return "redirect:/admin/panel";
+        return "redirect:/play/listar-playactiva";
     }
 
     @GetMapping("/modificar/{id}")
