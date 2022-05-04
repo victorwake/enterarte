@@ -34,7 +34,7 @@
 
             <form class="well form-horizontal" th:action="@{/play/form}" th:object=${play} enctype="multipart/form-data" method="POST" id="contact_form">
 
-                <input type="hidden" th:value="${play.id}">
+                <input type="hidden" th:field="${play.id}">
 
                 <!-- Form Name -->
                 <legend>Creacion de nuevo espectaculo!</legend>
@@ -129,24 +129,23 @@
 
 
 
+             
 
 
 
 
-
-
-                <div class="form-group">
-                    <label class="col-md-4 control-label">Imagen de evento</label>
-                    <div class="col-md-4 inputGroupContainer">
-                        <div class="input-group">
-                            <input id="uploadImage" type="file"  accept="image/*" capture="camera" />
-
-                            <!--<img id="imgDisplay" src="http://placehold.it/300x300" alt="Not a kitten" />-->
-                            <input id="imgDisplay" type="file" name="file" accept="image/*" capture="camera"  style="visibility:hidden"/>
-
-                        </div>
-                    </div>
-                </div>
+                                <div class="form-group">
+                                    <label class="col-md-4 control-label">Imagen de evento</label>
+                                    <div class="col-md-4 inputGroupContainer">
+                                        <div class="input-group">
+                                            <input id="uploadImage" type="file" name="file" accept="image/*"  />
+                
+<!--                                            <img id="imgDisplay" src="http://placehold.it/300x300" alt="Not a kitten" />-->
+                                            <input id="imgDisplay" type="file" name="file" accept="image/*" capture="camera"  style="visibility:hidden"/>
+                
+                                        </div>
+                                    </div>
+                                </div>
 
 
 
@@ -178,10 +177,10 @@
             const btn = document.querySelector('#menu-btn');
             const menu = document.querySelector('#sidemenu');
             btn.addEventListener('click', e => {
-                menu.classList.toggle("menu-expanded");
-                menu.classList.toggle("menu-collapsed");
+            menu.classList.toggle("menu-expanded");
+            menu.classList.toggle("menu-collapsed");
 
-                document.querySelector('body').classList.toggle('body-expanded');
+            document.querySelector('body').classList.toggle('body-expanded');
 
             });
         </script>

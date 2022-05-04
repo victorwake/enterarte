@@ -34,14 +34,16 @@ public class PlayService {
     @Transactional(rollbackOn = Exception.class)
     public void save(Play play, Location location, Optional<MultipartFile> file) throws Exception {
         
-        validar(play);        
-        play.setLocation(location);
-        play.setAlta(true);
-        
+//        validar(play);        
+       
         if (file.isPresent() && !file.get().isEmpty()) {
             Photo photo = photoService.guardarFoto(file.get());
             play.setPhoto(photo);
         }
+        
+        play.setLocation(location);
+        play.setAlta(true);
+        
         playRepository.save(play);
     }
     
@@ -70,10 +72,19 @@ public class PlayService {
             throw new Exception("usuario no encontrado");
         }
     }
+    
+    public void baja(Play play){
+        play.setAlta(false);
+        playRepository.save(play);
+    }
 
+     public void alta(Play play){
+        play.setAlta(true);
+        playRepository.save(play);
+    }
 ///////////////////////////////Validaciones/////////////////////////////////////
     public void validar(Play play) throws ErrorService {
-        validaSiExiste(play);
+//        validaSiExiste(play);
         validaNombre(play);
         validaDuracion(play);
         validaDescripcion(play);

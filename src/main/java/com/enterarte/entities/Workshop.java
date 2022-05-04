@@ -24,6 +24,7 @@ public class Workshop {
     
     private String titulo;
     private String descripcion;
+    private boolean alta;
     
     @OneToOne
     private Photo photo;
