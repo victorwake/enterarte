@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+    <head>
+        <meta charset="UTF-8"/>
+        <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+        <meta content="ie=edge" http-equiv="X-UA-Compatible"/>
+        <meta content="Victor Pinto" name="author"/>   
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Indie+Flower&family=Pacifico&family=Source+Sans+Pro:wght@600&display=swap" rel="stylesheet">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+        <link href="/css/registro-login.css" rel="stylesheet"/>
+        <link href="/css/list-customer.css" rel="stylesheet"/>
+<!--        <link href="/css/navbarlateral.css" rel="stylesheet"/>-->
+        <link rel="shortcut icon" href="/img/favicon.ico"/>
+        <title>Lista de clientes</title>  
+    <body>
+        <header>   
+            <nav th:replace="fragments/navbar :: navbar"></nav>
+            <nav th:replace="fragments/sidebar :: sidebar"></nav>
+            
+
+            <div class="altaBaja"> 
+                <div class="btn-group">
+                    <button type="button" class="btn btn-info dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                        Listar
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="/contact/message">Listar activos</a></li>
+                    </ul>
+                </div>
+            </div>
+        </header>
+            
+<!--        ///////////////////Lista///////////////////////-->
+
+        <main>
+            <div class="container">
+                <table class="responsive-table">
+                    <h3>Listado de mensajes archivados</h3>
+
+                    <thead>
+                        <tr>
+                             <th scope="col"></th>
+                             <th scope="col">Nombre</th>
+                             <th scope="col">Mail</th>                       
+                             <th scope="col">Telefono</th>
+                             <th scope="col">Cuerpo</th>
+                             <th scope="col">Mover</th>
+                             <th scope="col">Eliminar</th>
+                        </tr>
+                    </thead>
+                    <tfoot>
+                        <tr>
+                            <td colspan="4"></td>
+                        </tr>
+                    </tfoot>
+                    <tbody>
+                        <tr th:each="contact:${contacts}">
+                            <th scope="row">#</th>
+                            <td data-title="nombre" th:text="${contact.nombre}"></td>
+                            <td data-title="mail" th:text="${contact.mail}"></td>
+                            <td data-title="mail" th:text="${contact.telefono}"></td>
+                            <td data-title="mail" th:text="${contact.cuerpo}"></td>
+                            <td>
+                                <div sec:authorize="isAuthenticated()" >
+                                    <a class="btn btn-outline-success" th:href="@{/contact/alta/__${contact.id}__}" method="GET">         
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-up-square" viewBox="0 0 16 16">
+                                        <path fill-rule="evenodd" d="M15 2a1 1 0 0 0-1-1H2a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V2zM0 2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2zm8.5 9.5a.5.5 0 0 1-1 0V5.707L5.354 7.854a.5.5 0 1 1-.708-.708l3-3a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 5.707V11.5z"/>
+                                        </svg>
+                                    </a>
+                                </div>
+                            </td>
+                            <td>
+                                <div sec:authorize="isAuthenticated()" >
+                                    <a class="btn btn-outline-danger" th:href="@{/contact/eliminar/__${contact.id}__}" method="GET">         
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                             class="bi bi-trash3" viewBox="0 0 16 16">
+                                        <path
+                                            d="M6.5 1h3a.5.5 0 0 1 .5.5v1H6v-1a.5.5 0 0 1 .5-.5ZM11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3A1.5 1.5 0 0 0 5 1.5v1H2.506a.58.58 0 0 0-.01 0H1.5a.5.5 0 0 0 0 1h.538l.853 10.66A2 2 0 0 0 4.885 16h6.23a2 2 0 0 0 1.994-1.84l.853-10.66h.538a.5.5 0 0 0 0-1h-.995a.59.59 0 0 0-.01 0H11Zm1.958 1-.846 10.58a1 1 0 0 1-.997.92h-6.23a1 1 0 0 1-.997-.92L3.042 3.5h9.916Zm-7.487 1a.5.5 0 0 1 .528.47l.5 8.5a.5.5 0 0 1-.998.06L5 5.03a.5.5 0 0 1 .47-.53Zm5.058 0a.5.5 0 0 1 .47.53l-.5 8.5a.5.5 0 1 1-.998-.06l.5-8.5a.5.5 0 0 1 .528-.47ZM8 4.5a.5.5 0 0 1 .5.5v8.5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5Z" />
+                                        </svg>
+                                    </a>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>    
+                    </tbody>
+                </table>
+                <tfoot>
+                    <tr>
+                        <td colspan="4">
+                            <div id="current_date">
+                                <script>
+                                    date = new Date();
+                                    year = date.getFullYear();
+                                    month = date.getMonth() + 1;
+                                    day = date.getDate();
+                                    document.getElementById("current_date").innerHTML = 'Lista actualizada a fecha ' + day + "/" + month + "/" + year;
+                                </script>
+                        </td>
+                    </tr>
+                </tfoot>
+            </div>
+        </main>
+
+        <footer th:replace="fragments/footer :: footer"></footer>
+
+        <!--js-->
+          <script>
+    const btn = document.querySelector('#menu-btn');
+    const menu = document.querySelector('#sidemenu');
+    btn.addEventListener('click', e =>{
+        menu.classList.toggle("menu-expanded");
+        menu.classList.toggle("menu-collapsed");
+
+        document.querySelector('body').classList.toggle('body-expanded');
+
+    });
+    </script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+
+    </body>
+</html>

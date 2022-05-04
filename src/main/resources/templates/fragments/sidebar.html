@@ -74,6 +74,15 @@
                         <div class="title"><span>Listar Usuarios</span></div>
                     </a>
                 </div>  
+                
+                <div class="item separator"></div>
+                
+                <div class="item">
+                    <a sec:authorize="hasAnyRole('ADMIN')" th:href="@{/contact/message}">
+                        <div class="icon"><img src="/img/comments.png"></div>
+                        <div class="title"><span>Mensajes</span></div>
+                    </a>
+                </div>  
 
             </div>
         </nav>

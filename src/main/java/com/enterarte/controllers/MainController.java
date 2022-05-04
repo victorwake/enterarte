@@ -1,5 +1,6 @@
 package com.enterarte.controllers;
 
+import com.enterarte.entities.Contact;
 import com.enterarte.services.LocationService;
 import com.enterarte.services.PlayService;
 import com.enterarte.services.WorkshopService;
@@ -45,6 +46,8 @@ public class MainController {
         
         List<Workshop> workshops = workshopService.listarWorkshopActivas();
         model.addAttribute("workshops", workshops);
+        
+         model.addAttribute("contact", new Contact());
         return "/main/main";
     }
     
@@ -60,6 +63,14 @@ public class MainController {
        
         return "/main/porfolioplay";
     }
+    
+    
+//    @GetMapping("/create")
+//   public String createMessaje(ModelMap model){
+//       model.addAttribute("messaje", new Contact());
+//       return "/main";
+//   }
+    
     
 
 }
