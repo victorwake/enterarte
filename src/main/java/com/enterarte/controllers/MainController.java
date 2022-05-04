@@ -21,13 +21,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 @RequestMapping("/")
 public class MainController {
-    
-     private final PlayService playService;
+
+    private final PlayService playService;
     private final LocationRepository locationRepository;
     private final LocationService locationService;
     private final WorkshopService workshopService;
     private final WorkshopRepository workshopRepository;
-    
+
     @Autowired
     public MainController(PlayService playService, LocationService locationService, LocationRepository locationRepository, WorkshopRepository workshopRepository, WorkshopService workshopService) {
         this.playService = playService;
@@ -36,41 +36,43 @@ public class MainController {
         this.workshopRepository = workshopRepository;
         this.workshopService = workshopService;
     }
-    
-    
-    
+
     @GetMapping("/main")
-    public String home(ModelMap model){
+    public String home(ModelMap model) {
         List<Play> plays = playService.listarPlaysActivas();
         model.addAttribute("plays", plays);
-        
+
         List<Workshop> workshops = workshopService.listarWorkshopActivas();
         model.addAttribute("workshops", workshops);
-        
-         model.addAttribute("contact", new Contact());
+
+        model.addAttribute("contact", new Contact());
         return "/main/main";
     }
-    
+
     @GetMapping("/porfolio/{id}")
-    public String porfolioplay(ModelMap model,@PathVariable String id) {    
-     
-         try {
-              Play plays = playService.findById(id);
-              model.addAttribute("plays", plays);
-         } catch (Exception ex) {
-             model.put("error", ex.getMessage());
-         }
-       
+    public String porfolioplay(ModelMap model, @PathVariable String id) {
+
+        try {
+            Play plays = playService.findById(id);
+            model.addAttribute("plays", plays);
+        } catch (Exception ex) {
+            model.put("error", ex.getMessage());
+        }
+
         return "/main/porfolioplay";
     }
-    
-    
-//    @GetMapping("/create")
-//   public String createMessaje(ModelMap model){
-//       model.addAttribute("messaje", new Contact());
-//       return "/main";
-//   }
-    
-    
+
+    @GetMapping("/porfolioworkshop/{id}")
+    public String porfolioWorkshop(ModelMap model, @PathVariable String id) {
+
+        try {
+            Workshop workshop = workshopService.findById(id);
+            model.addAttribute("workshops", workshop);
+        } catch (Exception ex) {
+            model.put("error", ex.getMessage());
+        }
+
+        return "/main/porfolioworkshop";
+    }
 
 }
