@@ -1,73 +1,66 @@
 
-        <nav th:fragment="sidebar">
-            
-            <div id="sidemenu" class="menu-collapsed">
-            <!-- HEADER -->
-            <div id="header">
-                <!-- <div id="title"><span>Vida MRR</span></div>    -->
-                <div id="menu-btn">
-                    <div class="btn-hamburger"></div>  
-                    <div class="btn-hamburger"></div>  
-                    <div class="btn-hamburger"></div>  
-                </div>
-            </div>            
-            
-            <div id="profile">  
-                <a sec:authorize="hasAnyRole('ADMIN')" th:href="@{/admin/panel}">
-                    <div id="photo"><img src="/img/caras.png" alt=""></div>
+<nav th:fragment="sidebar">
 
-                    <div id="name"><span>Panel de Control</span></div>
+    <div id="sidemenu" class="menu-collapsed">
+        <!-- HEADER -->
+        <div id="header">
+            <!-- <div id="title"><span>Vida MRR</span></div>    -->
+            <div id="menu-btn">
+                <div class="btn-hamburger"></div>  
+                <div class="btn-hamburger"></div>  
+                <div class="btn-hamburger"></div>  
+            </div>
+        </div>            
+
+        <div id="profile">  
+            <a sec:authorize="hasAnyRole('ADMIN')" th:href="@{/admin/panel}">
+                <div id="photo"><img src="/img/caras.png" alt=""></div>
+
+                <div id="name"><span>Panel de Control</span></div>
+        </div>
+
+        <!-- items -->
+
+        <div id="menu-items">
+            <div class="item">
+                <a sec:authorize="hasAnyRole('ADMIN')" th:href="@{/location/form}">
+                    <div class="icon"><img src="/img/page.png"></div>
+                    <div class="title"><span>Crear Locacion</span></div>
+                </a>
             </div>
 
-            <!-- items -->
+            <div class="item">
+                <a sec:authorize="hasAnyRole('ADMIN')" th:href="@{/play/form}">
+                    <div class="icon"><img src="/img/show.png"></div>
+                    <div class="title"><span>Crear Show</span></div>
+                </a>
+            </div>   
 
-            <div id="menu-items">
-                <div class="item">
-                    <a sec:authorize="hasAnyRole('ADMIN')" th:href="@{/location/form}">
-                        <div class="icon"><img src="/img/page.png"></div>
-                        <div class="title"><span>Crear Locacion</span></div>
-                    </a>
-                </div>
 
-                <div class="item">
-                    <a sec:authorize="hasAnyRole('ADMIN')" th:href="@{/play/form}">
-                        <div class="icon"><img src="/img/show.png"></div>
-                        <div class="title"><span>Crear Show</span></div>
-                    </a>
-                </div>   
- 
-                
-                <div class="item">
-                    <a sec:authorize="hasAnyRole('TEACHER', 'ADMIN')"th:href="@{/teacher/form}">
-                        <div class="icon"><img src="/img/create.png"></div>
-                        <div class="title"><span>Crear Taller</span></div>
-                    </a>
-                </div>  
+            <div class="item">
+                <a sec:authorize="hasAnyRole('TEACHER', 'ADMIN')"th:href="@{/teacher/form}">
+                    <div class="icon"><img src="/img/create.png"></div>
+                    <div class="title"><span>Crear Taller</span></div>
+                </a>
+            </div>  
 
-                <div class="item separator"></div>
+            <div class="item separator"></div>
 
-                <div class="item">
-                    <a sec:authorize="hasAnyRole('ADMIN')" th:href="@{/location/listar-locacionactiva}">
-                        <div class="icon"><img src="/img/checklist.png"></div>
-                        <div class="title"><span>Listar Locaciones</span></div>
-                    </a>
-                </div>  
+            <div class="item">
+                <a sec:authorize="hasAnyRole('ADMIN')" th:href="@{/location/listar-locacionactiva}">
+                    <div class="icon"><img src="/img/checklist.png"></div>
+                    <div class="title"><span>Listar Locaciones</span></div>
+                </a>
+            </div>  
 
-                <div class="item">
-                    <a sec:authorize="hasAnyRole('ADMIN')" th:href="@{/play/listar-playactiva}">
-                        <div class="icon"><img src="/img/spotlight.png"></div>
-                        <div class="title"><span>Listar Shows</span></div>
-                    </a>
-                </div>  
- 
-                
-                <div class="item">
-                    <a sec:authorize="hasAnyRole('TEACHER','ADMIN')" th:href="@{/teacher/listartalleres}">
-                        <div class="icon"><img src="/img/list.png"></div>
-                        <div class="title"><span>Listar Talleres</span></div>
-                    </a>
-                </div>  
+            <div class="item">
+                <a sec:authorize="hasAnyRole('ADMIN')" th:href="@{/play/listar-playactiva}">
+                    <div class="icon"><img src="/img/spotlight.png"></div>
+                    <div class="title"><span>Listar Shows</span></div>
+                </a>
+            </div>  
 
+<<<<<<< HEAD
                 <div class="item">
                     <a sec:authorize="hasAnyRole('ADMIN')" th:href="@{/customer/list}">
                         <div class="icon"><img src="/img/6012311.png"></div>
@@ -86,3 +79,31 @@
 
             </div>
         </nav>
+=======
+
+            <div class="item">
+                <a sec:authorize="hasAnyRole('TEACHER','ADMIN')" th:href="@{/teacher/listartalleres}">
+                    <div class="icon"><img src="/img/list.png"></div>
+                    <div class="title"><span>Listar Talleres</span></div>
+                </a>
+            </div>  
+
+            <div class="item">
+                <a sec:authorize="hasAnyRole('ADMIN')" th:href="@{/customer/list}">
+                    <div class="icon"><img src="/img/6012311.png"></div>
+                    <div class="title"><span>Listar Usuarios</span></div>
+                </a>
+            </div>  
+            <div class="item separator"></div>
+
+            <div class="item">
+                <a sec:authorize="hasAnyRole('ADMIN')" th:href="@{/contact/message}">
+                    <div class="icon"><img src="/img/comments.png"></div>
+                    <div class="title"><span>Mensajes</span></div>
+                </a>
+            </div>  
+        </div>
+
+
+</nav>
+>>>>>>> 950d5cdb74dd1866eb6810b484c694075d72a80b
