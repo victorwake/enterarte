@@ -1,6 +1,5 @@
 package com.enterarte.config;
 
-
 import com.enterarte.services.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
@@ -13,29 +12,28 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
-
-
 @Configuration
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
-    
-     @Autowired
-    public CustomerService customerService;
-    
+
     @Autowired
-    public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception{
+    public CustomerService customerService;
+
+    @Autowired
+    public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
         auth.userDetailsService(customerService).
-                passwordEncoder(new BCryptPasswordEncoder());   
+                passwordEncoder(new BCryptPasswordEncoder());
     }
-    
+
     @Override
-    protected void configure(HttpSecurity http) throws Exception{
+    protected void configure(HttpSecurity http) throws Exception {
 //                .antMatchers("/author/create").hasAnyRole("ADMIN")
-                 http .csrf().disable()
-                .authorizeRequests() 
-                .antMatchers("/index", "/css/**", "/js/**","/main/**", "/img/**", "/video/**", "/login/**","/admin/**", "/customer/**").permitAll()           
-                .antMatchers(HttpMethod.GET).permitAll()      
+        http.csrf().disable()
+                .authorizeRequests()
+                .antMatchers("/index", "/css/**", "/js/**", "/main/**", "/img/**", "/video/**", "/login/**", "/admin/**", "/customer/**").permitAll()
+                .antMatchers(HttpMethod.GET).permitAll()
+                .antMatchers(HttpMethod.POST).permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
@@ -49,9 +47,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .logout()
                 .logoutUrl("/logout")
                 .logoutSuccessUrl("/").permitAll();
-                
-    }
-    
 
+    }
 
 }
