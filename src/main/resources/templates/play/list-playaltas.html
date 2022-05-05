@@ -40,7 +40,6 @@
                     <thead>
                         <tr>
                             <th scope="col"></th>
-<!--                            <th scope="col">Id</th>-->
                             <th scope="col">Nombre</th>
                             <th scope="col">Duracion</th>
                             <th scope="col">Locacion</th>
@@ -52,13 +51,12 @@
                     </thead>
                     <tfoot>
                         <tr>
-                            <td colspan="7"></td>
+                            <td colspan="8"></td>
                         </tr>
                     </tfoot>
                     <tbody>
                         <tr th:each="play:${plays}">
                             <th scope="row">#</th>
-<!--                            <td th:text="${play.id}"></td>-->
                             <td th:text="${play.nombre}"></td>
                             <td th:text="${play.duracion}"></td>
                             <td  th:text="${play.location.nombre}"></td>

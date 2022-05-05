@@ -60,27 +60,6 @@
                 </a>
             </div>  
 
-<<<<<<< HEAD
-                <div class="item">
-                    <a sec:authorize="hasAnyRole('ADMIN')" th:href="@{/customer/list}">
-                        <div class="icon"><img src="/img/6012311.png"></div>
-                        <div class="title"><span>Listar Usuarios</span></div>
-                    </a>
-                </div>  
-                
-                <div class="item separator"></div>
-                
-                <div class="item">
-                    <a sec:authorize="hasAnyRole('ADMIN')" th:href="@{/contact/message}">
-                        <div class="icon"><img src="/img/comments.png"></div>
-                        <div class="title"><span>Mensajes</span></div>
-                    </a>
-                </div>  
-
-            </div>
-        </nav>
-=======
-
             <div class="item">
                 <a sec:authorize="hasAnyRole('TEACHER','ADMIN')" th:href="@{/teacher/listartalleres}">
                     <div class="icon"><img src="/img/list.png"></div>
@@ -94,6 +73,7 @@
                     <div class="title"><span>Listar Usuarios</span></div>
                 </a>
             </div>  
+
             <div class="item separator"></div>
 
             <div class="item">
@@ -102,8 +82,10 @@
                     <div class="title"><span>Mensajes</span></div>
                 </a>
             </div>  
+
         </div>
-
-
 </nav>
->>>>>>> 950d5cdb74dd1866eb6810b484c694075d72a80b
+
+
+
+
