@@ -94,14 +94,36 @@ public class CustomerController {
     }
 //    ////////////////////////////////////////////////////////////////////////////
 
-    @GetMapping("/baja/{id}")
-    public String desactivate(@PathVariable String id, ModelMap model) {
+    @GetMapping("/alta/{id}")
+    public String activate(@PathVariable String id, ModelMap model,HttpSession session) {
+     
         try {
+            Customer customer = customerService.findById(id);
+            customerService.alta(customer);
+        } catch (Exception e) {
+            model.addAttribute("errorMessage", e.getMessage());
+        }
+       
+        return "redirect:/customer/list";
+        
+    }
+    
+    
+    @GetMapping("/baja/{id}")
+    public String desactivate(@PathVariable String id, ModelMap model,HttpSession session) {
+        Customer customer = (Customer) session.getAttribute("customersession");
+        try {    
             customerService.desactivate(id);
         } catch (Exception e) {
             model.addAttribute("errorMessage", e.getMessage());
         }
-        return "redirect:/logout";
+        if (customer.getRole()==Role.ADMIN) {
+           return "redirect:/customer/list"; 
+        }else{
+          return "redirect:/logout";  
+        }
+//        return "redirect:/logout";
+        
     }
 
     @GetMapping("/modificar/{id}")
