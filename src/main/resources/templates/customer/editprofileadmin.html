@@ -31,10 +31,11 @@
                     <input th:field="*{numeroTelefono}" autocomplete="off" type="number"  class="form-control" name="numero_telefono" placeholder="Telefono" required="" autofocus="" />
                     <input th:field="*{email}" sec:authorize="!isAuthenticated()" autocomplete="off" type="text"  class="form-control"  placeholder="Email"  autofocus="" />
                     <!--                    <input th:field="*{role}" autocomplete="off" name="role" type="text" class="form-control" id="esconder" placeholder=""  autofocus="" />-->
-
+                      <br>
                     <div sec:authorize="hasAnyRole('ADMIN')" class="input-group">
                         <span class="input-group-addon"><i class="glyphicon glyphicon-map-marker"></i></span>
-                        <select name="role" class="form-control-selectpicker" >
+                       
+                        <select name="role" class="form-select" >
                             <option value=" " >Seleccione el rol</option>
                             <option th:value="ADMIN">ADMIN</option>
                             <option th:value="USER">USER </option>

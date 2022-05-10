@@ -88,6 +88,7 @@ public class CustomerService implements UserDetailsService {
         customer.setDni(dni);
         customer.setNumeroTelefono(telefono);
         customer.setApellido(apellido);
+        customer.setActive(true);
 
 //        validaNombre(customer);
 //        validaApellido(customer);
@@ -129,6 +130,7 @@ public class CustomerService implements UserDetailsService {
         customer.setDni(dni);
         customer.setNumeroTelefono(telefono);
         customer.setApellido(apellido);
+        customer.setActive(Boolean.TRUE);
 
 //        validaNombre(customer);
 //        validaApellido(customer);
@@ -204,6 +206,13 @@ public class CustomerService implements UserDetailsService {
             customer.setActive(true);
             customer.setRole(Role.USER);
         }
+    }
+    
+    public void alta(Customer customer){
+        
+      customer.setActive(Boolean.TRUE);
+      customer.setRole(Role.USER);
+      customerRepository.save(customer);
     }
 
     @Transactional
