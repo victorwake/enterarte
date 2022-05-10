@@ -128,5 +128,16 @@ public class TeacherController {
         
         return "redirect:/teacher/workshop_baja";
     }
+    
+    @GetMapping("/modificar/{id}")
+    public String modificarplay(@PathVariable("id") String id, ModelMap model) {
+        try {
+            Workshop workshop = workshopService.findById(id);
+            model.addAttribute("workshop", workshop);
+        } catch (Exception ex) {
+            model.addAttribute("error", ex.getMessage());
+        }
+        return "teacher/create-workshop";
+    }
 
 }
