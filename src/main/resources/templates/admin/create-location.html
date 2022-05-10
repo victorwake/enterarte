@@ -4,7 +4,7 @@
         <meta charset="UTF-8"/>
         <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
         <meta content="ie=edge" http-equiv="X-UA-Compatible"/>
-        <meta content="Victor Pinto" name="author"/>   
+           
 
              <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -35,7 +35,7 @@
                <input type="hidden" th:field="*{id}">
 
                     <!-- Form Name -->
-                    <legend>Crear Locacion</legend>
+                    <Legend th:text="${location.id != null and !#strings.isEmpty(location.id) ? 'Editar Locacion' : 'Crear Locacion'}"></Legend>
 
                     <!-- Text input-->
 
@@ -66,7 +66,7 @@
                     <div class="form-group">
                         <label class="col-md-4 control-label"></label>
                         <div class="col-md-4">
-                            <button type="submit" class="btn btn-primary" >Añadir locacion<span class="glyphicon glyphicon-send"></span></button>
+                            <button type="submit" class="btn btn-primary" >Guardar<span class="glyphicon glyphicon-send"></span></button>
                         </div>
                     </div>
 
