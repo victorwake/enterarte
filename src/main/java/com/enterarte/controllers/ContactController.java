@@ -95,4 +95,17 @@ public class ContactController {
 
     }
     
+    @GetMapping("/messagefull/{id}")
+    public String porfolioPlay(ModelMap model,@PathVariable String id) {    
+     
+         try {
+              Contact contacts = contactService.findById(id);
+              model.addAttribute("contacts", contacts);
+         } catch (Exception ex) {
+             model.put("error", ex.getMessage());
+         }
+       
+        return "/admin/message-full";
+    }
+    
 }
