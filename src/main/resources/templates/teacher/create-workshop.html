@@ -31,7 +31,7 @@
             <form class="well form-horizontal" th:action="@{/teacher/create/__${session.customersession.id}__}" th:object=${workshop} enctype="multipart/form-data" method="POST" id="contact_form">
                 <fieldset>
                     <input type="hidden" th:value="${workshop.id}">
-                    <legend>Creacion de nuevo taller/curso!</legend>
+                       <Legend th:text="${workshop.id != null and !#strings.isEmpty(workshop.id) ? 'Editar Taller' : 'Crear Taller'}"></Legend>
                     <div class="form-group">
                         <label class="col-md-4 control-label">Nombre</label>  
                         <div class="col-md-4 inputGroupContainer">

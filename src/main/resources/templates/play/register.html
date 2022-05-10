@@ -37,7 +37,7 @@
                 <input type="hidden" th:field="${play.id}">
 
                 <!-- Form Name -->
-                <legend>Creacion de nuevo espectaculo!</legend>
+             <Legend th:text="${play.id != null and !#strings.isEmpty(play.id) ? 'Editar Show' : 'Crear Show'}"></Legend>
 
                 <!-- Text input-->
 
