@@ -42,6 +42,7 @@
                             <th scope="col"></th>
                             <th scope="col">Nombre</th>
                             <th scope="col">Duracion</th>
+                            <th scope="col">Fecha</th>
                             <th scope="col">Locacion</th>
                             <th scope="col">Descripcion</th>
                             <th scope="col">Foto</th>
@@ -59,6 +60,7 @@
                             <th scope="row">#</th>
                             <td th:text="${play.nombre}"></td>
                             <td th:text="${play.duracion}"></td>
+                            <td th:text="${play.fecha}"></td>
                             <td  th:text="${play.location.nombre}"></td>
                             <td th:text="${play.descripcion}"></td>
                             <td><img th:if="${play.photo != null}" class='imgRedonda' th:src="${'/photo/play' + play.id}">

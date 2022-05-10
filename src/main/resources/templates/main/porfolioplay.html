@@ -38,8 +38,12 @@
                                 <img th:if="${play.photo == null}" class="img-responsive" src="/img/show.webp" alt="foto de perfil">
                                 <strong>Sinopsis</strong>
                                 <p th:text="${play.descripcion}"></p>
-                                <p>
-                                    <strong></strong></p>
+                                
+                                    <strong>
+                                  <ul class="list-inline">
+                                    <li>Fecha:</li>
+                                    <li th:text="${play.fecha}"></li>
+                                </ul></strong>
                                 <ul class="list-inline">
                                     <li>Duracion:</li>
                                     <li th:text="${play.duracion}"></li>
@@ -48,7 +52,6 @@
                                 <ul class="list-inline">
                                     <li>Direccion:</li>
                                     <li th:text="${play.location.nombre}"></li></b>
-
                                 </ul>
                                 <br>
                                 <br>

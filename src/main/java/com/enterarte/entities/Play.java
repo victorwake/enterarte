@@ -29,6 +29,7 @@ public class Play {
     private String descripcion;
     
     private Integer duracion;
+    private String fecha;
     
     private boolean alta;
 

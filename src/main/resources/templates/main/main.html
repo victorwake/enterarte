@@ -118,10 +118,9 @@
                             <a th:href="@{/porfolio/} + ${play.id}" class="lien" th:each="play:${plays}">
                                 <img fix-height="50em" img th:if="${play.photo != null}" class="img-responsive" th:src="${'/photo/play' + play.id}" alt="">
                                 <img fix-height="50em" th:if="${play.photo == null}" class="img-responsive" src="/img/show.webp" alt="foto de perfil">
-
-                                <h2 class="lien__titre" th:text="${play.nombre}"></h2>
+                                <h2 class="lien__titre" th:text="${play.nombre}"></h2>                             
                             </a>
-                        </div>
+                        </div> 
                     </div>
                     <div class="navSlider navSliderLeft disabled">
                         <svg aria-hidden="true"><use xlink:href="#icon-left-arrow"></use></svg>
