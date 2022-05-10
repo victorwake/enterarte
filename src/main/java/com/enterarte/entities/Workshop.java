@@ -1,5 +1,6 @@
 package com.enterarte.entities;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -23,7 +24,9 @@ public class Workshop {
     private String id;
     
     private String titulo;
+    @Column(name = "DESCRIPCION", nullable = false, length = 999)
     private String descripcion;
+    
     private boolean alta;
     
     @OneToOne
