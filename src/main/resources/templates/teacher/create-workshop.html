@@ -12,7 +12,6 @@
         <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css'>
         <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/jquery.bootstrapvalidator/0.5.0/css/bootstrapValidator.min.css'>
         <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0-rc2/cssâ€Œâ€‹/bootstrap-glyphiconâ€Œâ€‹s.css">
-        <meta content="Victor Pinto" name="author"/>      
         <link href="/css/registro-login.css" rel="stylesheet"/>
         <link href="/css/play.css" rel="stylesheet"/>
         <link href="/css/navbarlateral.css" rel="stylesheet"/>
@@ -30,7 +29,7 @@
 
             <form class="well form-horizontal" th:action="@{/teacher/create/__${session.customersession.id}__}" th:object=${workshop} enctype="multipart/form-data" method="POST" id="contact_form">
                 <fieldset>
-                    <input type="hidden" th:value="${workshop.id}">
+                     <input type="hidden" th:field="*{id}">
                        <Legend th:text="${workshop.id != null and !#strings.isEmpty(workshop.id) ? 'Editar Taller' : 'Crear Taller'}"></Legend>
                     <div class="form-group">
                         <label class="col-md-4 control-label">Nombre</label>  

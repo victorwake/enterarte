@@ -36,6 +36,15 @@ public class WorkshopService {
             Photo photo = photoService.guardarFoto(file.get());
             workshop.setPhoto(photo);
         }
+
+        
+        String idPhoto = null;
+        if (!file.isPresent() && file.get().isEmpty()) {
+            idPhoto = workshop.getPhoto().getId();
+            Photo photo = photoService.buscar(idPhoto);
+            workshop.setPhoto(photo);
+
+        }
         workshop.setTeacher(teacher);
         workshop.setAlta(true);
 
